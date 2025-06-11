@@ -144,17 +144,17 @@ padding:5px;</string>
        </property>
        <item>
         <property name="text">
+         <string>Темно-синяя</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>Классическая</string>
         </property>
        </item>
        <item>
         <property name="text">
          <string>Темно-зеленая</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Темно-желтая</string>
         </property>
        </item>
        <item>

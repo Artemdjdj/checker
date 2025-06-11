@@ -3,7 +3,7 @@ import sys
 import os
 from form import *
 from settings import *
-from form_settings import *
+from settings import *
 from game import *
 from utils import *
 
@@ -61,8 +61,9 @@ class MainWindow(QMainWindow):
         self.ui.right_widget.tabBar().hide()
         self.ui.central_widget.setCurrentWidget(self.ui.first_cenral_widget)
         self.ui.right_widget.setCurrentWidget(self.ui.first_widget_right)
-        self.style_buttons = style_classic
-        self.style_around_buttons = style_around_classic
+        self.style_buttons = style_dark_blue
+        self.style_around_buttons = style_around_dark_blue
+        self.style_buttons_non_use = style_base
     def start_settings(self):
         for i in range(0,3):
             if i%2 == 0: 
@@ -437,18 +438,42 @@ class MainWindow(QMainWindow):
     
     
     def set_theme_for_board(self, theme):
+        style = "" 
+        style2 = ""
+        if theme=="Темно-зеленая":
+            style =  style_for_dark_green_board
+            style2 = style_base
+            self.style_buttons = style_for_dark_green_board
+            self.style_around_buttons =  style_around_green
+            self.style_buttons_non_use = style_base
+        elif theme == "Светлая":
+            style =  style_for_light_blue_board
+            style2 = style_base
+            self.style_buttons = style_for_light_blue_board
+            self.style_around_buttons = style_around_light_blue
+            self.style_buttons_non_use = style_base
+        elif theme =="Темно-синяя":
+            style =  style_dark_blue
+            style2 = style_base
+            self.style_buttons = style_dark_blue
+            self.style_around_buttons = style_around_dark_blue
+            self.style_buttons_non_use = style_base
+        elif theme == "Классическая":
+            style =  style_for_classic_board_grey
+            style2 = style_for_classic_board_orange
+            self.style_buttons = style_for_classic_board_grey
+            self.style_around_buttons = style_classic_around 
+            self.style_buttons_non_use = style_for_classic_board_orange
+
         for button in self.all_buttons:
             row = int(button.objectName()[-2])
             col = int(button.objectName()[-1])
             if (row%2 == 0 and col%2==0) or (row%2==1 and col%2==1):
-                if theme=="Темно-зеленая":
-                    button.setStyleSheet(style_for_dark_green_board)
-                    self.style_buttons = style_for_dark_green_board
-                    self.style_around_buttons = style_around_green
-                elif theme == "Светлая":
-                    button.setStyleSheet(style_for_light_yellow_board)
-                    self.style_buttons = style_for_light_yellow_board
-                    self.style_around_buttons = style_around_yellow
+                button.setStyleSheet(style)
+            else:
+                button.setStyleSheet(style2)
+        
+            
                     
 
     def open_settings(self):
@@ -465,11 +490,6 @@ class MainWindow(QMainWindow):
     def on_settings_closed(self):
         self.settings_window = None
         
-class SettingsWindow(QDialog):
-    def __init__(self):
-        super().__init__()
-        self.ui = Ui_Dialog()
-        self.ui.setupUi(self)
     
         
       

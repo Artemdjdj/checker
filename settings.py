@@ -131,7 +131,7 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(Dialog)
@@ -147,9 +147,9 @@ class Ui_Dialog(object):
         self.comboBox.setItemText(4, QCoreApplication.translate("Dialog", u"\u0411\u044b\u0441\u0442\u0440\u0430\u044f", None))
 
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("Dialog", u"\u0417\u0432\u0443\u043a", None))
-        self.comboBox_2.setItemText(0, QCoreApplication.translate("Dialog", u"\u041a\u043b\u0430\u0441\u0441\u0438\u0447\u0435\u0441\u043a\u0430\u044f", None))
-        self.comboBox_2.setItemText(1, QCoreApplication.translate("Dialog", u"\u0422\u0435\u043c\u043d\u043e-\u0437\u0435\u043b\u0435\u043d\u0430\u044f", None))
-        self.comboBox_2.setItemText(2, QCoreApplication.translate("Dialog", u"\u0422\u0435\u043c\u043d\u043e-\u0436\u0435\u043b\u0442\u0430\u044f", None))
+        self.comboBox_2.setItemText(0, QCoreApplication.translate("Dialog", u"\u0422\u0435\u043c\u043d\u043e-\u0441\u0438\u043d\u044f\u044f", None))
+        self.comboBox_2.setItemText(1, QCoreApplication.translate("Dialog", u"\u041a\u043b\u0430\u0441\u0441\u0438\u0447\u0435\u0441\u043a\u0430\u044f", None))
+        self.comboBox_2.setItemText(2, QCoreApplication.translate("Dialog", u"\u0422\u0435\u043c\u043d\u043e-\u0437\u0435\u043b\u0435\u043d\u0430\u044f", None))
         self.comboBox_2.setItemText(3, QCoreApplication.translate("Dialog", u"\u0421\u0432\u0435\u0442\u043b\u0430\u044f", None))
 
         self.label_2.setText(QCoreApplication.translate("Dialog", u"\u0412\u044b\u0431\u0440\u0430\u0442\u044c \u0442\u0435\u043c\u0443", None))
