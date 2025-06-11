@@ -146,8 +146,22 @@ class MainWindow(QMainWindow):
                     more_important_ways.clear()
                     for i in result:
                         more_important_ways.append(i)
-            
-            
+                small_arr = []
+                big_arr = []
+                is_index_in_big_arr = False
+                for element in more_important_ways:
+                    if element[0]< self.parent_r:
+                        small_arr.append(element)
+                    elif element[0]> self.parent_r:
+                        if index_of_row == element[0]:
+                            is_index_in_big_arr = True
+                        big_arr.append(element)
+                result_arr = (small_arr if is_index_in_big_arr else big_arr)
+                for element in result_arr:
+                    i = element[0]
+                    j = element[-1]
+                    self.board[i][j].is_cutting = False
+        
             if figure_type is not None:
                 return
                 
@@ -241,6 +255,10 @@ class MainWindow(QMainWindow):
                 more_important_ways = []
                 current_type = self.board[index_of_row][index_of_col].type_of_figure
                 self.get_all_ways(index_of_row, index_of_col, ways, more_important_ways, self.board[index_of_row][index_of_col].isqeen,current_type,-1,-1)
+                self.print_is_cutting()
+                print("\nmore_important_ways")
+                more_important_ways = self.cutting_for_arr(more_important_ways)
+                print(more_important_ways)
                 if len(more_important_ways) > 0:
                     self.name_parent_button = name
                     self.parent_r = index_of_row
@@ -252,7 +270,23 @@ class MainWindow(QMainWindow):
             
             self.name_parent_button = ""
             self.type_of_figure = "black" if self.type_of_figure == "white" else "white"
+            self.make_all_positions_cutting()
+    def print_is_cutting(self):
+        for i in range(8):
+            for j in range(8):
+                print(self.board[i][j].is_cutting, end=" ")
+            print()
+    def make_all_positions_cutting(self):
+        for i in range(8):
+            for j in range(8):
+                self.board[i][j].is_cutting = True
 
+    def cutting_for_arr(self,arr):
+        new_arr = []
+        for element in arr:
+            if self.board[element[0]][element[-1]].is_cutting:
+                new_arr.append(element)
+        return new_arr
 
     def get_buttons_that_should_cut_others(self, lists, types):
         for button in self.all_buttons:
@@ -361,15 +395,6 @@ class MainWindow(QMainWindow):
                     
            
     def pos_which_can_cut_figure(self, more_important_ways, result, types):
-        
-        # for r, c in more_important_ways:
-        #     new_more_important_ways = []
-        #     new_ways = []
-        #     self.get_all_ways(r, c, new_ways, new_more_important_ways, True, types)
-        #     if len(new_more_important_ways) > max_captures:
-        #         max_captures = len(new_more_important_ways)
-        print("\n more_important_ways:")
-        print(more_important_ways)
         for r, c in more_important_ways:
             new_more_important_ways = []
             new_ways = []
@@ -377,12 +402,7 @@ class MainWindow(QMainWindow):
             nerow, necol = arr[0], arr[1]
             self.get_all_ways(r, c, new_ways, new_more_important_ways, True, types, nerow, necol)
             if len(new_more_important_ways) >0:
-                print(f"\nДля позиции {r}{c} след ходы")
-                print(new_more_important_ways)
                 result.append([r, c])
-        print("\n result:")
-        print(result)
-       
         return len(result) > 0
 
 
@@ -497,10 +517,6 @@ class MainWindow(QMainWindow):
 if __name__ =="__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
-    # for i in range(8):
-    #     for j in range(8):
-    #         print(window.board[i][j].type_of_figure, sep=" ")
-    #     print("\n")
     window.show()
     sys.exit(app.exec())
 
