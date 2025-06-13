@@ -647,6 +647,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setContentsMargins(0, 0, 3, 0)
         self.label = QLabel(self.frame_4)
         self.label.setObjectName(u"label")
+        font = QFont()
+        font.setBold(True)
+        self.label.setFont(font)
         self.label.setStyleSheet(u"font-size:14px;")
         self.label.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
@@ -654,6 +657,7 @@ class Ui_MainWindow(object):
 
         self.label_8 = QLabel(self.frame_4)
         self.label_8.setObjectName(u"label_8")
+        self.label_8.setFont(font)
         self.label_8.setStyleSheet(u"font-size:14px;")
         self.label_8.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
@@ -661,6 +665,7 @@ class Ui_MainWindow(object):
 
         self.label_5 = QLabel(self.frame_4)
         self.label_5.setObjectName(u"label_5")
+        self.label_5.setFont(font)
         self.label_5.setStyleSheet(u"font-size:14px;")
         self.label_5.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
@@ -668,6 +673,7 @@ class Ui_MainWindow(object):
 
         self.label_4 = QLabel(self.frame_4)
         self.label_4.setObjectName(u"label_4")
+        self.label_4.setFont(font)
         self.label_4.setStyleSheet(u"font-size:14px;")
         self.label_4.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
@@ -675,6 +681,7 @@ class Ui_MainWindow(object):
 
         self.label_7 = QLabel(self.frame_4)
         self.label_7.setObjectName(u"label_7")
+        self.label_7.setFont(font)
         self.label_7.setStyleSheet(u"font-size:14px;")
         self.label_7.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
@@ -682,6 +689,7 @@ class Ui_MainWindow(object):
 
         self.label_3 = QLabel(self.frame_4)
         self.label_3.setObjectName(u"label_3")
+        self.label_3.setFont(font)
         self.label_3.setStyleSheet(u"font-size:14px;")
         self.label_3.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
@@ -689,6 +697,7 @@ class Ui_MainWindow(object):
 
         self.label_6 = QLabel(self.frame_4)
         self.label_6.setObjectName(u"label_6")
+        self.label_6.setFont(font)
         self.label_6.setStyleSheet(u"font-size:14px;")
         self.label_6.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
@@ -696,6 +705,7 @@ class Ui_MainWindow(object):
 
         self.label_2 = QLabel(self.frame_4)
         self.label_2.setObjectName(u"label_2")
+        self.label_2.setFont(font)
         self.label_2.setStyleSheet(u"font-size:14px;")
         self.label_2.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
@@ -1295,9 +1305,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3 = QHBoxLayout(self.frame_7)
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(0, 2, 0, 0)
+        self.horizontalLayout_3.setContentsMargins(2, 2, 2, 0)
         self.label_13 = QLabel(self.frame_7)
         self.label_13.setObjectName(u"label_13")
+        self.label_13.setFont(font)
         self.label_13.setStyleSheet(u"border:none;\n"
 "font-size:12px;")
         self.label_13.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -1306,6 +1317,7 @@ class Ui_MainWindow(object):
 
         self.label_12 = QLabel(self.frame_7)
         self.label_12.setObjectName(u"label_12")
+        self.label_12.setFont(font)
         self.label_12.setStyleSheet(u"border:none;\n"
 "font-size:12px;")
         self.label_12.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -1314,6 +1326,7 @@ class Ui_MainWindow(object):
 
         self.label_11 = QLabel(self.frame_7)
         self.label_11.setObjectName(u"label_11")
+        self.label_11.setFont(font)
         self.label_11.setStyleSheet(u"border:none;\n"
 "font-size:12px;")
         self.label_11.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -1322,6 +1335,7 @@ class Ui_MainWindow(object):
 
         self.label_10 = QLabel(self.frame_7)
         self.label_10.setObjectName(u"label_10")
+        self.label_10.setFont(font)
         self.label_10.setStyleSheet(u"border:none;\n"
 "font-size:12px;")
         self.label_10.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -1330,6 +1344,7 @@ class Ui_MainWindow(object):
 
         self.label_9 = QLabel(self.frame_7)
         self.label_9.setObjectName(u"label_9")
+        self.label_9.setFont(font)
         self.label_9.setStyleSheet(u"border:none;\n"
 "font-size:12px;")
         self.label_9.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -1338,6 +1353,7 @@ class Ui_MainWindow(object):
 
         self.label_14 = QLabel(self.frame_7)
         self.label_14.setObjectName(u"label_14")
+        self.label_14.setFont(font)
         self.label_14.setStyleSheet(u"border:none;\n"
 "font-size:12px;")
         self.label_14.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -1346,6 +1362,7 @@ class Ui_MainWindow(object):
 
         self.label_15 = QLabel(self.frame_7)
         self.label_15.setObjectName(u"label_15")
+        self.label_15.setFont(font)
         self.label_15.setStyleSheet(u"border:none;\n"
 "font-size:12px;")
         self.label_15.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -1354,6 +1371,7 @@ class Ui_MainWindow(object):
 
         self.label_16 = QLabel(self.frame_7)
         self.label_16.setObjectName(u"label_16")
+        self.label_16.setFont(font)
         self.label_16.setStyleSheet(u"border:none;\n"
 "font-size:12px;")
         self.label_16.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -1376,9 +1394,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
         self.label_19 = QLabel(self.frame_13)
         self.label_19.setObjectName(u"label_19")
-        font = QFont()
-        font.setBold(False)
-        self.label_19.setFont(font)
+        font1 = QFont()
+        font1.setBold(False)
+        self.label_19.setFont(font1)
         self.label_19.setStyleSheet(u"font-size:24px;\n"
 "")
         self.label_19.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -1835,7 +1853,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.left_widget.setCurrentIndex(0)
+        self.left_widget.setCurrentIndex(1)
         self.toolBox.setCurrentIndex(0)
         self.central_widget.setCurrentIndex(1)
         self.right_widget.setCurrentIndex(2)

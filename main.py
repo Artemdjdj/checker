@@ -52,7 +52,8 @@ class MainWindow(QMainWindow):
             [[0,2],[1,3],[2,4],[3,5],[4,6],[5,7]],
             [[0,4],[1,5],[2,6],[3,7]],
             [[0,6],[1,7]],
-        ]      
+        ]
+        self.not_cutting_figure = []
         self.add_functions()
         self.start_settings()
         self.ui.left_widget.setCurrentWidget(self.ui.first_tab_left)
@@ -125,6 +126,7 @@ class MainWindow(QMainWindow):
                 parent_button.setStyleSheet(self.style_buttons)
             self.parent_r = index_of_row
             self.parent_c = index_of_col
+            self.not_cutting_figure.clear()
         
         else:
             
@@ -146,22 +148,36 @@ class MainWindow(QMainWindow):
                     more_important_ways.clear()
                     for i in result:
                         more_important_ways.append(i)
-                small_arr = []
-                big_arr = []
-                is_index_in_big_arr = False
-                for element in more_important_ways:
-                    if element[0]< self.parent_r:
-                        small_arr.append(element)
-                    elif element[0]> self.parent_r:
-                        if index_of_row == element[0]:
-                            is_index_in_big_arr = True
-                        big_arr.append(element)
-                result_arr = (small_arr if is_index_in_big_arr else big_arr)
-                for element in result_arr:
-                    i = element[0]
-                    j = element[-1]
-                    self.board[i][j].is_cutting = False
-        
+                # number_of_diogonal = -1
+                # for i in range(len(self.all_lines)):
+                #     if [self.parent_r, self.parent_c] in self.all_lines[i] and [index_of_row, index_of_col]in self.all_lines:
+                #         number_of_diogonal = i
+                #         break;
+                # is_in_big_arr = False
+                # small_arr = []
+                # big_arr = []
+                # print(f"номер родителя {self.parent_r}{self.parent_c}")
+                # print(f" метка  {index_of_row}{index_of_col}")
+                # print(f"гомер диогонпли --- {number_of_diogonal}")
+                # for element in more_important_ways:
+                #     if element in self.all_lines[number_of_diogonal] and element[0] < self.parent_r:
+                #         small_arr.append(element)
+                #     elif element in self.all_lines[number_of_diogonal] and element[0] > self.parent_r:
+                #         if [index_of_row, index_of_col] == element:
+                #             is_in_big_arr = True
+                #         big_arr.append(element)
+                # print("small")
+                # print(small_arr)
+                # print("big")
+                # print(big_arr)
+            
+                # result_arr = (small_arr if is_in_big_arr else big_arr)
+                # print("result_arr")
+                # print(result_arr)
+                # for element in result_arr:
+                #     self.not_cutting_figure.append(element)
+
+               
             if figure_type is not None:
                 return
                 
@@ -197,8 +213,8 @@ class MainWindow(QMainWindow):
                         if self.board[cut_row][cut_col].type_of_figure == self.type_of_figure:
                             return
                             
-                        self.board[cut_row][cut_col].type_of_figure = None
-                        self.board[cut_row][cut_col].isbusy = False
+                        self.board[cut_row][cut_col].type_of_figure = self.type_of_figure
+                        self.board[cut_row][cut_col].isbusy = True
                         self.cut_figures.append(cut_button.objectName())
                         
                         types = "black" if self.type_of_figure == "white" else "white"
@@ -213,6 +229,9 @@ class MainWindow(QMainWindow):
         for n in self.cut_figures:
             button = self.get_button_by_name(n)
             button.setIcon(QIcon())
+            row, col = int(button.objectName()[-2]), int(button.objectName()[-1])
+            self.board[row][col].type_of_figure = None
+            self.board[row][col].isbusy = False
         self.cut_figures.clear()
 
     def find_cut_figure(self, index_of_row, index_of_col):
@@ -255,10 +274,15 @@ class MainWindow(QMainWindow):
                 more_important_ways = []
                 current_type = self.board[index_of_row][index_of_col].type_of_figure
                 self.get_all_ways(index_of_row, index_of_col, ways, more_important_ways, self.board[index_of_row][index_of_col].isqeen,current_type,-1,-1)
-                self.print_is_cutting()
-                print("\nmore_important_ways")
-                more_important_ways = self.cutting_for_arr(more_important_ways)
-                print(more_important_ways)
+                # print("more_important_ways")
+                # print(more_important_ways)
+                # temp = self.block_ways_which_is_not_cutting(more_important_ways);
+                # more_important_ways.clear()
+                # more_important_ways = temp
+                # print("new_more_important_ways")
+                # print(temp)
+                # print("несбиваемые")
+                # print(self.not_cutting_figure)
                 if len(more_important_ways) > 0:
                     self.name_parent_button = name
                     self.parent_r = index_of_row
@@ -270,23 +294,16 @@ class MainWindow(QMainWindow):
             
             self.name_parent_button = ""
             self.type_of_figure = "black" if self.type_of_figure == "white" else "white"
-            self.make_all_positions_cutting()
-    def print_is_cutting(self):
-        for i in range(8):
-            for j in range(8):
-                print(self.board[i][j].is_cutting, end=" ")
-            print()
-    def make_all_positions_cutting(self):
-        for i in range(8):
-            for j in range(8):
-                self.board[i][j].is_cutting = True
+            self.not_cutting_figure.clear()
 
-    def cutting_for_arr(self,arr):
-        new_arr = []
-        for element in arr:
-            if self.board[element[0]][element[-1]].is_cutting:
-                new_arr.append(element)
-        return new_arr
+    # def block_ways_which_is_not_cutting(self, arr):
+    #     new_arr = []
+    #     for element in arr:
+    #         if element in self.not_cutting_figure:
+    #             continue
+    #         else:
+    #             new_arr.append(element)
+    #     return new_arr
 
     def get_buttons_that_should_cut_others(self, lists, types):
         for button in self.all_buttons:
@@ -332,7 +349,6 @@ class MainWindow(QMainWindow):
         else:
             types_fig = None
             if nerow!=-1 or necol!=-1:
-                print(f"{nerow}{necol}")
                 types_fig = self.board[nerow][necol].type_of_figure
                 self.board[nerow][necol].type_of_figure = None
             count=1    
@@ -403,7 +419,47 @@ class MainWindow(QMainWindow):
             self.get_all_ways(r, c, new_ways, new_more_important_ways, True, types, nerow, necol)
             if len(new_more_important_ways) >0:
                 result.append([r, c])
+            
+        result = self.get_elements_in_one_lines(more_important_ways, result)    
+
         return len(result) > 0
+    
+
+    def get_elements_in_one_lines(self, more_important_ways, result):
+        for elements in self.all_lines:
+            arr = []
+            for pos in more_important_ways:
+                if pos in elements:
+                    arr.append(pos)
+            if len(arr)>1:
+                small = []
+                big = []
+                for el in arr:
+                    if el[0] < self.parent_r:
+                        small.append(el)
+                    elif el[0]> self.parent_r:
+                        big.append(el)
+                new_big = []
+                new_small = []
+                for temp in result:
+                    if temp in big:
+                        new_big.append(temp)
+                    elif temp in small:
+                        new_small.append(temp)
+                if len(new_big)>0:
+                    big = new_big
+                if len(new_small)> 0:
+                    small = new_small
+                if len(big)>0 and len(small)> 0:
+                    for t in small:
+                        if t not in result:
+                            result.append(t)
+                    for t in big:
+                        if t not in result:
+                            result.append(t)        
+        return result
+                
+        
 
 
         
