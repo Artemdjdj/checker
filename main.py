@@ -3,7 +3,6 @@ import sys
 import os
 from form import *
 from settings import *
-from settings import *
 from game import *
 from utils import *
 
@@ -16,6 +15,11 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.temp = self.ui.first_cenral_widget
         self.settings_window = None
+        self.restart_window = None
+        self.icon_white = QIcon()
+        self.icon_white.addFile(icon_white)
+        self.icon_black = QIcon()
+        self.icon_black.addFile(icon_black)
         # Явно устанавливаем состояние окна
         self.setWindowState(Qt.WindowNoState)
         # Разрешаем все операции с окном
@@ -64,34 +68,66 @@ class MainWindow(QMainWindow):
         self.ui.right_widget.setCurrentWidget(self.ui.first_widget_right)
         self.style_buttons = style_dark_blue
         self.style_around_buttons = style_around_dark_blue
-        self.style_buttons_non_use = style_base
+        self.style_buttons_non_use = style_base   
+
     def start_settings(self):
+        self.type_of_figure = "white"
+        self.count_of_white_figure = 12
+        self.count_of_black_figure = 12
+        self.name_parent_button =""
+        self.parent_r = -1
+        self.parent_c = -1
+        self.cut_figures = []
+        for i in range(0, 8):
+            for j in range(0,8):
+                self.board[i][j].isbusy = False
+                self.board[i][j].type_of_figure = None
+                self.board[i][j].isqeen = False
+                name = f"button_{i}{j}"
+                button = self.get_button_by_name(name)
+                button.setIcon(QIcon())
+        
         for i in range(0,3):
             if i%2 == 0: 
                 for j in range(0,8,2):
                     self.board[i][j].isbusy = True
                     self.board[i][j].type_of_figure = "white"
+                    name = f"button_{i}{j}"
+                    button = self.get_button_by_name(name)
+                    button.setIcon(self.icon_white)
                     if j == 0 or j == 7:
                         self.board[i][j].isextreme = True
             else:
                 for j in range(1,8,2):
                     self.board[i][j].isbusy = True
                     self.board[i][j].type_of_figure = "white"
+                    name = f"button_{i}{j}"
+                    button = self.get_button_by_name(name)
+                    button.setIcon(self.icon_white)
                     if j == 0 or j == 7:
                         self.board[i][j].isextreme = True
+                
         for i in range(5,8):
             if i%2 == 0: 
                 for j in range(0,8,2):
                     self.board[i][j].isbusy = True
                     self.board[i][j].type_of_figure = "black"
+                    name = f"button_{i}{j}"
+                    button = self.get_button_by_name(name)
+                    button.setIcon(self.icon_black)
                     if j == 0 or j == 7:
                         self.board[i][j].isextreme = True
             else:
                 for j in range(1,8,2):
                     self.board[i][j].isbusy = True
                     self.board[i][j].type_of_figure = "black"
+                    name = f"button_{i}{j}"
+                    button = self.get_button_by_name(name)
+                    button.setIcon(self.icon_black)
                     if j == 0 or j == 7:
                         self.board[i][j].isextreme = True
+
+
      
                     
     def add_functions(self):
@@ -224,6 +260,39 @@ class MainWindow(QMainWindow):
                             self.count_of_white_figure -= 1
                         
                         self.change_position(more_important_ways, figure_type, index_of_row, index_of_col, self.type_of_figure, is_capture=True)
+                        restart = self.check_win()
+                        if (restart != ""):
+                            self.open_restart_window(restart)
+    def check_win(self):
+        result = ""
+        if self.count_of_black_figure == 0:
+            result = "white"
+            return result
+        elif self.count_of_white_figure ==0:
+            result = "black"
+            return result
+        else:
+            types = self.type_of_figure
+            list_of_figures= []
+            for i in range(8):
+                for j in range(8):
+                    if self.board[i][j].type_of_figure == types:
+                        list_of_figures.append([i,j])
+            if len(list_of_figures)==0:
+                result = ("black" if types == "white" else "white")
+                return result
+            for i in list_of_figures:
+                ways = []
+                more_important_ways = []
+                self.get_all_ways(i[0],i[1] , ways, more_important_ways, self.board[i[0]][i[1]].isqeen, types,-1,-1)
+                if len(ways)>0 or len(more_important_ways)>0:
+                    return result
+                
+            
+        result = ("black" if types == "white" else "white")
+        return result
+
+        
 
     def remove_cut_figures(self):
         for n in self.cut_figures:
@@ -565,6 +634,23 @@ class MainWindow(QMainWindow):
 
     def on_settings_closed(self):
         self.settings_window = None
+    
+    def open_restart_window(self, restart):
+        if self.restart_window is None:
+            self.restart_window = RestartWindow()
+            if restart == "white":
+                self.restart_window.ui.label_2.setStyleSheet(win_white)
+                self.restart_window.ui.label_2.setText("Выиграли белые!")
+            else:
+                self.restart_window.ui.label_2.setStyleSheet(win_black)
+                self.restart_window.ui.label_2.setText("Выиграли черные!")
+            self.restart_window.ui.pushButton.clicked.connect(lambda:self.on_restart_closed())
+        self.restart_window.show()
+
+    def on_restart_closed(self):
+        self.restart_window = None
+        self.start_settings()
+    
         
     
         

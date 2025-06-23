@@ -2,7 +2,17 @@
 
 qeen_icon_white = u":/icons/icons/white_figure.png"
 qeen_icon_black = u":/icons/icons/black_figure.png"
+icon_white = u":/icons/icons/white_figure_default.png"
+icon_black = u":/icons/icons/black_figure_default.png"
 
+win_white = """
+            color:rgb(247, 247, 247); 
+            font-size:36px;
+            """
+win_black = """
+            color:rgb(0, 0, 0); 
+            font-size:36px;
+            """
 
 style_around_dark_blue = """
             background-color:rgb(86, 100, 117);
