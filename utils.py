@@ -6,11 +6,11 @@ icon_white = u":/icons/icons/white_figure_default.png"
 icon_black = u":/icons/icons/black_figure_default.png"
 
 win_white = """
-            color:rgb(247, 247, 247); 
+            color:rgb(138, 243, 253); 
             font-size:36px;
             """
 win_black = """
-            color:rgb(0, 0, 0); 
+            color:rgb(86, 213, 27); 
             font-size:36px;
             """
 

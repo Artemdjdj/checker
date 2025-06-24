@@ -38,7 +38,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>../images/background_for_restart.jpeg</pixmap>
+    <pixmap>images/background_for_restart.jpeg</pixmap>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -144,7 +144,7 @@ border:none;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:rgb(247, 247, 247);</string>
+    <string notr="true">color:rgb(86, 213, 27);</string>
    </property>
    <property name="text">
     <string>Выиграли белые!</string>

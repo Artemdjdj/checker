@@ -528,10 +528,7 @@ class MainWindow(QMainWindow):
                             result.append(t)        
         return result
                 
-        
-
-
-        
+            
     
     def check_is_figure_qeen(self, row, col):
         figure = self.board[row][col]
@@ -571,15 +568,15 @@ class MainWindow(QMainWindow):
         self.ui.left_widget.setCurrentWidget(self.ui.first_tab_left)
         self.temp = self.ui.first_cenral_widget
         self.start_settings()
-        self.start_settings_for_game()
+        # self.start_settings_for_game()
 
-    def start_settings_for_game(self):
-        self.type_of_figure = "white"
-        self.count_of_white_figure = 12
-        self.count_of_black_figure = 12
-        self.name_parent_button =""
-        self.parent_r = -1
-        self.parent_c = -1
+    # def start_settings_for_game(self):
+    #     self.type_of_figure = "white"
+    #     self.count_of_white_figure = 12
+    #     self.count_of_black_figure = 12
+    #     self.name_parent_button =""
+    #     self.parent_r = -1
+    #     self.parent_c = -1
     
     
     def set_theme_for_board(self, theme):
@@ -624,17 +621,22 @@ class MainWindow(QMainWindow):
     def open_settings(self):
         if self.settings_window is None:
             self.settings_window = SettingsWindow()
-            
+            temp_music = self.settings_window.ui.comboBox.currentText()
+            temp_theme = self.settings_window.ui.comboBox_2.currentText()
             self.settings_window.ui.pushButton.clicked.connect(lambda:self.on_settings_closed())
             
             self.settings_window.ui.pushButton_2.clicked.connect(
                 lambda: self.set_theme_for_board(self.settings_window.ui.comboBox_2.currentText())
             )
+            self.settings_window.ui.pushButton_3.clicked.connect(lambda:self.on_settings_cancel(temp_theme, temp_music))
         self.settings_window.show()
 
     def on_settings_closed(self):
         self.settings_window = None
-    
+
+    def on_settings_cancel(self, theme, music):
+        self.set_theme_for_board(theme)
+
     def open_restart_window(self, restart):
         if self.restart_window is None:
             self.restart_window = RestartWindow()
@@ -645,7 +647,11 @@ class MainWindow(QMainWindow):
                 self.restart_window.ui.label_2.setStyleSheet(win_black)
                 self.restart_window.ui.label_2.setText("Выиграли черные!")
             self.restart_window.ui.pushButton.clicked.connect(lambda:self.on_restart_closed())
+            self.restart_window.ui.pushButton_2.clicked.connect(lambda:self.on_preview())
         self.restart_window.show()
+    def on_preview(self):
+        self.restart_window = None
+        self.go_to_preview()
 
     def on_restart_closed(self):
         self.restart_window = None

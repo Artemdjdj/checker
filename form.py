@@ -531,6 +531,100 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.verticalLayout_3.setContentsMargins(5, 5, 5, 5)
+        self.verticalSpacer = QSpacerItem(20, 3, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+
+        self.verticalLayout_3.addItem(self.verticalSpacer)
+
+        self.frame_28 = QFrame(self.second_central_widget)
+        self.frame_28.setObjectName(u"frame_28")
+        self.frame_28.setMinimumSize(QSize(665, 10))
+        self.frame_28.setMaximumSize(QSize(970, 15))
+        self.frame_28.setSizeIncrement(QSize(0, 0))
+        self.frame_28.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame_28.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_21 = QHBoxLayout(self.frame_28)
+        self.horizontalLayout_21.setSpacing(0)
+        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
+        self.horizontalLayout_21.setContentsMargins(5, 0, 5, 4)
+        self.label_47 = QLabel(self.frame_28)
+        self.label_47.setObjectName(u"label_47")
+        font = QFont()
+        font.setBold(True)
+        self.label_47.setFont(font)
+        self.label_47.setStyleSheet(u"border:none;\n"
+"font-size:12px;")
+        self.label_47.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_21.addWidget(self.label_47)
+
+        self.label_48 = QLabel(self.frame_28)
+        self.label_48.setObjectName(u"label_48")
+        self.label_48.setFont(font)
+        self.label_48.setStyleSheet(u"border:none;\n"
+"font-size:12px;")
+        self.label_48.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_21.addWidget(self.label_48)
+
+        self.label_49 = QLabel(self.frame_28)
+        self.label_49.setObjectName(u"label_49")
+        self.label_49.setFont(font)
+        self.label_49.setStyleSheet(u"border:none;\n"
+"font-size:12px;")
+        self.label_49.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_21.addWidget(self.label_49)
+
+        self.label_50 = QLabel(self.frame_28)
+        self.label_50.setObjectName(u"label_50")
+        self.label_50.setFont(font)
+        self.label_50.setStyleSheet(u"border:none;\n"
+"font-size:12px;")
+        self.label_50.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_21.addWidget(self.label_50)
+
+        self.label_51 = QLabel(self.frame_28)
+        self.label_51.setObjectName(u"label_51")
+        self.label_51.setFont(font)
+        self.label_51.setStyleSheet(u"border:none;\n"
+"font-size:12px;")
+        self.label_51.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_21.addWidget(self.label_51)
+
+        self.label_52 = QLabel(self.frame_28)
+        self.label_52.setObjectName(u"label_52")
+        self.label_52.setFont(font)
+        self.label_52.setStyleSheet(u"border:none;\n"
+"font-size:12px;")
+        self.label_52.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_21.addWidget(self.label_52)
+
+        self.label_54 = QLabel(self.frame_28)
+        self.label_54.setObjectName(u"label_54")
+        self.label_54.setMinimumSize(QSize(1, 10))
+        self.label_54.setSizeIncrement(QSize(970, 12))
+        self.label_54.setFont(font)
+        self.label_54.setStyleSheet(u"border:none;\n"
+"font-size:12px;")
+        self.label_54.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_21.addWidget(self.label_54)
+
+        self.label_53 = QLabel(self.frame_28)
+        self.label_53.setObjectName(u"label_53")
+        self.label_53.setFont(font)
+        self.label_53.setStyleSheet(u"border:none;\n"
+"font-size:12px;")
+        self.label_53.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_21.addWidget(self.label_53)
+
+
+        self.verticalLayout_3.addWidget(self.frame_28)
+
         self.frame_5 = QFrame(self.second_central_widget)
         self.frame_5.setObjectName(u"frame_5")
         self.frame_5.setMinimumSize(QSize(30, 30))
@@ -542,6 +636,136 @@ class Ui_MainWindow(object):
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.button_54 = QPushButton(self.frame_5)
+        self.button_54.setObjectName(u"button_54")
+        self.button_54.setMinimumSize(QSize(83, 83))
+        self.button_54.setMaximumSize(QSize(123, 123))
+        self.button_54.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_54.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_54, 2, 5, 1, 1)
+
+        self.button_34 = QPushButton(self.frame_5)
+        self.button_34.setObjectName(u"button_34")
+        self.button_34.setMinimumSize(QSize(83, 83))
+        self.button_34.setMaximumSize(QSize(122, 122))
+        self.button_34.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_34.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_34, 4, 5, 1, 1)
+
+        self.button_12 = QPushButton(self.frame_5)
+        self.button_12.setObjectName(u"button_12")
+        self.button_12.setMinimumSize(QSize(83, 83))
+        self.button_12.setMaximumSize(QSize(123, 123))
+        self.button_12.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_12.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_12, 6, 3, 1, 1)
+
+        self.button_72 = QPushButton(self.frame_5)
+        self.button_72.setObjectName(u"button_72")
+        self.button_72.setMinimumSize(QSize(83, 83))
+        self.button_72.setMaximumSize(QSize(123, 123))
+        self.button_72.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_72.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_72, 0, 3, 1, 1)
+
+        self.button_35 = QPushButton(self.frame_5)
+        self.button_35.setObjectName(u"button_35")
+        self.button_35.setMinimumSize(QSize(83, 83))
+        self.button_35.setMaximumSize(QSize(123, 123))
+        self.button_35.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_35.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_35, 4, 6, 1, 1)
+
+        self.button_60 = QPushButton(self.frame_5)
+        self.button_60.setObjectName(u"button_60")
+        self.button_60.setMinimumSize(QSize(83, 83))
+        self.button_60.setMaximumSize(QSize(123, 123))
+        self.button_60.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        icon9 = QIcon()
+        icon9.addFile(u":/icons/icons/black_figure_default.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.button_60.setIcon(icon9)
+        self.button_60.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_60, 1, 1, 1, 1)
+
+        self.button_70 = QPushButton(self.frame_5)
+        self.button_70.setObjectName(u"button_70")
+        self.button_70.setMinimumSize(QSize(83, 83))
+        self.button_70.setMaximumSize(QSize(123, 123))
+        self.button_70.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        icon10 = QIcon()
+        icon10.addFile(u":/figures/white_checker.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.button_70.setIcon(icon10)
+        self.button_70.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_70, 0, 1, 1, 1)
+
+        self.button_44 = QPushButton(self.frame_5)
+        self.button_44.setObjectName(u"button_44")
+        self.button_44.setMinimumSize(QSize(83, 83))
+        self.button_44.setMaximumSize(QSize(123, 123))
+        self.button_44.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_44.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_44, 3, 5, 1, 1)
+
+        self.button_32 = QPushButton(self.frame_5)
+        self.button_32.setObjectName(u"button_32")
+        self.button_32.setMinimumSize(QSize(83, 83))
+        self.button_32.setMaximumSize(QSize(123, 123))
+        self.button_32.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_32.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_32, 4, 3, 1, 1)
+
+        self.button_52 = QPushButton(self.frame_5)
+        self.button_52.setObjectName(u"button_52")
+        self.button_52.setMinimumSize(QSize(83, 83))
+        self.button_52.setMaximumSize(QSize(123, 123))
+        self.button_52.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_52.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_52, 2, 3, 1, 1)
+
+        self.button_77 = QPushButton(self.frame_5)
+        self.button_77.setObjectName(u"button_77")
+        self.button_77.setMinimumSize(QSize(83, 83))
+        self.button_77.setMaximumSize(QSize(123, 123))
+        self.button_77.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_77.setIcon(icon9)
+        self.button_77.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_77, 0, 8, 1, 1)
+
+        self.button_22 = QPushButton(self.frame_5)
+        self.button_22.setObjectName(u"button_22")
+        self.button_22.setMinimumSize(QSize(83, 83))
+        self.button_22.setMaximumSize(QSize(123, 123))
+        self.button_22.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        icon11 = QIcon()
+        icon11.addFile(u":/icons/icons/white_figure_default.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.button_22.setIcon(icon11)
+        self.button_22.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_22, 5, 3, 1, 1)
+
         self.button_67 = QPushButton(self.frame_5)
         self.button_67.setObjectName(u"button_67")
         self.button_67.setMinimumSize(QSize(83, 83))
@@ -551,6 +775,230 @@ class Ui_MainWindow(object):
         self.button_67.setIconSize(QSize(60, 60))
 
         self.gridLayout.addWidget(self.button_67, 1, 8, 1, 1)
+
+        self.button_76 = QPushButton(self.frame_5)
+        self.button_76.setObjectName(u"button_76")
+        self.button_76.setMinimumSize(QSize(83, 83))
+        self.button_76.setMaximumSize(QSize(123, 123))
+        self.button_76.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_76.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_76, 0, 7, 1, 1)
+
+        self.button_40 = QPushButton(self.frame_5)
+        self.button_40.setObjectName(u"button_40")
+        self.button_40.setMinimumSize(QSize(83, 83))
+        self.button_40.setMaximumSize(QSize(123, 123))
+        self.button_40.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_40.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_40, 3, 1, 1, 1)
+
+        self.button_55 = QPushButton(self.frame_5)
+        self.button_55.setObjectName(u"button_55")
+        self.button_55.setMinimumSize(QSize(83, 83))
+        self.button_55.setMaximumSize(QSize(123, 123))
+        self.button_55.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_55.setIcon(icon9)
+        self.button_55.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_55, 2, 6, 1, 1)
+
+        self.button_06 = QPushButton(self.frame_5)
+        self.button_06.setObjectName(u"button_06")
+        self.button_06.setMinimumSize(QSize(83, 83))
+        self.button_06.setMaximumSize(QSize(123, 123))
+        self.button_06.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_06.setIcon(icon11)
+        self.button_06.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_06, 7, 7, 1, 1)
+
+        self.button_61 = QPushButton(self.frame_5)
+        self.button_61.setObjectName(u"button_61")
+        self.button_61.setMinimumSize(QSize(83, 83))
+        self.button_61.setMaximumSize(QSize(123, 123))
+        self.button_61.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_61.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_61, 1, 2, 1, 1)
+
+        self.button_20 = QPushButton(self.frame_5)
+        self.button_20.setObjectName(u"button_20")
+        self.button_20.setMinimumSize(QSize(83, 83))
+        self.button_20.setMaximumSize(QSize(123, 123))
+        self.button_20.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_20.setIcon(icon11)
+        self.button_20.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_20, 5, 1, 1, 1)
+
+        self.button_57 = QPushButton(self.frame_5)
+        self.button_57.setObjectName(u"button_57")
+        self.button_57.setMinimumSize(QSize(83, 83))
+        self.button_57.setMaximumSize(QSize(123, 123))
+        self.button_57.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_57.setIcon(icon9)
+        self.button_57.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_57, 2, 8, 1, 1)
+
+        self.button_56 = QPushButton(self.frame_5)
+        self.button_56.setObjectName(u"button_56")
+        self.button_56.setMinimumSize(QSize(83, 83))
+        self.button_56.setMaximumSize(QSize(123, 123))
+        self.button_56.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_56.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_56, 2, 7, 1, 1)
+
+        self.button_46 = QPushButton(self.frame_5)
+        self.button_46.setObjectName(u"button_46")
+        self.button_46.setMinimumSize(QSize(83, 83))
+        self.button_46.setMaximumSize(QSize(123, 123))
+        self.button_46.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_46.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_46, 3, 7, 1, 1)
+
+        self.button_26 = QPushButton(self.frame_5)
+        self.button_26.setObjectName(u"button_26")
+        self.button_26.setMinimumSize(QSize(83, 83))
+        self.button_26.setMaximumSize(QSize(123, 123))
+        self.button_26.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_26.setIcon(icon11)
+        self.button_26.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_26, 5, 7, 1, 1)
+
+        self.button_17 = QPushButton(self.frame_5)
+        self.button_17.setObjectName(u"button_17")
+        self.button_17.setMinimumSize(QSize(83, 83))
+        self.button_17.setMaximumSize(QSize(123, 123))
+        self.button_17.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_17.setIcon(icon11)
+        self.button_17.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_17, 6, 8, 1, 1)
+
+        self.button_05 = QPushButton(self.frame_5)
+        self.button_05.setObjectName(u"button_05")
+        self.button_05.setMinimumSize(QSize(83, 83))
+        self.button_05.setMaximumSize(QSize(122, 122))
+        self.button_05.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_05.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_05, 7, 6, 1, 1)
+
+        self.button_75 = QPushButton(self.frame_5)
+        self.button_75.setObjectName(u"button_75")
+        self.button_75.setMinimumSize(QSize(83, 83))
+        self.button_75.setMaximumSize(QSize(123, 123))
+        self.button_75.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_75.setIcon(icon9)
+        self.button_75.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_75, 0, 6, 1, 1)
+
+        self.button_25 = QPushButton(self.frame_5)
+        self.button_25.setObjectName(u"button_25")
+        self.button_25.setMinimumSize(QSize(83, 83))
+        self.button_25.setMaximumSize(QSize(123, 123))
+        self.button_25.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_25.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_25, 5, 6, 1, 1)
+
+        self.frame_27 = QFrame(self.frame_5)
+        self.frame_27.setObjectName(u"frame_27")
+        self.frame_27.setMinimumSize(QSize(10, 670))
+        self.frame_27.setMaximumSize(QSize(14, 970))
+        self.frame_27.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame_27.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_10 = QVBoxLayout(self.frame_27)
+        self.verticalLayout_10.setSpacing(0)
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.verticalLayout_10.setContentsMargins(3, 0, 0, 0)
+        self.label_39 = QLabel(self.frame_27)
+        self.label_39.setObjectName(u"label_39")
+        self.label_39.setFont(font)
+        self.label_39.setStyleSheet(u"font-size:14px;")
+        self.label_39.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.verticalLayout_10.addWidget(self.label_39)
+
+        self.label_40 = QLabel(self.frame_27)
+        self.label_40.setObjectName(u"label_40")
+        self.label_40.setFont(font)
+        self.label_40.setStyleSheet(u"font-size:14px;")
+        self.label_40.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.verticalLayout_10.addWidget(self.label_40)
+
+        self.label_41 = QLabel(self.frame_27)
+        self.label_41.setObjectName(u"label_41")
+        self.label_41.setFont(font)
+        self.label_41.setStyleSheet(u"font-size:14px;")
+        self.label_41.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.verticalLayout_10.addWidget(self.label_41)
+
+        self.label_42 = QLabel(self.frame_27)
+        self.label_42.setObjectName(u"label_42")
+        self.label_42.setFont(font)
+        self.label_42.setStyleSheet(u"font-size:14px;")
+        self.label_42.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.verticalLayout_10.addWidget(self.label_42)
+
+        self.label_43 = QLabel(self.frame_27)
+        self.label_43.setObjectName(u"label_43")
+        self.label_43.setFont(font)
+        self.label_43.setStyleSheet(u"font-size:14px;")
+        self.label_43.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.verticalLayout_10.addWidget(self.label_43)
+
+        self.label_44 = QLabel(self.frame_27)
+        self.label_44.setObjectName(u"label_44")
+        self.label_44.setFont(font)
+        self.label_44.setStyleSheet(u"font-size:14px;")
+        self.label_44.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.verticalLayout_10.addWidget(self.label_44)
+
+        self.label_45 = QLabel(self.frame_27)
+        self.label_45.setObjectName(u"label_45")
+        self.label_45.setFont(font)
+        self.label_45.setStyleSheet(u"font-size:14px;")
+        self.label_45.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.verticalLayout_10.addWidget(self.label_45)
+
+        self.label_46 = QLabel(self.frame_27)
+        self.label_46.setObjectName(u"label_46")
+        self.label_46.setFont(font)
+        self.label_46.setStyleSheet(u"font-size:14px;")
+        self.label_46.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.verticalLayout_10.addWidget(self.label_46)
+
+
+        self.gridLayout.addWidget(self.frame_27, 0, 9, 8, 1)
 
         self.button_23 = QPushButton(self.frame_5)
         self.button_23.setObjectName(u"button_23")
@@ -562,58 +1010,101 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.button_23, 5, 4, 1, 1)
 
-        self.button_21 = QPushButton(self.frame_5)
-        self.button_21.setObjectName(u"button_21")
-        self.button_21.setMinimumSize(QSize(83, 83))
-        self.button_21.setMaximumSize(QSize(123, 123))
-        self.button_21.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+        self.button_03 = QPushButton(self.frame_5)
+        self.button_03.setObjectName(u"button_03")
+        self.button_03.setMinimumSize(QSize(83, 83))
+        self.button_03.setMaximumSize(QSize(123, 123))
+        self.button_03.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
 "border:none;")
-        self.button_21.setIconSize(QSize(60, 60))
+        self.button_03.setIconSize(QSize(60, 60))
 
-        self.gridLayout.addWidget(self.button_21, 5, 2, 1, 1)
+        self.gridLayout.addWidget(self.button_03, 7, 4, 1, 1)
 
-        self.button_50 = QPushButton(self.frame_5)
-        self.button_50.setObjectName(u"button_50")
-        self.button_50.setMinimumSize(QSize(83, 83))
-        self.button_50.setMaximumSize(QSize(123, 123))
-        self.button_50.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+        self.button_24 = QPushButton(self.frame_5)
+        self.button_24.setObjectName(u"button_24")
+        self.button_24.setMinimumSize(QSize(83, 83))
+        self.button_24.setMaximumSize(QSize(123, 123))
+        self.button_24.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
 "border:none;")
-        self.button_50.setIconSize(QSize(60, 60))
+        self.button_24.setIcon(icon11)
+        self.button_24.setIconSize(QSize(60, 60))
 
-        self.gridLayout.addWidget(self.button_50, 2, 1, 1, 1)
+        self.gridLayout.addWidget(self.button_24, 5, 5, 1, 1)
 
-        self.button_14 = QPushButton(self.frame_5)
-        self.button_14.setObjectName(u"button_14")
-        self.button_14.setMinimumSize(QSize(83, 83))
-        self.button_14.setMaximumSize(QSize(123, 123))
-        self.button_14.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+        self.button_07 = QPushButton(self.frame_5)
+        self.button_07.setObjectName(u"button_07")
+        self.button_07.setMinimumSize(QSize(83, 83))
+        self.button_07.setMaximumSize(QSize(123, 123))
+        self.button_07.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
 "border:none;")
-        self.button_14.setIconSize(QSize(60, 60))
+        self.button_07.setIconSize(QSize(60, 60))
 
-        self.gridLayout.addWidget(self.button_14, 6, 5, 1, 1)
+        self.gridLayout.addWidget(self.button_07, 7, 8, 1, 1)
 
-        self.button_64 = QPushButton(self.frame_5)
-        self.button_64.setObjectName(u"button_64")
-        self.button_64.setMinimumSize(QSize(83, 83))
-        self.button_64.setMaximumSize(QSize(123, 123))
-        self.button_64.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+        self.button_73 = QPushButton(self.frame_5)
+        self.button_73.setObjectName(u"button_73")
+        self.button_73.setMinimumSize(QSize(83, 83))
+        self.button_73.setMaximumSize(QSize(123, 123))
+        self.button_73.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
 "border:none;")
-        icon9 = QIcon()
-        icon9.addFile(u":/icons/icons/black_figure_default.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.button_64.setIcon(icon9)
-        self.button_64.setIconSize(QSize(60, 60))
+        self.button_73.setIcon(icon9)
+        self.button_73.setIconSize(QSize(60, 60))
 
-        self.gridLayout.addWidget(self.button_64, 1, 5, 1, 1)
+        self.gridLayout.addWidget(self.button_73, 0, 4, 1, 1)
 
-        self.button_41 = QPushButton(self.frame_5)
-        self.button_41.setObjectName(u"button_41")
-        self.button_41.setMinimumSize(QSize(83, 83))
-        self.button_41.setMaximumSize(QSize(123, 123))
-        self.button_41.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+        self.button_66 = QPushButton(self.frame_5)
+        self.button_66.setObjectName(u"button_66")
+        self.button_66.setMinimumSize(QSize(83, 83))
+        self.button_66.setMaximumSize(QSize(123, 123))
+        self.button_66.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
 "border:none;")
-        self.button_41.setIconSize(QSize(60, 60))
+        self.button_66.setIcon(icon9)
+        self.button_66.setIconSize(QSize(60, 60))
 
-        self.gridLayout.addWidget(self.button_41, 3, 2, 1, 1)
+        self.gridLayout.addWidget(self.button_66, 1, 7, 1, 1)
+
+        self.button_15 = QPushButton(self.frame_5)
+        self.button_15.setObjectName(u"button_15")
+        self.button_15.setMinimumSize(QSize(83, 83))
+        self.button_15.setMaximumSize(QSize(123, 123))
+        self.button_15.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_15.setIcon(icon11)
+        self.button_15.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_15, 6, 6, 1, 1)
+
+        self.button_02 = QPushButton(self.frame_5)
+        self.button_02.setObjectName(u"button_02")
+        self.button_02.setMinimumSize(QSize(83, 83))
+        self.button_02.setMaximumSize(QSize(123, 123))
+        self.button_02.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_02.setIcon(icon11)
+        self.button_02.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_02, 7, 3, 1, 1)
+
+        self.button_36 = QPushButton(self.frame_5)
+        self.button_36.setObjectName(u"button_36")
+        self.button_36.setMinimumSize(QSize(83, 83))
+        self.button_36.setMaximumSize(QSize(123, 123))
+        self.button_36.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_36.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_36, 4, 7, 1, 1)
+
+        self.button_62 = QPushButton(self.frame_5)
+        self.button_62.setObjectName(u"button_62")
+        self.button_62.setMinimumSize(QSize(83, 83))
+        self.button_62.setMaximumSize(QSize(123, 123))
+        self.button_62.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_62.setIcon(icon9)
+        self.button_62.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_62, 1, 3, 1, 1)
 
         self.button_16 = QPushButton(self.frame_5)
         self.button_16.setObjectName(u"button_16")
@@ -625,6 +1116,16 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.button_16, 6, 7, 1, 1)
 
+        self.button_31 = QPushButton(self.frame_5)
+        self.button_31.setObjectName(u"button_31")
+        self.button_31.setMinimumSize(QSize(83, 83))
+        self.button_31.setMaximumSize(QSize(123, 123))
+        self.button_31.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_31.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_31, 4, 2, 1, 1)
+
         self.button_45 = QPushButton(self.frame_5)
         self.button_45.setObjectName(u"button_45")
         self.button_45.setMinimumSize(QSize(83, 83))
@@ -635,10 +1136,61 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.button_45, 3, 6, 1, 1)
 
+        self.button_10 = QPushButton(self.frame_5)
+        self.button_10.setObjectName(u"button_10")
+        self.button_10.setMinimumSize(QSize(83, 83))
+        self.button_10.setMaximumSize(QSize(123, 123))
+        self.button_10.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_10.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_10, 6, 1, 1, 1)
+
+        self.button_53 = QPushButton(self.frame_5)
+        self.button_53.setObjectName(u"button_53")
+        self.button_53.setMinimumSize(QSize(83, 83))
+        self.button_53.setMaximumSize(QSize(123, 123))
+        self.button_53.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_53.setIcon(icon9)
+        self.button_53.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_53, 2, 4, 1, 1)
+
+        self.button_14 = QPushButton(self.frame_5)
+        self.button_14.setObjectName(u"button_14")
+        self.button_14.setMinimumSize(QSize(83, 83))
+        self.button_14.setMaximumSize(QSize(123, 123))
+        self.button_14.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_14.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_14, 6, 5, 1, 1)
+
+        self.button_30 = QPushButton(self.frame_5)
+        self.button_30.setObjectName(u"button_30")
+        self.button_30.setMinimumSize(QSize(83, 83))
+        self.button_30.setMaximumSize(QSize(123, 123))
+        self.button_30.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_30.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_30, 4, 1, 1, 1)
+
+        self.button_42 = QPushButton(self.frame_5)
+        self.button_42.setObjectName(u"button_42")
+        self.button_42.setMinimumSize(QSize(83, 83))
+        self.button_42.setMaximumSize(QSize(123, 123))
+        self.button_42.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_42.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_42, 3, 3, 1, 1)
+
         self.frame_4 = QFrame(self.frame_5)
         self.frame_4.setObjectName(u"frame_4")
-        self.frame_4.setMinimumSize(QSize(10, 670))
-        self.frame_4.setMaximumSize(QSize(12, 970))
+        self.frame_4.setMinimumSize(QSize(13, 670))
+        self.frame_4.setMaximumSize(QSize(15, 970))
         self.frame_4.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_4 = QVBoxLayout(self.frame_4)
@@ -647,8 +1199,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setContentsMargins(0, 0, 3, 0)
         self.label = QLabel(self.frame_4)
         self.label.setObjectName(u"label")
-        font = QFont()
-        font.setBold(True)
         self.label.setFont(font)
         self.label.setStyleSheet(u"font-size:14px;")
         self.label.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
@@ -714,102 +1264,46 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.frame_4, 0, 0, 8, 1)
 
-        self.button_24 = QPushButton(self.frame_5)
-        self.button_24.setObjectName(u"button_24")
-        self.button_24.setMinimumSize(QSize(83, 83))
-        self.button_24.setMaximumSize(QSize(123, 123))
-        self.button_24.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+        self.button_21 = QPushButton(self.frame_5)
+        self.button_21.setObjectName(u"button_21")
+        self.button_21.setMinimumSize(QSize(83, 83))
+        self.button_21.setMaximumSize(QSize(123, 123))
+        self.button_21.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
 "border:none;")
-        icon10 = QIcon()
-        icon10.addFile(u":/icons/icons/white_figure_default.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.button_24.setIcon(icon10)
-        self.button_24.setIconSize(QSize(60, 60))
+        self.button_21.setIconSize(QSize(60, 60))
 
-        self.gridLayout.addWidget(self.button_24, 5, 5, 1, 1)
+        self.gridLayout.addWidget(self.button_21, 5, 2, 1, 1)
 
-        self.button_04 = QPushButton(self.frame_5)
-        self.button_04.setObjectName(u"button_04")
-        self.button_04.setMinimumSize(QSize(83, 83))
-        self.button_04.setMaximumSize(QSize(123, 123))
-        self.button_04.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+        self.button_64 = QPushButton(self.frame_5)
+        self.button_64.setObjectName(u"button_64")
+        self.button_64.setMinimumSize(QSize(83, 83))
+        self.button_64.setMaximumSize(QSize(123, 123))
+        self.button_64.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
 "border:none;")
-        self.button_04.setIcon(icon10)
-        self.button_04.setIconSize(QSize(60, 60))
+        self.button_64.setIcon(icon9)
+        self.button_64.setIconSize(QSize(60, 60))
 
-        self.gridLayout.addWidget(self.button_04, 7, 5, 1, 1)
+        self.gridLayout.addWidget(self.button_64, 1, 5, 1, 1)
 
-        self.button_31 = QPushButton(self.frame_5)
-        self.button_31.setObjectName(u"button_31")
-        self.button_31.setMinimumSize(QSize(83, 83))
-        self.button_31.setMaximumSize(QSize(123, 123))
-        self.button_31.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+        self.button_50 = QPushButton(self.frame_5)
+        self.button_50.setObjectName(u"button_50")
+        self.button_50.setMinimumSize(QSize(83, 83))
+        self.button_50.setMaximumSize(QSize(123, 123))
+        self.button_50.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
 "border:none;")
-        self.button_31.setIconSize(QSize(60, 60))
+        self.button_50.setIconSize(QSize(60, 60))
 
-        self.gridLayout.addWidget(self.button_31, 4, 2, 1, 1)
+        self.gridLayout.addWidget(self.button_50, 2, 1, 1, 1)
 
-        self.button_76 = QPushButton(self.frame_5)
-        self.button_76.setObjectName(u"button_76")
-        self.button_76.setMinimumSize(QSize(83, 83))
-        self.button_76.setMaximumSize(QSize(123, 123))
-        self.button_76.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+        self.button_41 = QPushButton(self.frame_5)
+        self.button_41.setObjectName(u"button_41")
+        self.button_41.setMinimumSize(QSize(83, 83))
+        self.button_41.setMaximumSize(QSize(123, 123))
+        self.button_41.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
 "border:none;")
-        self.button_76.setIconSize(QSize(60, 60))
+        self.button_41.setIconSize(QSize(60, 60))
 
-        self.gridLayout.addWidget(self.button_76, 0, 7, 1, 1)
-
-        self.button_60 = QPushButton(self.frame_5)
-        self.button_60.setObjectName(u"button_60")
-        self.button_60.setMinimumSize(QSize(83, 83))
-        self.button_60.setMaximumSize(QSize(123, 123))
-        self.button_60.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_60.setIcon(icon9)
-        self.button_60.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_60, 1, 1, 1, 1)
-
-        self.button_54 = QPushButton(self.frame_5)
-        self.button_54.setObjectName(u"button_54")
-        self.button_54.setMinimumSize(QSize(83, 83))
-        self.button_54.setMaximumSize(QSize(123, 123))
-        self.button_54.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_54.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_54, 2, 5, 1, 1)
-
-        self.button_15 = QPushButton(self.frame_5)
-        self.button_15.setObjectName(u"button_15")
-        self.button_15.setMinimumSize(QSize(83, 83))
-        self.button_15.setMaximumSize(QSize(123, 123))
-        self.button_15.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_15.setIcon(icon10)
-        self.button_15.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_15, 6, 6, 1, 1)
-
-        self.button_35 = QPushButton(self.frame_5)
-        self.button_35.setObjectName(u"button_35")
-        self.button_35.setMinimumSize(QSize(83, 83))
-        self.button_35.setMaximumSize(QSize(123, 123))
-        self.button_35.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_35.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_35, 4, 6, 1, 1)
-
-        self.button_71 = QPushButton(self.frame_5)
-        self.button_71.setObjectName(u"button_71")
-        self.button_71.setMinimumSize(QSize(83, 83))
-        self.button_71.setMaximumSize(QSize(123, 123))
-        self.button_71.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_71.setIcon(icon9)
-        self.button_71.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_71, 0, 2, 1, 1)
+        self.gridLayout.addWidget(self.button_41, 3, 2, 1, 1)
 
         self.button_13 = QPushButton(self.frame_5)
         self.button_13.setObjectName(u"button_13")
@@ -817,31 +1311,10 @@ class Ui_MainWindow(object):
         self.button_13.setMaximumSize(QSize(123, 123))
         self.button_13.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
 "border:none;")
-        self.button_13.setIcon(icon10)
+        self.button_13.setIcon(icon11)
         self.button_13.setIconSize(QSize(60, 60))
 
         self.gridLayout.addWidget(self.button_13, 6, 4, 1, 1)
-
-        self.button_56 = QPushButton(self.frame_5)
-        self.button_56.setObjectName(u"button_56")
-        self.button_56.setMinimumSize(QSize(83, 83))
-        self.button_56.setMaximumSize(QSize(123, 123))
-        self.button_56.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_56.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_56, 2, 7, 1, 1)
-
-        self.button_02 = QPushButton(self.frame_5)
-        self.button_02.setObjectName(u"button_02")
-        self.button_02.setMinimumSize(QSize(83, 83))
-        self.button_02.setMaximumSize(QSize(123, 123))
-        self.button_02.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_02.setIcon(icon10)
-        self.button_02.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_02, 7, 3, 1, 1)
 
         self.button_51 = QPushButton(self.frame_5)
         self.button_51.setObjectName(u"button_51")
@@ -854,17 +1327,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.button_51, 2, 2, 1, 1)
 
-        self.button_22 = QPushButton(self.frame_5)
-        self.button_22.setObjectName(u"button_22")
-        self.button_22.setMinimumSize(QSize(83, 83))
-        self.button_22.setMaximumSize(QSize(123, 123))
-        self.button_22.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_22.setIcon(icon10)
-        self.button_22.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_22, 5, 3, 1, 1)
-
         self.button_63 = QPushButton(self.frame_5)
         self.button_63.setObjectName(u"button_63")
         self.button_63.setMinimumSize(QSize(50, 50))
@@ -874,362 +1336,6 @@ class Ui_MainWindow(object):
         self.button_63.setIconSize(QSize(60, 60))
 
         self.gridLayout.addWidget(self.button_63, 1, 4, 1, 1)
-
-        self.button_20 = QPushButton(self.frame_5)
-        self.button_20.setObjectName(u"button_20")
-        self.button_20.setMinimumSize(QSize(83, 83))
-        self.button_20.setMaximumSize(QSize(123, 123))
-        self.button_20.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_20.setIcon(icon10)
-        self.button_20.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_20, 5, 1, 1, 1)
-
-        self.button_52 = QPushButton(self.frame_5)
-        self.button_52.setObjectName(u"button_52")
-        self.button_52.setMinimumSize(QSize(83, 83))
-        self.button_52.setMaximumSize(QSize(123, 123))
-        self.button_52.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_52.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_52, 2, 3, 1, 1)
-
-        self.button_73 = QPushButton(self.frame_5)
-        self.button_73.setObjectName(u"button_73")
-        self.button_73.setMinimumSize(QSize(83, 83))
-        self.button_73.setMaximumSize(QSize(123, 123))
-        self.button_73.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_73.setIcon(icon9)
-        self.button_73.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_73, 0, 4, 1, 1)
-
-        self.button_33 = QPushButton(self.frame_5)
-        self.button_33.setObjectName(u"button_33")
-        self.button_33.setMinimumSize(QSize(83, 83))
-        self.button_33.setMaximumSize(QSize(123, 123))
-        self.button_33.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_33.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_33, 4, 4, 1, 1)
-
-        self.button_43 = QPushButton(self.frame_5)
-        self.button_43.setObjectName(u"button_43")
-        self.button_43.setMinimumSize(QSize(83, 83))
-        self.button_43.setMaximumSize(QSize(123, 123))
-        self.button_43.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_43.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_43, 3, 4, 1, 1)
-
-        self.button_06 = QPushButton(self.frame_5)
-        self.button_06.setObjectName(u"button_06")
-        self.button_06.setMinimumSize(QSize(83, 83))
-        self.button_06.setMaximumSize(QSize(123, 123))
-        self.button_06.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_06.setIcon(icon10)
-        self.button_06.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_06, 7, 7, 1, 1)
-
-        self.button_55 = QPushButton(self.frame_5)
-        self.button_55.setObjectName(u"button_55")
-        self.button_55.setMinimumSize(QSize(83, 83))
-        self.button_55.setMaximumSize(QSize(123, 123))
-        self.button_55.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_55.setIcon(icon9)
-        self.button_55.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_55, 2, 6, 1, 1)
-
-        self.button_46 = QPushButton(self.frame_5)
-        self.button_46.setObjectName(u"button_46")
-        self.button_46.setMinimumSize(QSize(83, 83))
-        self.button_46.setMaximumSize(QSize(123, 123))
-        self.button_46.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_46.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_46, 3, 7, 1, 1)
-
-        self.button_65 = QPushButton(self.frame_5)
-        self.button_65.setObjectName(u"button_65")
-        self.button_65.setMinimumSize(QSize(83, 83))
-        self.button_65.setMaximumSize(QSize(123, 123))
-        self.button_65.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_65.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_65, 1, 6, 1, 1)
-
-        self.button_70 = QPushButton(self.frame_5)
-        self.button_70.setObjectName(u"button_70")
-        self.button_70.setMinimumSize(QSize(83, 83))
-        self.button_70.setMaximumSize(QSize(123, 123))
-        self.button_70.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        icon11 = QIcon()
-        icon11.addFile(u":/figures/white_checker.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.button_70.setIcon(icon11)
-        self.button_70.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_70, 0, 1, 1, 1)
-
-        self.button_26 = QPushButton(self.frame_5)
-        self.button_26.setObjectName(u"button_26")
-        self.button_26.setMinimumSize(QSize(83, 83))
-        self.button_26.setMaximumSize(QSize(123, 123))
-        self.button_26.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_26.setIcon(icon10)
-        self.button_26.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_26, 5, 7, 1, 1)
-
-        self.button_12 = QPushButton(self.frame_5)
-        self.button_12.setObjectName(u"button_12")
-        self.button_12.setMinimumSize(QSize(83, 83))
-        self.button_12.setMaximumSize(QSize(123, 123))
-        self.button_12.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_12.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_12, 6, 3, 1, 1)
-
-        self.button_07 = QPushButton(self.frame_5)
-        self.button_07.setObjectName(u"button_07")
-        self.button_07.setMinimumSize(QSize(83, 83))
-        self.button_07.setMaximumSize(QSize(123, 123))
-        self.button_07.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_07.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_07, 7, 8, 1, 1)
-
-        self.button_10 = QPushButton(self.frame_5)
-        self.button_10.setObjectName(u"button_10")
-        self.button_10.setMinimumSize(QSize(83, 83))
-        self.button_10.setMaximumSize(QSize(123, 123))
-        self.button_10.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_10.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_10, 6, 1, 1, 1)
-
-        self.button_11 = QPushButton(self.frame_5)
-        self.button_11.setObjectName(u"button_11")
-        self.button_11.setMinimumSize(QSize(83, 83))
-        self.button_11.setMaximumSize(QSize(123, 123))
-        self.button_11.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_11.setIcon(icon10)
-        self.button_11.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_11, 6, 2, 1, 1)
-
-        self.button_17 = QPushButton(self.frame_5)
-        self.button_17.setObjectName(u"button_17")
-        self.button_17.setMinimumSize(QSize(83, 83))
-        self.button_17.setMaximumSize(QSize(123, 123))
-        self.button_17.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_17.setIcon(icon10)
-        self.button_17.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_17, 6, 8, 1, 1)
-
-        self.button_00 = QPushButton(self.frame_5)
-        self.button_00.setObjectName(u"button_00")
-        self.button_00.setMinimumSize(QSize(83, 83))
-        self.button_00.setMaximumSize(QSize(123, 123))
-        self.button_00.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_00.setIcon(icon10)
-        self.button_00.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_00, 7, 1, 1, 1)
-
-        self.button_37 = QPushButton(self.frame_5)
-        self.button_37.setObjectName(u"button_37")
-        self.button_37.setMinimumSize(QSize(83, 83))
-        self.button_37.setMaximumSize(QSize(123, 123))
-        self.button_37.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_37.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_37, 4, 8, 1, 1)
-
-        self.button_42 = QPushButton(self.frame_5)
-        self.button_42.setObjectName(u"button_42")
-        self.button_42.setMinimumSize(QSize(83, 83))
-        self.button_42.setMaximumSize(QSize(123, 123))
-        self.button_42.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_42.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_42, 3, 3, 1, 1)
-
-        self.button_62 = QPushButton(self.frame_5)
-        self.button_62.setObjectName(u"button_62")
-        self.button_62.setMinimumSize(QSize(83, 83))
-        self.button_62.setMaximumSize(QSize(123, 123))
-        self.button_62.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_62.setIcon(icon9)
-        self.button_62.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_62, 1, 3, 1, 1)
-
-        self.button_25 = QPushButton(self.frame_5)
-        self.button_25.setObjectName(u"button_25")
-        self.button_25.setMinimumSize(QSize(83, 83))
-        self.button_25.setMaximumSize(QSize(123, 123))
-        self.button_25.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_25.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_25, 5, 6, 1, 1)
-
-        self.button_57 = QPushButton(self.frame_5)
-        self.button_57.setObjectName(u"button_57")
-        self.button_57.setMinimumSize(QSize(83, 83))
-        self.button_57.setMaximumSize(QSize(123, 123))
-        self.button_57.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_57.setIcon(icon9)
-        self.button_57.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_57, 2, 8, 1, 1)
-
-        self.button_77 = QPushButton(self.frame_5)
-        self.button_77.setObjectName(u"button_77")
-        self.button_77.setMinimumSize(QSize(83, 83))
-        self.button_77.setMaximumSize(QSize(123, 123))
-        self.button_77.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_77.setIcon(icon9)
-        self.button_77.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_77, 0, 8, 1, 1)
-
-        self.button_72 = QPushButton(self.frame_5)
-        self.button_72.setObjectName(u"button_72")
-        self.button_72.setMinimumSize(QSize(83, 83))
-        self.button_72.setMaximumSize(QSize(123, 123))
-        self.button_72.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_72.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_72, 0, 3, 1, 1)
-
-        self.button_44 = QPushButton(self.frame_5)
-        self.button_44.setObjectName(u"button_44")
-        self.button_44.setMinimumSize(QSize(83, 83))
-        self.button_44.setMaximumSize(QSize(123, 123))
-        self.button_44.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_44.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_44, 3, 5, 1, 1)
-
-        self.button_30 = QPushButton(self.frame_5)
-        self.button_30.setObjectName(u"button_30")
-        self.button_30.setMinimumSize(QSize(83, 83))
-        self.button_30.setMaximumSize(QSize(123, 123))
-        self.button_30.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_30.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_30, 4, 1, 1, 1)
-
-        self.button_34 = QPushButton(self.frame_5)
-        self.button_34.setObjectName(u"button_34")
-        self.button_34.setMinimumSize(QSize(83, 83))
-        self.button_34.setMaximumSize(QSize(122, 122))
-        self.button_34.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_34.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_34, 4, 5, 1, 1)
-
-        self.button_53 = QPushButton(self.frame_5)
-        self.button_53.setObjectName(u"button_53")
-        self.button_53.setMinimumSize(QSize(83, 83))
-        self.button_53.setMaximumSize(QSize(123, 123))
-        self.button_53.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_53.setIcon(icon9)
-        self.button_53.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_53, 2, 4, 1, 1)
-
-        self.button_66 = QPushButton(self.frame_5)
-        self.button_66.setObjectName(u"button_66")
-        self.button_66.setMinimumSize(QSize(83, 83))
-        self.button_66.setMaximumSize(QSize(123, 123))
-        self.button_66.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_66.setIcon(icon9)
-        self.button_66.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_66, 1, 7, 1, 1)
-
-        self.button_05 = QPushButton(self.frame_5)
-        self.button_05.setObjectName(u"button_05")
-        self.button_05.setMinimumSize(QSize(83, 83))
-        self.button_05.setMaximumSize(QSize(122, 122))
-        self.button_05.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_05.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_05, 7, 6, 1, 1)
-
-        self.button_36 = QPushButton(self.frame_5)
-        self.button_36.setObjectName(u"button_36")
-        self.button_36.setMinimumSize(QSize(83, 83))
-        self.button_36.setMaximumSize(QSize(123, 123))
-        self.button_36.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_36.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_36, 4, 7, 1, 1)
-
-        self.button_74 = QPushButton(self.frame_5)
-        self.button_74.setObjectName(u"button_74")
-        self.button_74.setMinimumSize(QSize(83, 83))
-        self.button_74.setMaximumSize(QSize(123, 123))
-        self.button_74.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_74.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_74, 0, 5, 1, 1)
-
-        self.button_47 = QPushButton(self.frame_5)
-        self.button_47.setObjectName(u"button_47")
-        self.button_47.setMinimumSize(QSize(83, 83))
-        self.button_47.setMaximumSize(QSize(123, 123))
-        self.button_47.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"border:none;")
-        self.button_47.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_47, 3, 8, 1, 1)
-
-        self.button_40 = QPushButton(self.frame_5)
-        self.button_40.setObjectName(u"button_40")
-        self.button_40.setMinimumSize(QSize(83, 83))
-        self.button_40.setMaximumSize(QSize(123, 123))
-        self.button_40.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
-"border:none;")
-        self.button_40.setIconSize(QSize(60, 60))
-
-        self.gridLayout.addWidget(self.button_40, 3, 1, 1, 1)
 
         self.button_27 = QPushButton(self.frame_5)
         self.button_27.setObjectName(u"button_27")
@@ -1241,46 +1347,46 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.button_27, 5, 8, 1, 1)
 
-        self.button_75 = QPushButton(self.frame_5)
-        self.button_75.setObjectName(u"button_75")
-        self.button_75.setMinimumSize(QSize(83, 83))
-        self.button_75.setMaximumSize(QSize(123, 123))
-        self.button_75.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+        self.button_11 = QPushButton(self.frame_5)
+        self.button_11.setObjectName(u"button_11")
+        self.button_11.setMinimumSize(QSize(83, 83))
+        self.button_11.setMaximumSize(QSize(123, 123))
+        self.button_11.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
 "border:none;")
-        self.button_75.setIcon(icon9)
-        self.button_75.setIconSize(QSize(60, 60))
+        self.button_11.setIcon(icon11)
+        self.button_11.setIconSize(QSize(60, 60))
 
-        self.gridLayout.addWidget(self.button_75, 0, 6, 1, 1)
+        self.gridLayout.addWidget(self.button_11, 6, 2, 1, 1)
 
-        self.button_61 = QPushButton(self.frame_5)
-        self.button_61.setObjectName(u"button_61")
-        self.button_61.setMinimumSize(QSize(83, 83))
-        self.button_61.setMaximumSize(QSize(123, 123))
-        self.button_61.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+        self.button_47 = QPushButton(self.frame_5)
+        self.button_47.setObjectName(u"button_47")
+        self.button_47.setMinimumSize(QSize(83, 83))
+        self.button_47.setMaximumSize(QSize(123, 123))
+        self.button_47.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
 "border:none;")
-        self.button_61.setIconSize(QSize(60, 60))
+        self.button_47.setIconSize(QSize(60, 60))
 
-        self.gridLayout.addWidget(self.button_61, 1, 2, 1, 1)
+        self.gridLayout.addWidget(self.button_47, 3, 8, 1, 1)
 
-        self.button_32 = QPushButton(self.frame_5)
-        self.button_32.setObjectName(u"button_32")
-        self.button_32.setMinimumSize(QSize(83, 83))
-        self.button_32.setMaximumSize(QSize(123, 123))
-        self.button_32.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+        self.button_37 = QPushButton(self.frame_5)
+        self.button_37.setObjectName(u"button_37")
+        self.button_37.setMinimumSize(QSize(83, 83))
+        self.button_37.setMaximumSize(QSize(123, 123))
+        self.button_37.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
 "border:none;")
-        self.button_32.setIconSize(QSize(60, 60))
+        self.button_37.setIconSize(QSize(60, 60))
 
-        self.gridLayout.addWidget(self.button_32, 4, 3, 1, 1)
+        self.gridLayout.addWidget(self.button_37, 4, 8, 1, 1)
 
-        self.button_03 = QPushButton(self.frame_5)
-        self.button_03.setObjectName(u"button_03")
-        self.button_03.setMinimumSize(QSize(83, 83))
-        self.button_03.setMaximumSize(QSize(123, 123))
-        self.button_03.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+        self.button_65 = QPushButton(self.frame_5)
+        self.button_65.setObjectName(u"button_65")
+        self.button_65.setMinimumSize(QSize(83, 83))
+        self.button_65.setMaximumSize(QSize(123, 123))
+        self.button_65.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
 "border:none;")
-        self.button_03.setIconSize(QSize(60, 60))
+        self.button_65.setIconSize(QSize(60, 60))
 
-        self.gridLayout.addWidget(self.button_03, 7, 4, 1, 1)
+        self.gridLayout.addWidget(self.button_65, 1, 6, 1, 1)
 
         self.button_01 = QPushButton(self.frame_5)
         self.button_01.setObjectName(u"button_01")
@@ -1292,20 +1398,83 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.button_01, 7, 2, 1, 1)
 
+        self.button_71 = QPushButton(self.frame_5)
+        self.button_71.setObjectName(u"button_71")
+        self.button_71.setMinimumSize(QSize(83, 83))
+        self.button_71.setMaximumSize(QSize(123, 123))
+        self.button_71.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_71.setIcon(icon9)
+        self.button_71.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_71, 0, 2, 1, 1)
+
+        self.button_33 = QPushButton(self.frame_5)
+        self.button_33.setObjectName(u"button_33")
+        self.button_33.setMinimumSize(QSize(83, 83))
+        self.button_33.setMaximumSize(QSize(123, 123))
+        self.button_33.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_33.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_33, 4, 4, 1, 1)
+
+        self.button_74 = QPushButton(self.frame_5)
+        self.button_74.setObjectName(u"button_74")
+        self.button_74.setMinimumSize(QSize(83, 83))
+        self.button_74.setMaximumSize(QSize(123, 123))
+        self.button_74.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_74.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_74, 0, 5, 1, 1)
+
+        self.button_43 = QPushButton(self.frame_5)
+        self.button_43.setObjectName(u"button_43")
+        self.button_43.setMinimumSize(QSize(83, 83))
+        self.button_43.setMaximumSize(QSize(123, 123))
+        self.button_43.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
+"border:none;")
+        self.button_43.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_43, 3, 4, 1, 1)
+
+        self.button_00 = QPushButton(self.frame_5)
+        self.button_00.setObjectName(u"button_00")
+        self.button_00.setMinimumSize(QSize(83, 83))
+        self.button_00.setMaximumSize(QSize(123, 123))
+        self.button_00.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_00.setIcon(icon11)
+        self.button_00.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_00, 7, 1, 1, 1)
+
+        self.button_04 = QPushButton(self.frame_5)
+        self.button_04.setObjectName(u"button_04")
+        self.button_04.setMinimumSize(QSize(83, 83))
+        self.button_04.setMaximumSize(QSize(123, 123))
+        self.button_04.setStyleSheet(u"background-color:rgb(86, 100, 117);\n"
+"border:none;")
+        self.button_04.setIcon(icon11)
+        self.button_04.setIconSize(QSize(60, 60))
+
+        self.gridLayout.addWidget(self.button_04, 7, 5, 1, 1)
+
 
         self.verticalLayout_3.addWidget(self.frame_5)
 
         self.frame_7 = QFrame(self.second_central_widget)
         self.frame_7.setObjectName(u"frame_7")
         self.frame_7.setMinimumSize(QSize(665, 10))
-        self.frame_7.setMaximumSize(QSize(970, 12))
+        self.frame_7.setMaximumSize(QSize(970, 15))
         self.frame_7.setStyleSheet(u"border:none;")
         self.frame_7.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_7.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.frame_7)
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(2, 2, 2, 0)
+        self.horizontalLayout_3.setContentsMargins(5, 3, 5, 0)
         self.label_13 = QLabel(self.frame_7)
         self.label_13.setObjectName(u"label_13")
         self.label_13.setFont(font)
@@ -1891,15 +2060,67 @@ class Ui_MainWindow(object):
         self.leave_the_game.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0445\u043e\u0434 \u0438\u0437 \u0438\u0433\u0440\u044b", None))
         self.start_the_game.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0433\u0440\u0430\u0442\u044c", None))
         self.central_widget.setTabText(self.central_widget.indexOf(self.first_cenral_widget), QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0430", None))
+        self.label_47.setText(QCoreApplication.translate("MainWindow", u"A", None))
+        self.label_48.setText(QCoreApplication.translate("MainWindow", u"B", None))
+        self.label_49.setText(QCoreApplication.translate("MainWindow", u"C", None))
+        self.label_50.setText(QCoreApplication.translate("MainWindow", u"D", None))
+        self.label_51.setText(QCoreApplication.translate("MainWindow", u"E", None))
+        self.label_52.setText(QCoreApplication.translate("MainWindow", u"F", None))
+        self.label_54.setText(QCoreApplication.translate("MainWindow", u"G", None))
+        self.label_53.setText(QCoreApplication.translate("MainWindow", u"H", None))
+        self.button_54.setText("")
+        self.button_34.setText("")
+        self.button_12.setText("")
+        self.button_72.setText("")
+        self.button_35.setText("")
+        self.button_60.setText("")
+        self.button_70.setText("")
+        self.button_44.setText("")
+        self.button_32.setText("")
+        self.button_52.setText("")
+        self.button_77.setText("")
+        self.button_22.setText("")
         self.button_67.setText("")
+        self.button_76.setText("")
+        self.button_40.setText("")
+        self.button_55.setText("")
+        self.button_06.setText("")
+        self.button_61.setText("")
+        self.button_20.setText("")
+        self.button_57.setText("")
+        self.button_56.setText("")
+        self.button_46.setText("")
+        self.button_26.setText("")
+        self.button_17.setText("")
+        self.button_05.setText("")
+        self.button_75.setText("")
+        self.button_25.setText("")
+        self.label_39.setText(QCoreApplication.translate("MainWindow", u"8", None))
+        self.label_40.setText(QCoreApplication.translate("MainWindow", u"7", None))
+        self.label_41.setText(QCoreApplication.translate("MainWindow", u"6", None))
+        self.label_42.setText(QCoreApplication.translate("MainWindow", u"5", None))
+        self.label_43.setText(QCoreApplication.translate("MainWindow", u"4", None))
+        self.label_44.setText(QCoreApplication.translate("MainWindow", u"3", None))
+        self.label_45.setText(QCoreApplication.translate("MainWindow", u"2", None))
+        self.label_46.setText(QCoreApplication.translate("MainWindow", u"1", None))
         self.button_23.setText("")
-        self.button_21.setText("")
-        self.button_50.setText("")
-        self.button_14.setText("")
-        self.button_64.setText("")
-        self.button_41.setText("")
+        self.button_03.setText("")
+        self.button_24.setText("")
+        self.button_07.setText("")
+        self.button_73.setText("")
+        self.button_66.setText("")
+        self.button_15.setText("")
+        self.button_02.setText("")
+        self.button_36.setText("")
+        self.button_62.setText("")
         self.button_16.setText("")
+        self.button_31.setText("")
         self.button_45.setText("")
+        self.button_10.setText("")
+        self.button_53.setText("")
+        self.button_14.setText("")
+        self.button_30.setText("")
+        self.button_42.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"8", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"7", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"6", None))
@@ -1908,61 +2129,25 @@ class Ui_MainWindow(object):
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"3", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"2", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"1", None))
-        self.button_24.setText("")
-        self.button_04.setText("")
-        self.button_31.setText("")
-        self.button_76.setText("")
-        self.button_60.setText("")
-        self.button_54.setText("")
-        self.button_15.setText("")
-        self.button_35.setText("")
-        self.button_71.setText("")
+        self.button_21.setText("")
+        self.button_64.setText("")
+        self.button_50.setText("")
+        self.button_41.setText("")
         self.button_13.setText("")
-        self.button_56.setText("")
-        self.button_02.setText("")
         self.button_51.setText("")
-        self.button_22.setText("")
         self.button_63.setText("")
-        self.button_20.setText("")
-        self.button_52.setText("")
-        self.button_73.setText("")
-        self.button_33.setText("")
-        self.button_43.setText("")
-        self.button_06.setText("")
-        self.button_55.setText("")
-        self.button_46.setText("")
-        self.button_65.setText("")
-        self.button_70.setText("")
-        self.button_26.setText("")
-        self.button_12.setText("")
-        self.button_07.setText("")
-        self.button_10.setText("")
-        self.button_11.setText("")
-        self.button_17.setText("")
-        self.button_00.setText("")
-        self.button_37.setText("")
-        self.button_42.setText("")
-        self.button_62.setText("")
-        self.button_25.setText("")
-        self.button_57.setText("")
-        self.button_77.setText("")
-        self.button_72.setText("")
-        self.button_44.setText("")
-        self.button_30.setText("")
-        self.button_34.setText("")
-        self.button_53.setText("")
-        self.button_66.setText("")
-        self.button_05.setText("")
-        self.button_36.setText("")
-        self.button_74.setText("")
-        self.button_47.setText("")
-        self.button_40.setText("")
         self.button_27.setText("")
-        self.button_75.setText("")
-        self.button_61.setText("")
-        self.button_32.setText("")
-        self.button_03.setText("")
+        self.button_11.setText("")
+        self.button_47.setText("")
+        self.button_37.setText("")
+        self.button_65.setText("")
         self.button_01.setText("")
+        self.button_71.setText("")
+        self.button_33.setText("")
+        self.button_74.setText("")
+        self.button_43.setText("")
+        self.button_00.setText("")
+        self.button_04.setText("")
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"A", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"B", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"C", None))

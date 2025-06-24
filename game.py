@@ -17,3 +17,7 @@ class RestartWindow(QDialog):
         super().__init__()
         self.ui = Ui_Dialog_restart()
         self.ui.setupUi(self)
+        # модальное окно
+        self.setModal(True)
+        # отключение кнопки закрытия
+        self.setWindowFlags(self.windowFlags() & ~Qt.WindowCloseButtonHint)
