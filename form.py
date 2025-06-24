@@ -40,7 +40,7 @@ class Ui_MainWindow(object):
         self.frame_3.setObjectName(u"frame_3")
         self.frame_3.setMinimumSize(QSize(960, 50))
         self.frame_3.setMaximumSize(QSize(1920, 100))
-        self.frame_3.setStyleSheet(u"background-color:rgb(27, 27, 27);\n"
+        self.frame_3.setStyleSheet(u"background-color:rgb(36, 36, 36);\n"
 "border:none;")
         self.frame_3.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Shadow.Raised)
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
         self.frame.setObjectName(u"frame")
         self.frame.setMinimumSize(QSize(215, 680))
         self.frame.setMaximumSize(QSize(215, 980))
-        self.frame.setStyleSheet(u"background-color:rgb(20, 37, 62);\n"
+        self.frame.setStyleSheet(u"background-color:rgb(40, 40, 40);\n"
 "border:none;\n"
 "\n"
 "")
@@ -429,7 +429,7 @@ class Ui_MainWindow(object):
         self.frame_2.setMinimumSize(QSize(700, 700))
         self.frame_2.setMaximumSize(QSize(980, 980))
         self.frame_2.setStyleSheet(u"border:none;\n"
-"background-color:rgb(66, 143, 131);\n"
+"background-color:rgb(24, 24, 24);\n"
 "")
         self.frame_2.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
@@ -478,7 +478,7 @@ class Ui_MainWindow(object):
 
         self.frame_14 = QFrame(self.frame_10)
         self.frame_14.setObjectName(u"frame_14")
-        self.frame_14.setStyleSheet(u"background-color:rgb(7,7,7);\n"
+        self.frame_14.setStyleSheet(u"background-color:rgb(24, 24, 24);\n"
 "")
         self.frame_14.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_14.setFrameShadow(QFrame.Shadow.Raised)
@@ -526,7 +526,8 @@ class Ui_MainWindow(object):
         self.second_central_widget = QWidget()
         self.second_central_widget.setObjectName(u"second_central_widget")
         self.second_central_widget.setStyleSheet(u"border:none;\n"
-"background-color:rgb(66, 143, 131);")
+"background-color:rgb(24, 24, 24)\n"
+";")
         self.verticalLayout_3 = QVBoxLayout(self.second_central_widget)
         self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
@@ -552,7 +553,8 @@ class Ui_MainWindow(object):
         font.setBold(True)
         self.label_47.setFont(font)
         self.label_47.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_47.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_21.addWidget(self.label_47)
@@ -561,7 +563,8 @@ class Ui_MainWindow(object):
         self.label_48.setObjectName(u"label_48")
         self.label_48.setFont(font)
         self.label_48.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_48.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_21.addWidget(self.label_48)
@@ -570,7 +573,8 @@ class Ui_MainWindow(object):
         self.label_49.setObjectName(u"label_49")
         self.label_49.setFont(font)
         self.label_49.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_49.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_21.addWidget(self.label_49)
@@ -579,7 +583,8 @@ class Ui_MainWindow(object):
         self.label_50.setObjectName(u"label_50")
         self.label_50.setFont(font)
         self.label_50.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_50.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_21.addWidget(self.label_50)
@@ -588,7 +593,8 @@ class Ui_MainWindow(object):
         self.label_51.setObjectName(u"label_51")
         self.label_51.setFont(font)
         self.label_51.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_51.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_21.addWidget(self.label_51)
@@ -597,7 +603,8 @@ class Ui_MainWindow(object):
         self.label_52.setObjectName(u"label_52")
         self.label_52.setFont(font)
         self.label_52.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_52.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_21.addWidget(self.label_52)
@@ -608,7 +615,8 @@ class Ui_MainWindow(object):
         self.label_54.setSizeIncrement(QSize(970, 12))
         self.label_54.setFont(font)
         self.label_54.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_54.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_21.addWidget(self.label_54)
@@ -617,7 +625,8 @@ class Ui_MainWindow(object):
         self.label_53.setObjectName(u"label_53")
         self.label_53.setFont(font)
         self.label_53.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_53.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_21.addWidget(self.label_53)
@@ -936,7 +945,9 @@ class Ui_MainWindow(object):
         self.label_39 = QLabel(self.frame_27)
         self.label_39.setObjectName(u"label_39")
         self.label_39.setFont(font)
-        self.label_39.setStyleSheet(u"font-size:14px;")
+        self.label_39.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_39.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_10.addWidget(self.label_39)
@@ -944,7 +955,9 @@ class Ui_MainWindow(object):
         self.label_40 = QLabel(self.frame_27)
         self.label_40.setObjectName(u"label_40")
         self.label_40.setFont(font)
-        self.label_40.setStyleSheet(u"font-size:14px;")
+        self.label_40.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_40.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_10.addWidget(self.label_40)
@@ -952,7 +965,9 @@ class Ui_MainWindow(object):
         self.label_41 = QLabel(self.frame_27)
         self.label_41.setObjectName(u"label_41")
         self.label_41.setFont(font)
-        self.label_41.setStyleSheet(u"font-size:14px;")
+        self.label_41.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_41.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_10.addWidget(self.label_41)
@@ -960,7 +975,9 @@ class Ui_MainWindow(object):
         self.label_42 = QLabel(self.frame_27)
         self.label_42.setObjectName(u"label_42")
         self.label_42.setFont(font)
-        self.label_42.setStyleSheet(u"font-size:14px;")
+        self.label_42.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_42.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_10.addWidget(self.label_42)
@@ -968,7 +985,9 @@ class Ui_MainWindow(object):
         self.label_43 = QLabel(self.frame_27)
         self.label_43.setObjectName(u"label_43")
         self.label_43.setFont(font)
-        self.label_43.setStyleSheet(u"font-size:14px;")
+        self.label_43.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_43.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_10.addWidget(self.label_43)
@@ -976,7 +995,9 @@ class Ui_MainWindow(object):
         self.label_44 = QLabel(self.frame_27)
         self.label_44.setObjectName(u"label_44")
         self.label_44.setFont(font)
-        self.label_44.setStyleSheet(u"font-size:14px;")
+        self.label_44.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_44.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_10.addWidget(self.label_44)
@@ -984,7 +1005,9 @@ class Ui_MainWindow(object):
         self.label_45 = QLabel(self.frame_27)
         self.label_45.setObjectName(u"label_45")
         self.label_45.setFont(font)
-        self.label_45.setStyleSheet(u"font-size:14px;")
+        self.label_45.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_45.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_10.addWidget(self.label_45)
@@ -992,7 +1015,9 @@ class Ui_MainWindow(object):
         self.label_46 = QLabel(self.frame_27)
         self.label_46.setObjectName(u"label_46")
         self.label_46.setFont(font)
-        self.label_46.setStyleSheet(u"font-size:14px;")
+        self.label_46.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_46.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_10.addWidget(self.label_46)
@@ -1200,7 +1225,9 @@ class Ui_MainWindow(object):
         self.label = QLabel(self.frame_4)
         self.label.setObjectName(u"label")
         self.label.setFont(font)
-        self.label.setStyleSheet(u"font-size:14px;")
+        self.label.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_4.addWidget(self.label)
@@ -1208,7 +1235,9 @@ class Ui_MainWindow(object):
         self.label_8 = QLabel(self.frame_4)
         self.label_8.setObjectName(u"label_8")
         self.label_8.setFont(font)
-        self.label_8.setStyleSheet(u"font-size:14px;")
+        self.label_8.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_8.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_4.addWidget(self.label_8)
@@ -1216,7 +1245,9 @@ class Ui_MainWindow(object):
         self.label_5 = QLabel(self.frame_4)
         self.label_5.setObjectName(u"label_5")
         self.label_5.setFont(font)
-        self.label_5.setStyleSheet(u"font-size:14px;")
+        self.label_5.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_5.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_4.addWidget(self.label_5)
@@ -1224,7 +1255,9 @@ class Ui_MainWindow(object):
         self.label_4 = QLabel(self.frame_4)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setFont(font)
-        self.label_4.setStyleSheet(u"font-size:14px;")
+        self.label_4.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_4.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_4.addWidget(self.label_4)
@@ -1232,7 +1265,9 @@ class Ui_MainWindow(object):
         self.label_7 = QLabel(self.frame_4)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setFont(font)
-        self.label_7.setStyleSheet(u"font-size:14px;")
+        self.label_7.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_7.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_4.addWidget(self.label_7)
@@ -1240,7 +1275,9 @@ class Ui_MainWindow(object):
         self.label_3 = QLabel(self.frame_4)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setFont(font)
-        self.label_3.setStyleSheet(u"font-size:14px;")
+        self.label_3.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_3.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_4.addWidget(self.label_3)
@@ -1248,7 +1285,9 @@ class Ui_MainWindow(object):
         self.label_6 = QLabel(self.frame_4)
         self.label_6.setObjectName(u"label_6")
         self.label_6.setFont(font)
-        self.label_6.setStyleSheet(u"font-size:14px;")
+        self.label_6.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_6.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_4.addWidget(self.label_6)
@@ -1256,7 +1295,9 @@ class Ui_MainWindow(object):
         self.label_2 = QLabel(self.frame_4)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setFont(font)
-        self.label_2.setStyleSheet(u"font-size:14px;")
+        self.label_2.setStyleSheet(u"border:none;\n"
+"font-size:14px;\n"
+"color:rgb(255, 255, 255);")
         self.label_2.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_4.addWidget(self.label_2)
@@ -1479,7 +1520,8 @@ class Ui_MainWindow(object):
         self.label_13.setObjectName(u"label_13")
         self.label_13.setFont(font)
         self.label_13.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_13.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_3.addWidget(self.label_13)
@@ -1488,7 +1530,8 @@ class Ui_MainWindow(object):
         self.label_12.setObjectName(u"label_12")
         self.label_12.setFont(font)
         self.label_12.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_12.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_3.addWidget(self.label_12)
@@ -1497,7 +1540,8 @@ class Ui_MainWindow(object):
         self.label_11.setObjectName(u"label_11")
         self.label_11.setFont(font)
         self.label_11.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_11.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_3.addWidget(self.label_11)
@@ -1506,7 +1550,8 @@ class Ui_MainWindow(object):
         self.label_10.setObjectName(u"label_10")
         self.label_10.setFont(font)
         self.label_10.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_10.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_3.addWidget(self.label_10)
@@ -1515,7 +1560,8 @@ class Ui_MainWindow(object):
         self.label_9.setObjectName(u"label_9")
         self.label_9.setFont(font)
         self.label_9.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_9.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_3.addWidget(self.label_9)
@@ -1524,7 +1570,8 @@ class Ui_MainWindow(object):
         self.label_14.setObjectName(u"label_14")
         self.label_14.setFont(font)
         self.label_14.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_14.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_3.addWidget(self.label_14)
@@ -1533,7 +1580,8 @@ class Ui_MainWindow(object):
         self.label_15.setObjectName(u"label_15")
         self.label_15.setFont(font)
         self.label_15.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_15.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_3.addWidget(self.label_15)
@@ -1542,7 +1590,8 @@ class Ui_MainWindow(object):
         self.label_16.setObjectName(u"label_16")
         self.label_16.setFont(font)
         self.label_16.setStyleSheet(u"border:none;\n"
-"font-size:12px;")
+"font-size:12px;\n"
+"color:rgb(255, 255, 255);")
         self.label_16.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_3.addWidget(self.label_16)
@@ -1567,13 +1616,19 @@ class Ui_MainWindow(object):
         font1.setBold(False)
         self.label_19.setFont(font1)
         self.label_19.setStyleSheet(u"font-size:24px;\n"
+"color:rgb(252, 252, 252);\n"
 "")
         self.label_19.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_13.addWidget(self.label_19)
 
+        self.verticalSpacer_8 = QSpacerItem(20, 25, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+
+        self.verticalLayout_13.addItem(self.verticalSpacer_8)
+
         self.textEdit_3 = QTextEdit(self.frame_13)
         self.textEdit_3.setObjectName(u"textEdit_3")
+        self.textEdit_3.setStyleSheet(u"color:rgb(221, 221, 221);")
         self.textEdit_3.setReadOnly(True)
 
         self.verticalLayout_13.addWidget(self.textEdit_3)
@@ -1600,7 +1655,7 @@ class Ui_MainWindow(object):
 
         self.frame_6 = QFrame(self.centralwidget)
         self.frame_6.setObjectName(u"frame_6")
-        self.frame_6.setStyleSheet(u"background-color:rgb(20, 37, 62);\n"
+        self.frame_6.setStyleSheet(u"background-color:rgb(40, 40, 40);\n"
 "border:none;")
         self.frame_6.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_6.setFrameShadow(QFrame.Shadow.Raised)
@@ -1612,13 +1667,16 @@ class Ui_MainWindow(object):
         self.right_widget.setObjectName(u"right_widget")
         self.right_widget.setMinimumSize(QSize(240, 680))
         self.right_widget.setMaximumSize(QSize(550, 980))
-        self.right_widget.setStyleSheet(u"background-color:rgb(20, 37, 62);\n"
+        self.right_widget.setStyleSheet(u"background-color:rgb(40, 40, 40);\n"
 "border:none;")
         self.first_widget_right = QWidget()
         self.first_widget_right.setObjectName(u"first_widget_right")
+        self.first_widget_right.setStyleSheet(u"background-color:rgb(40, 40, 40);")
         self.right_widget.addTab(self.first_widget_right, "")
         self.second_widget_right = QWidget()
         self.second_widget_right.setObjectName(u"second_widget_right")
+        self.second_widget_right.setStyleSheet(u"background-color:rgb(40, 40, 40);\n"
+"")
         self.horizontalLayout_2 = QHBoxLayout(self.second_widget_right)
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -1627,7 +1685,7 @@ class Ui_MainWindow(object):
         self.frame_8.setObjectName(u"frame_8")
         self.frame_8.setMinimumSize(QSize(240, 680))
         self.frame_8.setMaximumSize(QSize(550, 980))
-        self.frame_8.setStyleSheet(u"background-color:rgb(20, 37, 62);\n"
+        self.frame_8.setStyleSheet(u"background-color:rgb(40, 40, 40);\n"
 "border:none;\n"
 "padding:3px;\n"
 "\n"
@@ -1882,12 +1940,14 @@ class Ui_MainWindow(object):
         self.right_widget.addTab(self.second_widget_right, "")
         self.third_widget_right = QWidget()
         self.third_widget_right.setObjectName(u"third_widget_right")
+        self.third_widget_right.setStyleSheet(u"background-color:rgb(40, 40, 40);")
         self.horizontalLayout_13 = QHBoxLayout(self.third_widget_right)
         self.horizontalLayout_13.setSpacing(0)
         self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
         self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
         self.frame_25 = QFrame(self.third_widget_right)
         self.frame_25.setObjectName(u"frame_25")
+        self.frame_25.setStyleSheet(u"background-color:rgb(40, 40, 40);")
         self.frame_25.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_25.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_25 = QVBoxLayout(self.frame_25)
@@ -2024,8 +2084,8 @@ class Ui_MainWindow(object):
 
         self.left_widget.setCurrentIndex(1)
         self.toolBox.setCurrentIndex(0)
-        self.central_widget.setCurrentIndex(1)
-        self.right_widget.setCurrentIndex(2)
+        self.central_widget.setCurrentIndex(2)
+        self.right_widget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

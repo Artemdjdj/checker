@@ -1,3 +1,5 @@
+from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
+from PySide6.QtCore import QUrl
 from PySide6 import *
 import sys
 import os
@@ -16,6 +18,20 @@ class MainWindow(QMainWindow):
         self.temp = self.ui.first_cenral_widget
         self.settings_window = None
         self.restart_window = None
+        self.player = QMediaPlayer()
+        self.audio_output = QAudioOutput()
+        self.player.setAudioOutput(self.audio_output)
+        
+        # Загружаем музыку
+        self.music_file = ""
+        self.player.setSource(QUrl.fromLocalFile(self.music_file))
+        
+        # Устанавливаем зацикливание
+        self.player.setLoops(QMediaPlayer.Loops.Infinite)  # или -1 для бесконечного повтора
+
+        self.player.play()
+        self.current_music = "Без музыки"  # Значение по умолчанию для музыки
+        self.current_theme = "Классическая"
         self.icon_white = QIcon()
         self.icon_white.addFile(icon_white)
         self.icon_black = QIcon()
@@ -178,12 +194,18 @@ class MainWindow(QMainWindow):
             self.get_buttons_that_should_cut_others(list_buttons_that_must_to_cut_ohter, self.type_of_figure)  
             
             self.get_all_ways(self.parent_r, self.parent_c, ways, more_important_ways, check_is_qeen, self.type_of_figure,-1,-1) 
-            
             if check_is_qeen:
                 if self.pos_which_can_cut_figure(more_important_ways, result, self.type_of_figure): 
                     more_important_ways.clear()
                     for i in result:
                         more_important_ways.append(i)
+            # for temp in more_important_ways:
+            #     name_of_btn = f"button_{temp[0]}{temp[-1]}"
+            #     button  = self.get_button_by_name(name_of_btn)
+            #     self.arr_of_buttons.append(button)
+            #     button.setIcon(QIcon("icons/red-dot.png"))
+            #     button.setIconSize(QSize(15,15))
+                
                 # number_of_diogonal = -1
                 # for i in range(len(self.all_lines)):
                 #     if [self.parent_r, self.parent_c] in self.all_lines[i] and [index_of_row, index_of_col]in self.all_lines:
@@ -328,7 +350,6 @@ class MainWindow(QMainWindow):
             new_button.setIcon(icon)
             parent_button.setIcon(QIcon())
             parent_button.setStyleSheet(self.style_buttons)
-            
             is_queen = self.board[self.parent_r][self.parent_c].isqeen
             self.board[index_of_row][index_of_col].type_of_figure = self.board[self.parent_r][self.parent_c].type_of_figure
             self.board[index_of_row][index_of_col].isqeen = is_queen
@@ -337,7 +358,6 @@ class MainWindow(QMainWindow):
             self.board[self.parent_r][self.parent_c].isqeen = False  
             self.board[index_of_row][index_of_col].isbusy = True
             self.check_is_figure_qeen(index_of_row, index_of_col)
-
             if is_capture:
                 ways = []
                 more_important_ways = []
@@ -568,6 +588,10 @@ class MainWindow(QMainWindow):
         self.ui.left_widget.setCurrentWidget(self.ui.first_tab_left)
         self.temp = self.ui.first_cenral_widget
         self.start_settings()
+        self.current_music="Без музыки"
+        self.music_file = ""
+        self.player.stop()
+        
         # self.start_settings_for_game()
 
     # def start_settings_for_game(self):
@@ -580,6 +604,7 @@ class MainWindow(QMainWindow):
     
     
     def set_theme_for_board(self, theme):
+        self.current_theme = theme
         style = "" 
         style2 = ""
         if theme=="Темно-зеленая":
@@ -616,11 +641,36 @@ class MainWindow(QMainWindow):
                 button.setStyleSheet(style2)
         
             
-                    
+    def set_music_for_board(self, music):
+        if self.current_music == music:
+            return
+        else:
+            self.current_music = music
+        if music == "Классическая":
+            self.music_file = classic_music
+        elif music == "Спокойная":
+            self.music_file = calm_music
+        elif music =="Умеренная":
+            self.music_file = moderate_music
+        elif music == "Быстрая":
+            self.music_file = fast_music
+        else:
+            self.music_file = ""
+            self.player.stop()
+        self.player.setSource(QUrl.fromLocalFile(self.music_file))
+        self.player.setLoops(QMediaPlayer.Loops.Infinite)
+        self.player.play()
 
     def open_settings(self):
         if self.settings_window is None:
             self.settings_window = SettingsWindow()
+            music_index = self.settings_window.ui.comboBox.findText(self.current_music)
+            if music_index >= 0:
+                self.settings_window.ui.comboBox.setCurrentIndex(music_index)
+                
+            theme_index = self.settings_window.ui.comboBox_2.findText(self.current_theme)
+            if theme_index >= 0:
+                self.settings_window.ui.comboBox_2.setCurrentIndex(theme_index)
             temp_music = self.settings_window.ui.comboBox.currentText()
             temp_theme = self.settings_window.ui.comboBox_2.currentText()
             self.settings_window.ui.pushButton.clicked.connect(lambda:self.on_settings_closed())
@@ -628,7 +678,9 @@ class MainWindow(QMainWindow):
             self.settings_window.ui.pushButton_2.clicked.connect(
                 lambda: self.set_theme_for_board(self.settings_window.ui.comboBox_2.currentText())
             )
+            self.settings_window.ui.pushButton_2.clicked.connect(lambda:self.set_music_for_board(self.settings_window.ui.comboBox.currentText()))
             self.settings_window.ui.pushButton_3.clicked.connect(lambda:self.on_settings_cancel(temp_theme, temp_music))
+            
         self.settings_window.show()
 
     def on_settings_closed(self):

@@ -62,3 +62,9 @@ style_classic_around ="""
                 border:4px solid rgb(193, 255, 60);
                             """
 
+
+
+classic_music = "audio/classic_music.mp3"
+calm_music = "audio/calm_music.mp3"
+moderate_music = "audio/moderate_music.mp3"
+fast_music = "audio/fast_music.mp3"
