@@ -45,7 +45,7 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>420</y>
+     <y>480</y>
      <width>501</width>
      <height>102</height>
     </rect>
@@ -131,8 +131,8 @@ border:none;</string>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>60</y>
+     <x>40</x>
+     <y>330</y>
      <width>411</width>
      <height>181</height>
     </rect>
@@ -144,7 +144,7 @@ border:none;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:rgb(86, 213, 27);</string>
+    <string notr="true">color:rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>Выиграли белые!</string>

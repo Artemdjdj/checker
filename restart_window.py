@@ -18,6 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QDialog, QHBoxLayout, QLabel,
     QPushButton, QSizePolicy, QWidget)
 import res_def
+
 class Ui_Dialog_restart(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
@@ -31,7 +32,7 @@ class Ui_Dialog_restart(object):
         self.label.setPixmap(QPixmap(u"images/background_for_restart.jpeg"))
         self.layoutWidget = QWidget(Dialog)
         self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(0, 420, 501, 102))
+        self.layoutWidget.setGeometry(QRect(0, 480, 501, 102))
         self.horizontalLayout = QHBoxLayout(self.layoutWidget)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -70,12 +71,12 @@ class Ui_Dialog_restart(object):
 
         self.label_2 = QLabel(Dialog)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(20, 60, 411, 181))
+        self.label_2.setGeometry(QRect(40, 330, 411, 181))
         font = QFont()
         font.setPointSize(36)
         font.setBold(False)
         self.label_2.setFont(font)
-        self.label_2.setStyleSheet(u"color:rgb(247, 247, 247);")
+        self.label_2.setStyleSheet(u"color:rgb(0, 0, 0);")
         self.label_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.retranslateUi(Dialog)

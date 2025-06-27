@@ -1,20 +1,21 @@
 <RCC>
   <qresource prefix="icons">
-    <file>icons/Huawei_AppGallery.svg.png</file>
     <file>icons/appstore.png</file>
+    <file>icons/black_figure.png</file>
+    <file>icons/black_figure_default.png</file>
     <file>icons/galaxy-store.png</file>
     <file>icons/google-play.png</file>
-    <file>icons/play.svg</file>
     <file>icons/home.svg</file>
     <file>icons/home2.svg</file>
+    <file>icons/Huawei_AppGallery.svg.png</file>
+    <file>icons/icon_for_right_half.ico</file>
     <file>icons/info.svg</file>
     <file>icons/logout.svg</file>
+    <file>icons/play.svg</file>
+    <file>icons/red-dot.png</file>
     <file>icons/settings.svg</file>
     <file>icons/sort.svg</file>
-    <file>icons/icon_for_right_half.ico</file>
-    <file>icons/black_figure_default.png</file>
-    <file>icons/white_figure_default.png</file>
-    <file>icons/black_figure.png</file>
     <file>icons/white_figure.png</file>
+    <file>icons/white_figure_default.png</file>
   </qresource>
 </RCC>

@@ -21,7 +21,10 @@ class MainWindow(QMainWindow):
         self.player = QMediaPlayer()
         self.audio_output = QAudioOutput()
         self.player.setAudioOutput(self.audio_output)
-        
+        self.more_important_ways = []
+        self.ways =[]
+        self.result = []
+        self.list_buttons = []
         # Загружаем музыку
         self.music_file = ""
         self.player.setSource(QUrl.fromLocalFile(self.music_file))
@@ -93,6 +96,7 @@ class MainWindow(QMainWindow):
         self.name_parent_button =""
         self.parent_r = -1
         self.parent_c = -1
+        self.ui.start_game_2_players.setEnabled(True)
         self.cut_figures = []
         for i in range(0, 8):
             for j in range(0,8):
@@ -142,10 +146,10 @@ class MainWindow(QMainWindow):
                     button.setIcon(self.icon_black)
                     if j == 0 or j == 7:
                         self.board[i][j].isextreme = True
+        for button in self.all_buttons:
+            button.setEnabled(False)
 
-
-     
-                    
+          
     def add_functions(self):
         self.ui.start_the_game.clicked.connect(lambda:self.start_game())
         self.ui.rules_of_play.clicked.connect(lambda:self.read_rules())
@@ -155,6 +159,7 @@ class MainWindow(QMainWindow):
         self.ui.leave_the_game.clicked.connect(lambda:self.get_away())
         self.ui.stop_game.clicked.connect(lambda:self.go_to_preview())
         self.ui.settings.clicked.connect(lambda:self.open_settings())
+        self.ui.start_game_2_players.clicked.connect(lambda:self.start_game_for_2_players(True))
         for button in self.all_buttons:
             button.clicked.connect(lambda ch, b=button: self.choose_start_position(b))
 
@@ -162,6 +167,24 @@ class MainWindow(QMainWindow):
         for button in self.all_buttons:
             if button.objectName() == name:
                 return button
+    def make_red_dot(self, more_important_ways):
+         for temp in self.more_important_ways:
+                i = temp[0]
+                j = temp[-1]
+                name_of_btn = f"button_{i}{j}"
+                btn = self.get_button_by_name(name_of_btn)
+                btn.setIcon(QIcon(icon_of_red_dot))
+                btn.setIconSize(QSize(10,10))
+                self.list_buttons.append(btn)
+    def clear_red_dot(self):
+        if len(self.list_buttons)>0:
+            for butt in self.list_buttons:
+                i = int(butt.objectName()[-2])
+                j = int(butt.objectName()[-1])
+                if self.board[i][j].type_of_figure == None:
+                    butt.setIcon(QIcon())
+                    butt.setIconSize(QSize(60,60))
+        self.list_buttons.clear()
 
     def choose_start_position(self, button):
         index_of_row = int(button.objectName()[-2])
@@ -172,33 +195,52 @@ class MainWindow(QMainWindow):
         if figure_type == self.type_of_figure: 
             button.setStyleSheet(self.style_around_buttons)
             self.name_parent_button = button.objectName()
-            if self.parent_r != -1 and self.parent_c != -1:
+            if (self.parent_r != -1 and self.parent_c != -1):
                 name = f"button_{self.parent_r}{self.parent_c}"
                 parent_button = self.get_button_by_name(name)
                 parent_button.setStyleSheet(self.style_buttons)
             self.parent_r = index_of_row
             self.parent_c = index_of_col
             self.not_cutting_figure.clear()
+            
+            # при многократном выборе родительской позиции
+            if (self.parent_r == index_of_row and self.parent_c == index_of_col):
+                button.setStyleSheet(self.style_around_buttons)
+            self.clear_red_dot()
+            self.more_important_ways.clear()
+            self.result.clear()
+            self.ways.clear()
+            check_is_qeen = self.board[self.parent_r][self.parent_c].isqeen
+            self.get_all_ways(self.parent_r, self.parent_c, self.ways, self.more_important_ways, check_is_qeen, self.type_of_figure,-1,-1)
+            if check_is_qeen:
+                if self.pos_which_can_cut_figure(self.more_important_ways, self.result, self.type_of_figure): 
+                    self.more_important_ways.clear()
+                    for i in self.result:
+                        self.more_important_ways.append(i)
+            self.make_red_dot(self.more_important_ways)
         
         else:
             
             if self.parent_r == -1 or self.parent_c == -1 or self.board[self.parent_r][self.parent_c].type_of_figure != self.type_of_figure:
                 return
-                
+            
+            
             check_is_qeen = self.board[self.parent_r][self.parent_c].isqeen
-            ways = []
-            more_important_ways = []
+            self.more_important_ways.clear()
+            self.result.clear()
             list_buttons_that_must_to_cut_ohter = []
-            result = []
+            
            
             self.get_buttons_that_should_cut_others(list_buttons_that_must_to_cut_ohter, self.type_of_figure)  
             
-            self.get_all_ways(self.parent_r, self.parent_c, ways, more_important_ways, check_is_qeen, self.type_of_figure,-1,-1) 
+            self.get_all_ways(self.parent_r, self.parent_c, self.ways, self.more_important_ways, check_is_qeen, self.type_of_figure,-1,-1) 
             if check_is_qeen:
-                if self.pos_which_can_cut_figure(more_important_ways, result, self.type_of_figure): 
-                    more_important_ways.clear()
-                    for i in result:
-                        more_important_ways.append(i)
+                if self.pos_which_can_cut_figure(self.more_important_ways, self.result, self.type_of_figure): 
+                    self.more_important_ways.clear()
+                    for i in self.result:
+                        self.more_important_ways.append(i)
+            
+
             # for temp in more_important_ways:
             #     name_of_btn = f"button_{temp[0]}{temp[-1]}"
             #     button  = self.get_button_by_name(name_of_btn)
@@ -238,14 +280,16 @@ class MainWindow(QMainWindow):
                
             if figure_type is not None:
                 return
+            
                 
             if len(list_buttons_that_must_to_cut_ohter) == 0:
-                if len(more_important_ways) == 0 and len(ways) > 0:
-                    self.change_position(ways, figure_type, index_of_row, index_of_col, self.type_of_figure, is_capture=False)
+                if len(self.more_important_ways) == 0 and len(self.ways) > 0:
+                    self.change_position(self.ways, figure_type, index_of_row, index_of_col, self.type_of_figure, is_capture=False)
             else:
                 
                 if [self.parent_r, self.parent_c] in list_buttons_that_must_to_cut_ohter:
-                    if [index_of_row, index_of_col] in more_important_ways:
+                    if [index_of_row, index_of_col] in self.more_important_ways:
+                        self.clear_red_dot()
                         name = f"button_{index_of_row}{index_of_col}"
                         new_button = self.get_button_by_name(name)
                         parent_button = self.get_button_by_name(self.name_parent_button)
@@ -281,10 +325,14 @@ class MainWindow(QMainWindow):
                         else:
                             self.count_of_white_figure -= 1
                         
-                        self.change_position(more_important_ways, figure_type, index_of_row, index_of_col, self.type_of_figure, is_capture=True)
+                        self.change_position(self.more_important_ways, figure_type, index_of_row, index_of_col, self.type_of_figure, is_capture=True)
                         restart = self.check_win()
                         if (restart != ""):
+                            self.clear_red_dot()
                             self.open_restart_window(restart)
+                    
+
+
     def check_win(self):
         result = ""
         if self.count_of_black_figure == 0:
@@ -348,6 +396,7 @@ class MainWindow(QMainWindow):
             parent_button = self.get_button_by_name(self.name_parent_button)
             icon = parent_button.icon()
             new_button.setIcon(icon)
+            new_button.setIconSize(QSize(60,60))
             parent_button.setIcon(QIcon())
             parent_button.setStyleSheet(self.style_buttons)
             is_queen = self.board[self.parent_r][self.parent_c].isqeen
@@ -357,12 +406,22 @@ class MainWindow(QMainWindow):
             self.board[self.parent_r][self.parent_c].isbusy = False
             self.board[self.parent_r][self.parent_c].isqeen = False  
             self.board[index_of_row][index_of_col].isbusy = True
+
+
             self.check_is_figure_qeen(index_of_row, index_of_col)
             if is_capture:
-                ways = []
-                more_important_ways = []
+                for buttons in self.all_buttons:
+                    i = int(buttons.objectName()[-2])
+                    j = int(buttons.objectName()[-1])
+                    if self.board[i][j].type_of_figure == self.board[index_of_row][index_of_col].type_of_figure:
+                        # buttons.setEnabled(False)
+                        buttons.setAttribute(Qt.WA_TransparentForMouseEvents, True)  
+                self.ways.clear()
+                self.more_important_ways.clear()
+                self.result.clear()
                 current_type = self.board[index_of_row][index_of_col].type_of_figure
-                self.get_all_ways(index_of_row, index_of_col, ways, more_important_ways, self.board[index_of_row][index_of_col].isqeen,current_type,-1,-1)
+                self.clear_red_dot()
+                self.get_all_ways(index_of_row, index_of_col, self.ways, self.more_important_ways, self.board[index_of_row][index_of_col].isqeen,current_type,-1,-1)
                 # print("more_important_ways")
                 # print(more_important_ways)
                 # temp = self.block_ways_which_is_not_cutting(more_important_ways);
@@ -372,7 +431,8 @@ class MainWindow(QMainWindow):
                 # print(temp)
                 # print("несбиваемые")
                 # print(self.not_cutting_figure)
-                if len(more_important_ways) > 0:
+                self.make_red_dot(self.more_important_ways)
+                if len(self.more_important_ways) > 0:
                     self.name_parent_button = name
                     self.parent_r = index_of_row
                     self.parent_c = index_of_col
@@ -380,10 +440,15 @@ class MainWindow(QMainWindow):
                     return
             
                 self.remove_cut_figures()
-            
+
             self.name_parent_button = ""
             self.type_of_figure = "black" if self.type_of_figure == "white" else "white"
             self.not_cutting_figure.clear()
+            self.clear_red_dot()
+            for buttons in self.all_buttons:
+                buttons.setAttribute(Qt.WA_TransparentForMouseEvents, False) 
+            
+ 
 
     # def block_ways_which_is_not_cutting(self, arr):
     #     new_arr = []
@@ -592,6 +657,7 @@ class MainWindow(QMainWindow):
         self.music_file = ""
         self.player.stop()
         
+        
         # self.start_settings_for_game()
 
     # def start_settings_for_game(self):
@@ -710,7 +776,16 @@ class MainWindow(QMainWindow):
         self.start_settings()
     
         
+    def make_board_buttons_clicked_or_unklicked(self, is_enabled):
+        for button in self.all_buttons:
+            button.setEnabled(is_enabled)
+
+    def start_game_for_2_players(self, is_enabled):
+        self.make_board_buttons_clicked_or_unklicked(is_enabled)
+        self.ui.start_game_2_players.setEnabled(False)
+        
     
+
         
       
 
