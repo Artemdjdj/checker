@@ -1,5 +1,5 @@
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
-from PySide6.QtCore import QUrl
+from PySide6.QtCore import QUrl, QTimer
 from PySide6 import *
 import sys
 import os
@@ -25,6 +25,7 @@ class MainWindow(QMainWindow):
         self.ways =[]
         self.result = []
         self.list_buttons = []
+        self.list_of_butts = []
         # Загружаем музыку
         self.music_file = ""
         self.player.setSource(QUrl.fromLocalFile(self.music_file))
@@ -38,6 +39,11 @@ class MainWindow(QMainWindow):
         self.icon_white = QIcon()
         self.icon_white.addFile(icon_white)
         self.icon_black = QIcon()
+        self.timer = QTimer(self)                                               
+        self.timer.setInterval(1000)                             
+        self.time = 60
+        self.setWindowIcon(QIcon(resource_path("icons/icon_for_windows.png")))
+
         self.icon_black.addFile(icon_black)
         # Явно устанавливаем состояние окна
         self.setWindowState(Qt.WindowNoState)
@@ -87,13 +93,41 @@ class MainWindow(QMainWindow):
         self.ui.right_widget.setCurrentWidget(self.ui.first_widget_right)
         self.style_buttons = style_dark_blue
         self.style_around_buttons = style_around_dark_blue
-        self.style_buttons_non_use = style_base   
+        self.style_buttons_non_use = style_base
+        
+        
+       
+    def add_functions(self):
+        self.ui.start_the_game.clicked.connect(lambda:self.start_game())
+        self.ui.rules_of_play.clicked.connect(lambda:self.read_rules())
+        self.ui.back_to_game.clicked.connect(lambda:self.backs_to_game())
+        self.ui.statistics.clicked.connect(lambda:self.read_statistic())
+        self.ui.back_to_report.clicked.connect(lambda:self.back_rep())
+        self.ui.leave_the_game.clicked.connect(lambda:self.get_away())
+        self.ui.stop_game.clicked.connect(lambda:self.go_to_preview())
+        self.ui.settings.clicked.connect(lambda:self.open_settings())
+        self.timer.timeout.connect(self.showTime)
+        self.ui.start_game_2_players.clicked.connect(lambda:self.start_game_for_2_players(True))
+        for button in self.all_buttons:
+            button.clicked.connect(lambda ch, b=button: self.choose_start_position(b))
+
+    def showTime(self):  
+        self.ui.label_time.setText(f"{self.time}c")
+        self.time -= 1                                            
+        if self.time < 0:
+            self.timer.stop()
+            winner = ("white" if self.type_of_figure == "black" else "black")
+            self.open_restart_window(winner)
+            self.time = 60
 
     def start_settings(self):
         self.type_of_figure = "white"
         self.count_of_white_figure = 12
         self.count_of_black_figure = 12
         self.name_parent_button =""
+        self.time = 60
+        self.ui.label_time.setText("60c")
+        self.timer.stop()
         self.parent_r = -1
         self.parent_c = -1
         self.ui.start_game_2_players.setEnabled(True)
@@ -149,24 +183,12 @@ class MainWindow(QMainWindow):
         for button in self.all_buttons:
             button.setEnabled(False)
 
-          
-    def add_functions(self):
-        self.ui.start_the_game.clicked.connect(lambda:self.start_game())
-        self.ui.rules_of_play.clicked.connect(lambda:self.read_rules())
-        self.ui.back_to_game.clicked.connect(lambda:self.backs_to_game())
-        self.ui.statistics.clicked.connect(lambda:self.read_statistic())
-        self.ui.back_to_report.clicked.connect(lambda:self.back_rep())
-        self.ui.leave_the_game.clicked.connect(lambda:self.get_away())
-        self.ui.stop_game.clicked.connect(lambda:self.go_to_preview())
-        self.ui.settings.clicked.connect(lambda:self.open_settings())
-        self.ui.start_game_2_players.clicked.connect(lambda:self.start_game_for_2_players(True))
-        for button in self.all_buttons:
-            button.clicked.connect(lambda ch, b=button: self.choose_start_position(b))
-
     def get_button_by_name(self, name):
         for button in self.all_buttons:
             if button.objectName() == name:
                 return button
+            
+            
     def make_red_dot(self, more_important_ways):
          for temp in self.more_important_ways:
                 i = temp[0]
@@ -176,6 +198,7 @@ class MainWindow(QMainWindow):
                 btn.setIcon(QIcon(icon_of_red_dot))
                 btn.setIconSize(QSize(10,10))
                 self.list_buttons.append(btn)
+
     def clear_red_dot(self):
         if len(self.list_buttons)>0:
             for butt in self.list_buttons:
@@ -185,7 +208,20 @@ class MainWindow(QMainWindow):
                     butt.setIcon(QIcon())
                     butt.setIconSize(QSize(60,60))
         self.list_buttons.clear()
-
+    def check_ways_to_cut_or_to_make_motion(self):
+        self.more_important_ways.clear()
+        self.result.clear()
+        self.ways.clear()
+        check_is_qeen = self.board[self.parent_r][self.parent_c].isqeen
+        self.get_all_ways(self.parent_r, self.parent_c, self.ways, self.more_important_ways, check_is_qeen, self.type_of_figure,-1,-1)
+        if check_is_qeen:
+            if self.pos_which_can_cut_figure(self.more_important_ways, self.result, self.type_of_figure): 
+                self.more_important_ways.clear()
+                for i in self.result:
+                    self.more_important_ways.append(i)
+    def get_name_by_row_and_col(self, row, col):
+        return f"button_{row}{col}"
+    
     def choose_start_position(self, button):
         index_of_row = int(button.objectName()[-2])
         index_of_col = int(button.objectName()[-1])
@@ -193,7 +229,12 @@ class MainWindow(QMainWindow):
         
         
         if figure_type == self.type_of_figure: 
+            
             button.setStyleSheet(self.style_around_buttons)
+            for but in self.list_of_butts:
+                if but.objectName()!= button.objectName():
+                    but.setStyleSheet(self.style_buttons)
+            self.list_of_butts.clear()
             self.name_parent_button = button.objectName()
             if (self.parent_r != -1 and self.parent_c != -1):
                 name = f"button_{self.parent_r}{self.parent_c}"
@@ -207,38 +248,16 @@ class MainWindow(QMainWindow):
             if (self.parent_r == index_of_row and self.parent_c == index_of_col):
                 button.setStyleSheet(self.style_around_buttons)
             self.clear_red_dot()
-            self.more_important_ways.clear()
-            self.result.clear()
-            self.ways.clear()
-            check_is_qeen = self.board[self.parent_r][self.parent_c].isqeen
-            self.get_all_ways(self.parent_r, self.parent_c, self.ways, self.more_important_ways, check_is_qeen, self.type_of_figure,-1,-1)
-            if check_is_qeen:
-                if self.pos_which_can_cut_figure(self.more_important_ways, self.result, self.type_of_figure): 
-                    self.more_important_ways.clear()
-                    for i in self.result:
-                        self.more_important_ways.append(i)
+            self.check_ways_to_cut_or_to_make_motion()
             self.make_red_dot(self.more_important_ways)
         
         else:
             
             if self.parent_r == -1 or self.parent_c == -1 or self.board[self.parent_r][self.parent_c].type_of_figure != self.type_of_figure:
                 return
-            
-            
-            check_is_qeen = self.board[self.parent_r][self.parent_c].isqeen
-            self.more_important_ways.clear()
-            self.result.clear()
             list_buttons_that_must_to_cut_ohter = []
-            
-           
             self.get_buttons_that_should_cut_others(list_buttons_that_must_to_cut_ohter, self.type_of_figure)  
-            
-            self.get_all_ways(self.parent_r, self.parent_c, self.ways, self.more_important_ways, check_is_qeen, self.type_of_figure,-1,-1) 
-            if check_is_qeen:
-                if self.pos_which_can_cut_figure(self.more_important_ways, self.result, self.type_of_figure): 
-                    self.more_important_ways.clear()
-                    for i in self.result:
-                        self.more_important_ways.append(i)
+            self.check_ways_to_cut_or_to_make_motion()
             
 
             # for temp in more_important_ways:
@@ -420,8 +439,8 @@ class MainWindow(QMainWindow):
                 self.more_important_ways.clear()
                 self.result.clear()
                 current_type = self.board[index_of_row][index_of_col].type_of_figure
-                self.clear_red_dot()
                 self.get_all_ways(index_of_row, index_of_col, self.ways, self.more_important_ways, self.board[index_of_row][index_of_col].isqeen,current_type,-1,-1)
+            
                 # print("more_important_ways")
                 # print(more_important_ways)
                 # temp = self.block_ways_which_is_not_cutting(more_important_ways);
@@ -431,23 +450,45 @@ class MainWindow(QMainWindow):
                 # print(temp)
                 # print("несбиваемые")
                 # print(self.not_cutting_figure)
-                self.make_red_dot(self.more_important_ways)
                 if len(self.more_important_ways) > 0:
                     self.name_parent_button = name
                     self.parent_r = index_of_row
                     self.parent_c = index_of_col
                     new_button.setStyleSheet(self.style_around_buttons)
+                    self.check_ways_to_cut_or_to_make_motion()
+                    # check_is_qeen = self.board[self.parent_r][self.parent_c].isqeen
+                    # if check_is_qeen:
+                    #     if self.pos_which_can_cut_figure(self.more_important_ways, self.result, self.board[self.parent_r][self.parent_c].type_of_figure): 
+                    #         self.more_important_ways.clear()
+                    #         for i in self.result:
+                    #             self.more_important_ways.append(i)
+                    self.clear_red_dot()
+                    self.make_red_dot(self.more_important_ways)
                     return
             
                 self.remove_cut_figures()
 
             self.name_parent_button = ""
             self.type_of_figure = "black" if self.type_of_figure == "white" else "white"
+            if self.type_of_figure =="black":
+                self.ui.black_in_statistics_label.setStyleSheet(color_of_statistics_label_active)
+                self.ui.white_in_statistics_label.setStyleSheet(color_of_statistics_label_disactive)
+            else:
+                self.ui.white_in_statistics_label.setStyleSheet(color_of_statistics_label_active)
+                self.ui.black_in_statistics_label.setStyleSheet(color_of_statistics_label_disactive)
             self.not_cutting_figure.clear()
             self.clear_red_dot()
+            self.time = 60
             for buttons in self.all_buttons:
                 buttons.setAttribute(Qt.WA_TransparentForMouseEvents, False) 
-            
+            list_of_buttons_that_we_should_paint = []
+            self.list_of_butts.clear()
+            self.get_buttons_that_should_cut_others(list_of_buttons_that_we_should_paint, self.type_of_figure)
+            for but in list_of_buttons_that_we_should_paint:
+                name_of_but = self.get_name_by_row_and_col(but[0], but[-1])
+                butts = self.get_button_by_name(name_of_but)
+                butts.setStyleSheet(style_cutt_buttons)
+                self.list_of_butts.append(butts)
  
 
     # def block_ways_which_is_not_cutting(self, arr):
@@ -632,8 +673,17 @@ class MainWindow(QMainWindow):
     def start_game(self):
         self.ui.central_widget.setCurrentWidget(self.ui.second_central_widget)
         self.ui.left_widget.setCurrentWidget(self.ui.second_tab_left)
-        self.ui.right_widget.setCurrentWidget(self.ui.second_widget_right)  
+        self.ui.right_widget.setCurrentWidget(self.ui.second_widget_right)
         self.temp = self.ui.second_central_widget
+
+    def start_game_for_2_players(self, is_enabled):
+        self.make_board_buttons_clicked_or_unklicked(is_enabled)
+        self.ui.start_game_2_players.setEnabled(False)
+        self.start_game()
+        self.ui.white_in_statistics_label.setStyleSheet(color_of_statistics_label_active)
+        self.ui.black_in_statistics_label.setStyleSheet(color_of_statistics_label_disactive)
+        self.timer.start()
+        
     def read_rules(self):
         self.ui.central_widget.setCurrentWidget(self.ui.third_central_widget)
     def backs_to_game(self):
@@ -680,10 +730,10 @@ class MainWindow(QMainWindow):
             self.style_around_buttons =  style_around_green
             self.style_buttons_non_use = style_base
         elif theme == "Светлая":
-            style =  style_for_light_blue_board
+            style =  style_for_light_yellow_board
             style2 = style_base
-            self.style_buttons = style_for_light_blue_board
-            self.style_around_buttons = style_around_light_blue
+            self.style_buttons = style_for_light_yellow_board
+            self.style_around_buttons = style_around_light_yellow
             self.style_buttons_non_use = style_base
         elif theme =="Темно-синяя":
             style =  style_dark_blue
@@ -702,7 +752,8 @@ class MainWindow(QMainWindow):
             row = int(button.objectName()[-2])
             col = int(button.objectName()[-1])
             if (row%2 == 0 and col%2==0) or (row%2==1 and col%2==1):
-                button.setStyleSheet(style)
+                if button not in self.list_of_butts:
+                    button.setStyleSheet(style)
             else:
                 button.setStyleSheet(style2)
         
@@ -757,13 +808,13 @@ class MainWindow(QMainWindow):
 
     def open_restart_window(self, restart):
         if self.restart_window is None:
+            self.timer.stop()
             self.restart_window = RestartWindow()
             if restart == "white":
-                self.restart_window.ui.label_2.setStyleSheet(win_white)
-                self.restart_window.ui.label_2.setText("Выиграли белые!")
+                self.restart_window.ui.pushButton_3.setIcon(QIcon(icon_white))
             else:
-                self.restart_window.ui.label_2.setStyleSheet(win_black)
-                self.restart_window.ui.label_2.setText("Выиграли черные!")
+                self.restart_window.ui.pushButton_3.setIcon(QIcon(icon_black))
+            self.restart_window.ui.pushButton_3.setText("Выиграли")
             self.restart_window.ui.pushButton.clicked.connect(lambda:self.on_restart_closed())
             self.restart_window.ui.pushButton_2.clicked.connect(lambda:self.on_preview())
         self.restart_window.show()
@@ -780,14 +831,10 @@ class MainWindow(QMainWindow):
         for button in self.all_buttons:
             button.setEnabled(is_enabled)
 
-    def start_game_for_2_players(self, is_enabled):
-        self.make_board_buttons_clicked_or_unklicked(is_enabled)
-        self.ui.start_game_2_players.setEnabled(False)
+    
         
     
-
-        
-      
+     
 
 if __name__ =="__main__":
     app = QApplication(sys.argv)

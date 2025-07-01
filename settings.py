@@ -24,7 +24,7 @@ class Ui_Dialog(object):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(300, 240)
-        Dialog.setStyleSheet(u"background-color:rgb(20, 37, 62);\n"
+        Dialog.setStyleSheet(u"background-color:rgb(40, 40, 40);\n"
 "border:none;\n"
 "\n"
 "\n"
@@ -131,7 +131,7 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
 
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Dialog)

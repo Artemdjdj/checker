@@ -14,7 +14,7 @@
    <string>settings</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:rgb(20, 37, 62);
+   <string notr="true">background-color:rgb(40, 40, 40);
 border:none;
 
 
@@ -54,7 +54,7 @@ border:none;
       <string notr="true">color:rgb(255, 255, 255);</string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">

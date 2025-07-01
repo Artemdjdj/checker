@@ -17,7 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QDialog, QHBoxLayout, QLabel,
     QPushButton, QSizePolicy, QWidget)
-import res_def
+import res
+
 
 class Ui_Dialog_restart(object):
     def setupUi(self, Dialog):
@@ -69,15 +70,20 @@ class Ui_Dialog_restart(object):
 
         self.horizontalLayout.addWidget(self.pushButton)
 
-        self.label_2 = QLabel(Dialog)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(40, 330, 411, 181))
-        font = QFont()
-        font.setPointSize(36)
-        font.setBold(False)
-        self.label_2.setFont(font)
-        self.label_2.setStyleSheet(u"color:rgb(0, 0, 0);")
-        self.label_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.pushButton_3 = QPushButton(Dialog)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pushButton_3.setGeometry(QRect(70, 360, 361, 91))
+        self.pushButton_3.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
+        self.pushButton_3.setStyleSheet(u"border:none;\n"
+"background-color:none;\n"
+"color:rgb(61, 214, 5);\n"
+"font-size:36px;\n"
+"font-weight:800px;\n"
+"text-align:center;")
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/icons/white_figure_default.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.pushButton_3.setIcon(icon2)
+        self.pushButton_3.setIconSize(QSize(90, 90))
 
         self.retranslateUi(Dialog)
 
@@ -89,6 +95,6 @@ class Ui_Dialog_restart(object):
         self.label.setText("")
         self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"\u041c\u0435\u043d\u044e", None))
         self.pushButton.setText(QCoreApplication.translate("Dialog", u"\u041d\u043e\u0432\u0430\u044f \u0438\u0433\u0440\u0430", None))
-        self.label_2.setText(QCoreApplication.translate("Dialog", u"\u0412\u044b\u0438\u0433\u0440\u0430\u043b\u0438 \u0431\u0435\u043b\u044b\u0435!", None))
+        self.pushButton_3.setText(QCoreApplication.translate("Dialog", u"\u0412\u044b\u0438\u0433\u0440\u0430\u043b\u0438 ", None))
     # retranslateUi
 

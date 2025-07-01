@@ -79,7 +79,7 @@ border:none;</string>
        <string>Меню</string>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="resource.qrc">
         <normaloff>:/icons/icons/home.svg</normaloff>:/icons/icons/home.svg</iconset>
       </property>
       <property name="iconSize">
@@ -115,7 +115,7 @@ border:none;</string>
        <string>Новая игра</string>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="resource.qrc">
         <normaloff>:/icons/icons/play.svg</normaloff>:/icons/icons/play.svg</iconset>
       </property>
       <property name="iconSize">
@@ -128,32 +128,43 @@ border:none;</string>
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>330</y>
-     <width>411</width>
-     <height>181</height>
+     <x>70</x>
+     <y>360</y>
+     <width>361</width>
+     <height>91</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>36</pointsize>
-     <bold>false</bold>
-    </font>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::RightToLeft</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:rgb(0, 0, 0);</string>
+    <string notr="true">border:none;
+background-color:none;
+color:rgb(61, 214, 5);
+font-size:36px;
+font-weight:800px;
+text-align:center;</string>
    </property>
    <property name="text">
-    <string>Выиграли белые!</string>
+    <string>Выиграли </string>
    </property>
-   <property name="alignment">
-    <set>Qt::AlignmentFlag::AlignCenter</set>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icons/icons/white_figure_default.png</normaloff>:/icons/icons/white_figure_default.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>90</width>
+     <height>90</height>
+    </size>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>
