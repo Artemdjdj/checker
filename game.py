@@ -1,6 +1,7 @@
 from settings import *
 from restart_window import *
 from form import *
+
 class button:
     isbusy = False
     type_of_figure = None
@@ -13,6 +14,7 @@ class SettingsWindow(QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
         self.setWindowIcon(QIcon(resource_path("icons/icon_for_windows.png")))
+
 class RestartWindow(QDialog):
     def __init__(self):
         super().__init__()
@@ -23,3 +25,5 @@ class RestartWindow(QDialog):
         self.setModal(True)
         # отключение кнопки закрытия
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowCloseButtonHint)
+
+        

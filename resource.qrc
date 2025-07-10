@@ -1,6 +1,9 @@
 <RCC>
   <qresource prefix="icons">
     <file>icons/appstore.png</file>
+    <file>icons/arrow_left.png</file>
+    <file>icons/arrow_of_this_position.png</file>
+    <file>icons/arrow_right.png</file>
     <file>icons/black_figure.png</file>
     <file>icons/black_figure_default.png</file>
     <file>icons/galaxy-store.png</file>
@@ -9,12 +12,19 @@
     <file>icons/home2.svg</file>
     <file>icons/Huawei_AppGallery.svg.png</file>
     <file>icons/icon_for_right_half.ico</file>
+    <file>icons/icon_for_windows.png</file>
     <file>icons/info.svg</file>
     <file>icons/logout.svg</file>
     <file>icons/play.svg</file>
     <file>icons/red-dot.png</file>
     <file>icons/settings.svg</file>
+    <file>icons/small_black_figure.png</file>
+    <file>icons/small_default_black_figure.png</file>
+    <file>icons/small_default_white_figure.png</file>
+    <file>icons/small_white_figure.png</file>
     <file>icons/sort.svg</file>
+    <file>icons/timer_black.png</file>
+    <file>icons/timer_white.png</file>
     <file>icons/white_figure.png</file>
     <file>icons/white_figure_default.png</file>
   </qresource>

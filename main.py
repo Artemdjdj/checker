@@ -1,5 +1,7 @@
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 from PySide6.QtCore import QUrl, QTimer
+from PySide6.QtGui import QTextCursor, QImage, QTextImageFormat, QTextOption
+from PySide6.QtCore import QSize
 from PySide6 import *
 import sys
 import os
@@ -7,6 +9,7 @@ from form import *
 from settings import *
 from game import *
 from utils import *
+import copy
 
 class MainWindow(QMainWindow):
 
@@ -15,6 +18,10 @@ class MainWindow(QMainWindow):
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.style_buttons = style_dark_blue
+        self.style_around_buttons = style_around_dark_blue
+        self.style_buttons_non_use = style_base
+
         self.temp = self.ui.first_cenral_widget
         self.settings_window = None
         self.restart_window = None
@@ -32,7 +39,6 @@ class MainWindow(QMainWindow):
         
         # Устанавливаем зацикливание
         self.player.setLoops(QMediaPlayer.Loops.Infinite)  # или -1 для бесконечного повтора
-
         self.player.play()
         self.current_music = "Без музыки"  # Значение по умолчанию для музыки
         self.current_theme = "Классическая"
@@ -43,7 +49,10 @@ class MainWindow(QMainWindow):
         self.timer.setInterval(1000)                             
         self.time = 60
         self.setWindowIcon(QIcon(resource_path("icons/icon_for_windows.png")))
-
+        self.count_of_white_motions = 1
+        self.count_of_black_motions = 1
+        self.const_parent_row = -1
+        self.const_parent_col = -1
         self.icon_black.addFile(icon_black)
         # Явно устанавливаем состояние окна
         self.setWindowState(Qt.WindowNoState)
@@ -73,6 +82,13 @@ class MainWindow(QMainWindow):
                             self.ui.button_50, self.ui.button_51, self.ui.button_52, self.ui.button_53, self.ui.button_54, self.ui.button_55,self.ui.button_56, self.ui.button_57,
                             self.ui.button_60, self.ui.button_61, self.ui.button_62, self.ui.button_63, self.ui.button_64, self.ui.button_65,self.ui.button_66, self.ui.button_67,
                             self.ui.button_70, self.ui.button_71, self.ui.button_72, self.ui.button_73, self.ui.button_74, self.ui.button_75,self.ui.button_76, self.ui.button_77,]
+        
+        self.list_of_button_to_get_prev_or_next_position = [self.ui.button_prev_motion,
+                                                            self.ui.button_next_motion, 
+                                                            self.ui.button_return_this_position
+        ]
+        self.list_of_positions = []
+        self.number_of_position = 0
         self.all_lines = [
             [[6,0],[7,1]],
             [[4,0],[5,1],[6,2],[7,3]],
@@ -82,6 +98,7 @@ class MainWindow(QMainWindow):
             [[0,4],[1,5],[2,6],[3,7]],
             [[0,6],[1,7]],
         ]
+    
         self.not_cutting_figure = []
         self.add_functions()
         self.start_settings()
@@ -91,12 +108,7 @@ class MainWindow(QMainWindow):
         self.ui.right_widget.tabBar().hide()
         self.ui.central_widget.setCurrentWidget(self.ui.first_cenral_widget)
         self.ui.right_widget.setCurrentWidget(self.ui.first_widget_right)
-        self.style_buttons = style_dark_blue
-        self.style_around_buttons = style_around_dark_blue
-        self.style_buttons_non_use = style_base
-        
-        
-       
+    
     def add_functions(self):
         self.ui.start_the_game.clicked.connect(lambda:self.start_game())
         self.ui.rules_of_play.clicked.connect(lambda:self.read_rules())
@@ -106,6 +118,9 @@ class MainWindow(QMainWindow):
         self.ui.leave_the_game.clicked.connect(lambda:self.get_away())
         self.ui.stop_game.clicked.connect(lambda:self.go_to_preview())
         self.ui.settings.clicked.connect(lambda:self.open_settings())
+        self.ui.button_next_motion.clicked.connect(lambda:self.get_next())
+        self.ui.button_prev_motion.clicked.connect(lambda:self.get_prev())
+        self.ui.button_return_this_position.clicked.connect(lambda:self.get_this_position())
         self.timer.timeout.connect(self.showTime)
         self.ui.start_game_2_players.clicked.connect(lambda:self.start_game_for_2_players(True))
         for button in self.all_buttons:
@@ -121,11 +136,31 @@ class MainWindow(QMainWindow):
             self.time = 60
 
     def start_settings(self):
+        for button in self.all_buttons:
+            if int(button.objectName()[-2])%2 == 0:
+                if int(button.objectName()[-1])%2 == 0:
+                    button.setStyleSheet(self.style_buttons)
+                else:
+                    button.setStyleSheet(self.style_buttons_non_use)
+            else:
+                if int(button.objectName()[-1])%2 == 0:
+                    button.setStyleSheet(self.style_buttons_non_use)
+                else:
+                    button.setStyleSheet(self.style_buttons)
+        document = self.ui.textEdit_of_black_motiions.document()
+        document.setDefaultTextOption(QTextOption(Qt.AlignCenter))
+        document = self.ui.textEdit_of_white_motions.document()
+        document.setDefaultTextOption(QTextOption(Qt.AlignCenter))
+        self.list_of_positions.clear()
         self.type_of_figure = "white"
+        self.ui.textEdit_of_black_motiions.setText("")
+        self.ui.textEdit_of_white_motions.setText("")
         self.count_of_white_figure = 12
         self.count_of_black_figure = 12
-        self.name_parent_button =""
+        self.name_parent_button = ""
         self.time = 60
+        self.list_of_positions.clear()
+        self.number_of_position = 0
         self.ui.label_time.setText("60c")
         self.timer.stop()
         self.parent_r = -1
@@ -149,8 +184,8 @@ class MainWindow(QMainWindow):
                     name = f"button_{i}{j}"
                     button = self.get_button_by_name(name)
                     button.setIcon(self.icon_white)
-                    if j == 0 or j == 7:
-                        self.board[i][j].isextreme = True
+                    # if j == 0 or j == 7:
+                    #     self.board[i][j].isextreme = True
             else:
                 for j in range(1,8,2):
                     self.board[i][j].isbusy = True
@@ -158,8 +193,8 @@ class MainWindow(QMainWindow):
                     name = f"button_{i}{j}"
                     button = self.get_button_by_name(name)
                     button.setIcon(self.icon_white)
-                    if j == 0 or j == 7:
-                        self.board[i][j].isextreme = True
+                    # if j == 0 or j == 7:
+                    #     self.board[i][j].isextreme = True
                 
         for i in range(5,8):
             if i%2 == 0: 
@@ -169,8 +204,8 @@ class MainWindow(QMainWindow):
                     name = f"button_{i}{j}"
                     button = self.get_button_by_name(name)
                     button.setIcon(self.icon_black)
-                    if j == 0 or j == 7:
-                        self.board[i][j].isextreme = True
+                    # if j == 0 or j == 7:
+                    #     self.board[i][j].isextreme = True
             else:
                 for j in range(1,8,2):
                     self.board[i][j].isbusy = True
@@ -178,15 +213,19 @@ class MainWindow(QMainWindow):
                     name = f"button_{i}{j}"
                     button = self.get_button_by_name(name)
                     button.setIcon(self.icon_black)
-                    if j == 0 or j == 7:
-                        self.board[i][j].isextreme = True
+                    # if j == 0 or j == 7:
+                    #     self.board[i][j].isextreme = True
         for button in self.all_buttons:
             button.setEnabled(False)
-
+        self.list_of_positions.clear()
+        copy_board = copy.deepcopy(self.board)
+        self.list_of_positions.append(copy_board)
     def get_button_by_name(self, name):
         for button in self.all_buttons:
             if button.objectName() == name:
                 return button
+            
+    
             
             
     def make_red_dot(self, more_important_ways):
@@ -407,7 +446,44 @@ class MainWindow(QMainWindow):
             time_c += d_col
         return [cut_row, cut_col]
 
+    def make_notes_about_figure_which_make_the_motion(self, row_parent, col_parent, new_row, new_col, type_of_figure, time):
+        # name = ""
+        # if isqeen and type_of_figure == "black":
+        #     name = "icons/small_black_figure.png"
+        # elif isqeen and type_of_figure == "white":
+        #     name = "icons/small_white_figure.png"
+        # elif not isqeen  and type_of_figure =="black":
+        #     name =  "icons/small_default_black_figure.png"
+        # elif not isqeen and type_of_figure == "white":
+        #     name = "icons/small_default_white_figure.png"
+        # image_format.setWidth(200)  # ширина изображения
+        # image_format.setHeight(200)  # высота изображения
+        name = ""
+        if type_of_figure =="black":
+            name = "icons/timer_black.png"
+        else:
+            name = "icons/timer_white.png"
+        image_format = QTextImageFormat()
+        image_format.setWidth(17)  
+        image_format.setHeight(17)
+        image_format.setName(resource_path(name))
+        if type_of_figure == "black":
+            text = self.ui.textEdit_of_black_motiions.toPlainText()
+            new_text = text + f"\n\n    {self.count_of_black_motions}. {dict_of_letters_to_numbers[col_parent]}{row_parent} - {dict_of_letters_to_numbers[new_col]}{new_row}\t {time}c  "
+            self.ui.textEdit_of_black_motiions.setText(new_text)
+            cursor = self.ui.textEdit_of_black_motiions.textCursor()
+            cursor.movePosition(cursor.MoveOperation.End)
+            self.ui.textEdit_of_black_motiions.setTextCursor(cursor)
+        else:
+            text = self.ui.textEdit_of_white_motions.toPlainText()
+            new_text = text + f"\n\n    {self.count_of_black_motions}. {dict_of_letters_to_numbers[col_parent]}{row_parent} - {dict_of_letters_to_numbers[new_col]}{new_row}\t {time}c  "
+            self.ui.textEdit_of_white_motions.setText(new_text)
+            cursor = self.ui.textEdit_of_white_motions.textCursor()
+            cursor.movePosition(cursor.MoveOperation.End)
+            self.ui.textEdit_of_white_motions.setTextCursor(cursor)
+        cursor.insertImage(image_format)  
 
+    
     def change_position(self, ways, figure_type, index_of_row, index_of_col, types,is_capture):
         if figure_type == None and [index_of_row, index_of_col] in ways:
             name = f"button_{index_of_row}{index_of_col}"
@@ -425,8 +501,9 @@ class MainWindow(QMainWindow):
             self.board[self.parent_r][self.parent_c].isbusy = False
             self.board[self.parent_r][self.parent_c].isqeen = False  
             self.board[index_of_row][index_of_col].isbusy = True
-
-
+            if self.const_parent_row == -1:
+                self.const_parent_row = self.parent_r
+                self.const_parent_col = self.parent_c
             self.check_is_figure_qeen(index_of_row, index_of_col)
             if is_capture:
                 for buttons in self.all_buttons:
@@ -467,7 +544,17 @@ class MainWindow(QMainWindow):
                     return
             
                 self.remove_cut_figures()
-
+            time = 60 - int(self.ui.label_time.text()[:len(self.ui.label_time.text())-1])
+            self.make_notes_about_figure_which_make_the_motion(self.const_parent_row, self.const_parent_col, index_of_row, index_of_col,self.type_of_figure, time)
+            self.number_of_position+=1
+            position_copy = copy.deepcopy(self.board)
+            self.list_of_positions.append(position_copy)
+            self.const_parent_row = -1
+            self.const_parent_col = -1
+            if self.type_of_figure =="black":
+                self.count_of_black_motions+=1
+            else:
+                self.count_of_white_motions+=1
             self.name_parent_button = ""
             self.type_of_figure = "black" if self.type_of_figure == "white" else "white"
             if self.type_of_figure =="black":
@@ -489,6 +576,7 @@ class MainWindow(QMainWindow):
                 butts = self.get_button_by_name(name_of_but)
                 butts.setStyleSheet(style_cutt_buttons)
                 self.list_of_butts.append(butts)
+
  
 
     # def block_ways_which_is_not_cutting(self, arr):
@@ -499,6 +587,105 @@ class MainWindow(QMainWindow):
     #         else:
     #             new_arr.append(element)
     #     return new_arr
+    def make_board(self, board):
+        for i in range(8):
+            for j in range(8):
+                name = f"button_{i}{j}"
+                button = self.get_button_by_name(name)
+                if i%2 == 0:
+                    if j%2==0:
+                        button.setStyleSheet(self.style_buttons)
+                    else:
+                        button.setStyleSheet(self.style_buttons_non_use)
+                else:
+                    if j%2==1:
+                        button.setStyleSheet(self.style_buttons)
+                    else:
+                        button.setStyleSheet(self.style_buttons_non_use)
+                if board[i][j].type_of_figure == "black":
+                    button.setIcon(self.icon_black)
+                elif board[i][j].type_of_figure == "white":
+                    button.setIcon(self.icon_white)
+                else:
+                    button.setIcon(QIcon())
+        for t in self.list_of_positions:
+             for  i in range(8):
+                 for j in range(8):
+                     print(t[i][j].type_of_figure, end =" ")
+                 print()
+             print("\n next position\n")
+                    
+    def get_next(self):
+        if self.number_of_position +1 <= len(self.list_of_positions)-1:
+            self.number_of_position +=1
+            self.make_board(self.list_of_positions[self.number_of_position])
+            for button in self.all_buttons:
+                button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+        # self.board = self.list_of_positions[self.number_of_position]
+        if self.number_of_position ==  len(self.list_of_positions):
+            for button in self.all_buttons:
+                button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
+    def get_prev(self):
+        # if self.number_of_position-1>=0:
+        #     self.number_of_position-=1
+        #     self.make_board(self.list_of_positions[self.number_of_position])
+        # # self.board = self.list_of_positions[self.number_of_position]
+        # for button in self.all_buttons:
+        #     button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+        self.number_of_position -=1
+        print(self.number_of_position)
+        if self.number_of_position>=0:
+            for button in self.all_buttons:
+                button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+            self.make_board(self.list_of_positions[self.number_of_position])
+            return
+        self.number_of_position+=1
+            
+        
+    def get_this_position(self):
+        self.number_of_position = len(self.list_of_positions)-1
+        # self.board = self.list_of_positions[self.number_of_position]
+        for button in self.all_buttons:
+            button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
+        self.make_board(self.list_of_positions[self.number_of_position])
+    # def give_special_position(self, type_of_button):
+    #     if type_of_button == "button_return_this_position":
+    #         for button in self.all_buttons:
+    #             button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
+    #     else:
+    #         for button in self.all_buttons:
+    #             button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+    #     if type_of_button == "button_next_motion":
+    #         if len(self.list_of_positions) != self.number_of_position-1:
+    #             if len(self.list_of_positions)-1 >= self.number_of_position+1:
+    #                 self.number_of_position+=1
+    #                 self.board = [row[:] for row in self.list_of_positions[self.number_of_position]]
+    #                 self.make_board()
+    #         else:
+    #             for button in self.all_buttons:
+    #                 button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
+    #     elif type_of_button == "button_prev_motion":
+    #         if self.number_of_position-1>=0:
+    #             self.number_of_position-=1 
+    #             self.board = [row[:] for row in self.list_of_positions[self.number_of_position]]
+    #             self.make_board()
+                
+    #     else:
+    #         self.number_of_position = len(self.list_of_positions)-1
+    #         self.board = [row[:] for row in self.list_of_positions[self.number_of_position]]
+    #         self.make_board()
+    #     print("\n Board:")
+    #     for i in range(8):
+    #         for j in range(8):
+    #             print(self.board[i][j].type_of_figure, end = " ")
+    #         print()
+        #  for t in self.list_of_positions:
+        #      for  i in range(8):
+        #          for j in range(8):
+        #              print(t[i][j].type_of_figure, end =" ")
+        #          print()
+        #      print("\n next position\n")
+        
 
     def get_buttons_that_should_cut_others(self, lists, types):
         for button in self.all_buttons:
@@ -668,13 +855,25 @@ class MainWindow(QMainWindow):
             return
         self.board[row][col].isqeen = True
         
+    def make_buttons_visible_to_get_previous_panel(self):
+        for button in self.list_of_button_to_get_prev_or_next_position:
+            button.setEnabled(True)
+        self.ui.button_prev_motion.setIcon(QIcon(resource_path("icons/arrow_left.png")))
+        self.ui.button_next_motion.setIcon(QIcon(resource_path("icons/arrow_right.png")))
+        self.ui.button_return_this_position.setIcon(QIcon(resource_path("icons/arrow_of_this_position.png")))
 
+    def make_buttons_not_visible_get_previous(self):
+        for button in self.list_of_button_to_get_prev_or_next_position:
+            button.setIcon(QIcon())
+            button.setEnabled(False)
                 
     def start_game(self):
         self.ui.central_widget.setCurrentWidget(self.ui.second_central_widget)
         self.ui.left_widget.setCurrentWidget(self.ui.second_tab_left)
         self.ui.right_widget.setCurrentWidget(self.ui.second_widget_right)
         self.temp = self.ui.second_central_widget
+        self.make_buttons_visible_to_get_previous_panel()
+
 
     def start_game_for_2_players(self, is_enabled):
         self.make_board_buttons_clicked_or_unklicked(is_enabled)
@@ -686,21 +885,32 @@ class MainWindow(QMainWindow):
         
     def read_rules(self):
         self.ui.central_widget.setCurrentWidget(self.ui.third_central_widget)
+        for button in self.list_of_button_to_get_prev_or_next_position:
+            button.setIcon(QIcon())
+            button.setEnabled(False)
     def backs_to_game(self):
         if self.temp == self.ui.second_central_widget:
             self.ui.central_widget.setCurrentWidget(self.ui.second_central_widget)
         else:
             self.ui.central_widget.setCurrentWidget(self.ui.first_cenral_widget)
+        self.make_buttons_visible_to_get_previous_panel()
+        
     def read_statistic(self):
         self.ui.right_widget.setCurrentWidget(self.ui.third_widget_right)
+        self.make_buttons_not_visible_get_previous()
+        
     def back_rep(self):
         self.ui.right_widget.setCurrentWidget(self.ui.second_widget_right)
+        self.make_buttons_visible_to_get_previous_panel()
+
     def get_away(self):
         self.close()
+
     def go_to_preview(self):
         self.ui.central_widget.setCurrentWidget(self.ui.first_cenral_widget)
         self.ui.right_widget.setCurrentWidget(self.ui.first_widget_right)
         self.ui.left_widget.setCurrentWidget(self.ui.first_tab_left)
+        self.make_buttons_not_visible_get_previous()
         self.temp = self.ui.first_cenral_widget
         self.start_settings()
         self.current_music="Без музыки"
@@ -820,10 +1030,12 @@ class MainWindow(QMainWindow):
         self.restart_window.show()
     def on_preview(self):
         self.restart_window = None
+        self.make_buttons_not_visible_get_previous()
         self.go_to_preview()
 
     def on_restart_closed(self):
         self.restart_window = None
+        self.make_buttons_not_visible_get_previous()
         self.start_settings()
     
         
@@ -831,9 +1043,6 @@ class MainWindow(QMainWindow):
         for button in self.all_buttons:
             button.setEnabled(is_enabled)
 
-    
-        
-    
      
 
 if __name__ =="__main__":

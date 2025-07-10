@@ -74,3 +74,18 @@ classic_music = "audio/classic_music.mp3"
 calm_music = "audio/calm_music.mp3"
 moderate_music = "audio/moderate_music.mp3"
 fast_music = "audio/fast_music.mp3"
+
+
+
+dict_of_letters_to_numbers = {
+    0 : "a",
+    1 : "b",
+    2 : "c",
+    3 : "d",
+    4 : "e",
+    5 : "f",
+    6 : "g",
+    7 : "h",
+}
+
+

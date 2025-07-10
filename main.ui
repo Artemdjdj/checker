@@ -70,6 +70,89 @@ border:none;</string>
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
       </property>
+      <layout class="QVBoxLayout" name="verticalLayout_17">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frame_22">
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_22">
+          <property name="spacing">
+           <number>60</number>
+          </property>
+          <property name="leftMargin">
+           <number>450</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>600</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="button_prev_motion">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="button_return_this_position">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>70</width>
+              <height>70</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="button_next_motion">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
     <item>
@@ -443,7 +526,7 @@ padding:1px;</string>
                </property>
                <property name="styleSheet">
                 <string notr="true">font-size:18px;
-background-color:rgb(19, 30, 20);
+background-color:rgb(40, 40, 40);
 color:rgb(245, 245, 245);
 border-radius:6px;
 padding:5px;
@@ -1247,13 +1330,13 @@ background-color:rgb(24, 24, 24)
                <property name="minimumSize">
                 <size>
                  <width>665</width>
-                 <height>10</height>
+                 <height>13</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
                  <width>970</width>
-                 <height>15</height>
+                 <height>16</height>
                 </size>
                </property>
                <property name="sizeIncrement">
@@ -1282,7 +1365,7 @@ background-color:rgb(24, 24, 24)
                  <number>5</number>
                 </property>
                 <property name="bottomMargin">
-                 <number>4</number>
+                 <number>0</number>
                 </property>
                 <item>
                  <widget class="QLabel" name="label_47">
@@ -1294,11 +1377,11 @@ background-color:rgb(24, 24, 24)
                   </property>
                   <property name="styleSheet">
                    <string notr="true">border:none;
-font-size:12px;
+font-size:14px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>A</string>
+                   <string>a</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1319,7 +1402,7 @@ font-size:12px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>B</string>
+                   <string>b</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1336,11 +1419,11 @@ color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">border:none;
-font-size:12px;
+font-size:14px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>C</string>
+                   <string>c</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1361,7 +1444,7 @@ font-size:12px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>D</string>
+                   <string>d</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1378,11 +1461,11 @@ color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">border:none;
-font-size:12px;
+font-size:14px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>E</string>
+                   <string>e</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1403,7 +1486,7 @@ font-size:12px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>F</string>
+                   <string>f</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1436,7 +1519,7 @@ font-size:12px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>G</string>
+                   <string>g</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1457,7 +1540,7 @@ font-size:12px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>H</string>
+                   <string>h</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1734,7 +1817,7 @@ border:none;</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -1755,7 +1838,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -1776,7 +1859,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -1797,7 +1880,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -1818,7 +1901,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -1839,7 +1922,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -1860,7 +1943,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -1881,7 +1964,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -3347,7 +3430,7 @@ border:none;</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -3368,7 +3451,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -3389,7 +3472,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -3410,7 +3493,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -3431,7 +3514,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -3452,7 +3535,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -3473,7 +3556,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -3494,7 +3577,7 @@ color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">border:none;
-font-size:14px;
+font-size:12px;
 color:rgb(255, 255, 255);</string>
                      </property>
                      <property name="text">
@@ -3884,13 +3967,13 @@ border:none;</string>
                <property name="minimumSize">
                 <size>
                  <width>665</width>
-                 <height>10</height>
+                 <height>13</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
                  <width>970</width>
-                 <height>15</height>
+                 <height>16</height>
                 </size>
                </property>
                <property name="styleSheet">
@@ -3910,7 +3993,7 @@ border:none;</string>
                  <number>5</number>
                 </property>
                 <property name="topMargin">
-                 <number>3</number>
+                 <number>0</number>
                 </property>
                 <property name="rightMargin">
                  <number>5</number>
@@ -3928,11 +4011,11 @@ border:none;</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">border:none;
-font-size:12px;
+font-size:14px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>A</string>
+                   <string>a</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -3953,7 +4036,7 @@ font-size:12px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>B</string>
+                   <string>b</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -3970,11 +4053,11 @@ color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">border:none;
-font-size:12px;
+font-size:14px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>C</string>
+                   <string>c</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -3995,7 +4078,7 @@ font-size:12px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>D</string>
+                   <string>d</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -4012,11 +4095,11 @@ color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">border:none;
-font-size:12px;
+font-size:14px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>E</string>
+                   <string>e</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -4037,7 +4120,7 @@ font-size:12px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>F</string>
+                   <string>f</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -4058,7 +4141,7 @@ font-size:12px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>G</string>
+                   <string>g</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -4079,7 +4162,7 @@ font-size:12px;
 color:rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>H</string>
+                   <string>h</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -4344,111 +4427,6 @@ padding:3px;
                  <number>10</number>
                 </property>
                 <item>
-                 <widget class="QFrame" name="frame_20">
-                  <property name="styleSheet">
-                   <string notr="true">background-color:rgb(7,7,7);
-border-radius:7px;
-</string>
-                  </property>
-                  <property name="frameShape">
-                   <enum>QFrame::Shape::StyledPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Shadow::Raised</enum>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_16">
-                   <item>
-                    <widget class="QLabel" name="label_24">
-                     <property name="styleSheet">
-                      <string notr="true">
-color:rgb(234, 234, 234);
-font-weight:300px;
-font-size:16px;
-
-</string>
-                     </property>
-                     <property name="text">
-                      <string>Возможные взятия</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignmentFlag::AlignCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QFrame" name="frame_21">
-                     <property name="frameShape">
-                      <enum>QFrame::Shape::StyledPanel</enum>
-                     </property>
-                     <property name="frameShadow">
-                      <enum>QFrame::Shadow::Raised</enum>
-                     </property>
-                     <layout class="QHBoxLayout" name="horizontalLayout_10">
-                      <item>
-                       <widget class="QPushButton" name="pushButton_4">
-                        <property name="styleSheet">
-                         <string notr="true">color:rgb(232, 232, 232);
-</string>
-                        </property>
-                        <property name="text">
-                         <string>A1</string>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="resource.qrc">
-                          <normaloff>:/icons/icons/white_figure_default.png</normaloff>:/icons/icons/white_figure_default.png</iconset>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="pushButton">
-                        <property name="styleSheet">
-                         <string notr="true">color:rgb(232, 232, 232);</string>
-                        </property>
-                        <property name="text">
-                         <string>F6</string>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="resource.qrc">
-                          <normaloff>:/icons/icons/white_figure.png</normaloff>:/icons/icons/white_figure.png</iconset>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="pushButton_2">
-                        <property name="styleSheet">
-                         <string notr="true">color:rgb(232, 232, 232);</string>
-                        </property>
-                        <property name="text">
-                         <string>B7</string>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="resource.qrc">
-                          <normaloff>:/icons/icons/white_figure_default.png</normaloff>:/icons/icons/white_figure_default.png</iconset>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="pushButton_3">
-                        <property name="styleSheet">
-                         <string notr="true">color:rgb(232, 232, 232);
-</string>
-                        </property>
-                        <property name="text">
-                         <string>D3</string>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="resource.qrc">
-                          <normaloff>:/icons/icons/white_figure_default.png</normaloff>:/icons/icons/white_figure_default.png</iconset>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
                  <spacer name="verticalSpacer_6">
                   <property name="orientation">
                    <enum>Qt::Orientation::Vertical</enum>
@@ -4576,20 +4554,32 @@ font-size:18px;</string>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QTextEdit" name="textEdit_4">
+                      <widget class="QTextEdit" name="textEdit_of_white_motions">
                        <property name="styleSheet">
-                        <string notr="true">background-color:rgb(7,7,7);
-color:rgb(7,7,7);
+                        <string notr="true">background-color:rgb(145, 145, 145);
+color:rgb(217, 217, 217);
 font-size:12px;
 border:none;
-border-right:1px solid rgb(147,147,147);
+border-right:1px solid rgb(40, 40, 40);
 border-top-left-radius: 10px;
 border-bottom-left-radius: 10px;
 border-top-right-radius: 0;
-border-bottom-right-radius: 0;</string>
+border-bottom-right-radius: 0;
+text-align:center;
+</string>
                        </property>
                        <property name="readOnly">
                         <bool>true</bool>
+                       </property>
+                       <property name="html">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:12px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
                      </item>
@@ -4616,20 +4606,32 @@ font-size:18px;</string>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QTextEdit" name="textEdit_5">
+                      <widget class="QTextEdit" name="textEdit_of_black_motiions">
                        <property name="styleSheet">
-                        <string notr="true">background-color:rgb(7,7,7);
-color:rgb(255, 255, 255);
+                        <string notr="true">background-color:rgb(145, 145, 145);
+color:rgb(53, 53, 53);
 font-size:12px;
-border: none;
-border-top-left-radius: 0;
-border-bottom-left-radius: 0;
+border:none;
+border-right:1px solid rgb(40, 40, 40);
 border-top-right-radius: 10px;
 border-bottom-right-radius: 10px;
+border-top-left-radius: 0;
+border-bottom-left-radius: 0;
+text-align:center;
 </string>
                        </property>
                        <property name="readOnly">
                         <bool>true</bool>
+                       </property>
+                       <property name="html">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:12px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
                      </item>
@@ -4708,7 +4710,7 @@ border-radius:6px;</string>
                   <property name="sizeHint" stdset="0">
                    <size>
                     <width>20</width>
-                    <height>5</height>
+                    <height>70</height>
                    </size>
                   </property>
                  </spacer>
