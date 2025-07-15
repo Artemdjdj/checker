@@ -5,6 +5,8 @@ qeen_icon_black = u":/icons/icons/black_figure.png"
 icon_white = u":/icons/icons/white_figure_default.png"
 icon_black = u":/icons/icons/black_figure_default.png"
 icon_of_red_dot = "icons/red-dot.png"
+icon_of_black_statistic= "images/black_figure_for_statistic.png"
+icon_of_white_statistic="images/white_figure_for_statistic.png"
 
 style_around_dark_blue = """
             background-color:rgb(86, 100, 117);
@@ -89,3 +91,12 @@ dict_of_letters_to_numbers = {
 }
 
 
+dict_type_of_bot = {
+    "Легкий": 8,
+    "Средний": 24,
+    "Профессионал":64,
+}
+
+list_of_center = [3,4]
+list_of_smaller_center =[1,2,5,6]
+list_of_not_center = [0,7]

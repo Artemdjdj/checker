@@ -25,26 +25,13 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>650</width>
-     <height>600</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>images/background_for_restart.jpeg</pixmap>
-   </property>
-  </widget>
+  <property name="styleSheet">
+   <string notr="true">background-color:rgb(47,47,47);</string>
+  </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>70</x>
      <y>480</y>
      <width>501</width>
      <height>102</height>
@@ -131,7 +118,7 @@ border:none;</string>
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>150</x>
      <y>360</y>
      <width>361</width>
      <height>91</height>
@@ -143,7 +130,7 @@ border:none;</string>
    <property name="styleSheet">
     <string notr="true">border:none;
 background-color:none;
-color:rgb(61, 214, 5);
+color:rgb(165, 165, 165);
 font-size:36px;
 font-weight:800px;
 text-align:center;</string>
@@ -159,6 +146,46 @@ text-align:center;</string>
     <size>
      <width>90</width>
      <height>90</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>650</width>
+     <height>340</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>650</width>
+     <height>340</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>650</width>
+     <height>340</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:rgb(47,47,47);
+border:none;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>images/default.png</normaloff>images/default.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>650</width>
+     <height>330</height>
     </size>
    </property>
   </widget>

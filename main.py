@@ -3,6 +3,7 @@ from PySide6.QtCore import QUrl, QTimer
 from PySide6.QtGui import QTextCursor, QImage, QTextImageFormat, QTextOption
 from PySide6.QtCore import QSize
 from PySide6 import *
+import math
 import sys
 import os
 from form import *
@@ -69,6 +70,8 @@ class MainWindow(QMainWindow):
         self.type_of_figure = "white"
         self.count_of_white_figure = 12
         self.count_of_black_figure = 12
+        self.count_of_white_qeen = 0
+        self.count_of_black_qeen = 0
         self.name_parent_button =""
         self.parent_r = -1
         self.parent_c = -1
@@ -89,6 +92,8 @@ class MainWindow(QMainWindow):
         ]
         self.list_of_positions = []
         self.number_of_position = 0
+        self.depth = 0
+        self.is_game_with_bot = False
         self.all_lines = [
             [[6,0],[7,1]],
             [[4,0],[5,1],[6,2],[7,3]],
@@ -113,8 +118,8 @@ class MainWindow(QMainWindow):
         self.ui.start_the_game.clicked.connect(lambda:self.start_game())
         self.ui.rules_of_play.clicked.connect(lambda:self.read_rules())
         self.ui.back_to_game.clicked.connect(lambda:self.backs_to_game())
-        self.ui.statistics.clicked.connect(lambda:self.read_statistic())
-        self.ui.back_to_report.clicked.connect(lambda:self.back_rep())
+        # self.ui.statistics.clicked.connect(lambda:self.read_statistic())
+        # self.ui.back_to_report.clicked.connect(lambda:self.back_rep())
         self.ui.leave_the_game.clicked.connect(lambda:self.get_away())
         self.ui.stop_game.clicked.connect(lambda:self.go_to_preview())
         self.ui.settings.clicked.connect(lambda:self.open_settings())
@@ -123,9 +128,12 @@ class MainWindow(QMainWindow):
         self.ui.button_return_this_position.clicked.connect(lambda:self.get_this_position())
         self.timer.timeout.connect(self.showTime)
         self.ui.start_game_2_players.clicked.connect(lambda:self.start_game_for_2_players(True))
+        self.ui.push_button_play_game_with_bot.clicked.connect(lambda:self.start_game_with_bot())
         for button in self.all_buttons:
             button.clicked.connect(lambda ch, b=button: self.choose_start_position(b))
-
+    # def settings_to_play_game_2_players(self):
+    #     for button in self.all_buttons:
+    #          button.clicked.connect(lambda ch, b=button: self.choose_start_position(b))
     def showTime(self):  
         self.ui.label_time.setText(f"{self.time}c")
         self.time -= 1                                            
@@ -157,6 +165,8 @@ class MainWindow(QMainWindow):
         self.ui.textEdit_of_white_motions.setText("")
         self.count_of_white_figure = 12
         self.count_of_black_figure = 12
+        self.ui.label_white_statistic.setText(str(12))
+        self.ui.label_black_statistic.setText(str(12))
         self.name_parent_button = ""
         self.time = 60
         self.list_of_positions.clear()
@@ -247,346 +257,7 @@ class MainWindow(QMainWindow):
                     butt.setIcon(QIcon())
                     butt.setIconSize(QSize(60,60))
         self.list_buttons.clear()
-    def check_ways_to_cut_or_to_make_motion(self):
-        self.more_important_ways.clear()
-        self.result.clear()
-        self.ways.clear()
-        check_is_qeen = self.board[self.parent_r][self.parent_c].isqeen
-        self.get_all_ways(self.parent_r, self.parent_c, self.ways, self.more_important_ways, check_is_qeen, self.type_of_figure,-1,-1)
-        if check_is_qeen:
-            if self.pos_which_can_cut_figure(self.more_important_ways, self.result, self.type_of_figure): 
-                self.more_important_ways.clear()
-                for i in self.result:
-                    self.more_important_ways.append(i)
-    def get_name_by_row_and_col(self, row, col):
-        return f"button_{row}{col}"
     
-    def choose_start_position(self, button):
-        index_of_row = int(button.objectName()[-2])
-        index_of_col = int(button.objectName()[-1])
-        figure_type = self.board[index_of_row][index_of_col].type_of_figure
-        
-        
-        if figure_type == self.type_of_figure: 
-            
-            button.setStyleSheet(self.style_around_buttons)
-            for but in self.list_of_butts:
-                if but.objectName()!= button.objectName():
-                    but.setStyleSheet(self.style_buttons)
-            self.list_of_butts.clear()
-            self.name_parent_button = button.objectName()
-            if (self.parent_r != -1 and self.parent_c != -1):
-                name = f"button_{self.parent_r}{self.parent_c}"
-                parent_button = self.get_button_by_name(name)
-                parent_button.setStyleSheet(self.style_buttons)
-            self.parent_r = index_of_row
-            self.parent_c = index_of_col
-            self.not_cutting_figure.clear()
-            
-            # при многократном выборе родительской позиции
-            if (self.parent_r == index_of_row and self.parent_c == index_of_col):
-                button.setStyleSheet(self.style_around_buttons)
-            self.clear_red_dot()
-            self.check_ways_to_cut_or_to_make_motion()
-            self.make_red_dot(self.more_important_ways)
-        
-        else:
-            
-            if self.parent_r == -1 or self.parent_c == -1 or self.board[self.parent_r][self.parent_c].type_of_figure != self.type_of_figure:
-                return
-            list_buttons_that_must_to_cut_ohter = []
-            self.get_buttons_that_should_cut_others(list_buttons_that_must_to_cut_ohter, self.type_of_figure)  
-            self.check_ways_to_cut_or_to_make_motion()
-            
-
-            # for temp in more_important_ways:
-            #     name_of_btn = f"button_{temp[0]}{temp[-1]}"
-            #     button  = self.get_button_by_name(name_of_btn)
-            #     self.arr_of_buttons.append(button)
-            #     button.setIcon(QIcon("icons/red-dot.png"))
-            #     button.setIconSize(QSize(15,15))
-                
-                # number_of_diogonal = -1
-                # for i in range(len(self.all_lines)):
-                #     if [self.parent_r, self.parent_c] in self.all_lines[i] and [index_of_row, index_of_col]in self.all_lines:
-                #         number_of_diogonal = i
-                #         break;
-                # is_in_big_arr = False
-                # small_arr = []
-                # big_arr = []
-                # print(f"номер родителя {self.parent_r}{self.parent_c}")
-                # print(f" метка  {index_of_row}{index_of_col}")
-                # print(f"гомер диогонпли --- {number_of_diogonal}")
-                # for element in more_important_ways:
-                #     if element in self.all_lines[number_of_diogonal] and element[0] < self.parent_r:
-                #         small_arr.append(element)
-                #     elif element in self.all_lines[number_of_diogonal] and element[0] > self.parent_r:
-                #         if [index_of_row, index_of_col] == element:
-                #             is_in_big_arr = True
-                #         big_arr.append(element)
-                # print("small")
-                # print(small_arr)
-                # print("big")
-                # print(big_arr)
-            
-                # result_arr = (small_arr if is_in_big_arr else big_arr)
-                # print("result_arr")
-                # print(result_arr)
-                # for element in result_arr:
-                #     self.not_cutting_figure.append(element)
-
-               
-            if figure_type is not None:
-                return
-            
-                
-            if len(list_buttons_that_must_to_cut_ohter) == 0:
-                if len(self.more_important_ways) == 0 and len(self.ways) > 0:
-                    self.change_position(self.ways, figure_type, index_of_row, index_of_col, self.type_of_figure, is_capture=False)
-            else:
-                
-                if [self.parent_r, self.parent_c] in list_buttons_that_must_to_cut_ohter:
-                    if [index_of_row, index_of_col] in self.more_important_ways:
-                        self.clear_red_dot()
-                        name = f"button_{index_of_row}{index_of_col}"
-                        new_button = self.get_button_by_name(name)
-                        parent_button = self.get_button_by_name(self.name_parent_button)
-                        icon = parent_button.icon()
-                        
-                        d_row = 1 if index_of_row > self.parent_r else -1
-                        d_col = 1 if index_of_col > self.parent_c else -1
-                        cut_row, cut_col = self.parent_r, self.parent_c
-                        time_r, time_c = self.parent_r + d_row, self.parent_c + d_col
-                        
-                        
-                        while (time_r, time_c) != (index_of_row, index_of_col) and 0 <= time_r < 8 and 0 <= time_c < 8:
-                            if self.board[time_r][time_c].type_of_figure is not None:
-                                if self.board[time_r][time_c].type_of_figure != self.type_of_figure:
-                                    cut_row, cut_col = time_r, time_c
-                                else:
-                                    return  
-                            time_r += d_row
-                            time_c += d_col
-                            
-                        name_of_cut = f"button_{cut_row}{cut_col}"
-                        cut_button = self.get_button_by_name(name_of_cut)
-                        if self.board[cut_row][cut_col].type_of_figure == self.type_of_figure:
-                            return
-                            
-                        self.board[cut_row][cut_col].type_of_figure = self.type_of_figure
-                        self.board[cut_row][cut_col].isbusy = True
-                        self.cut_figures.append(cut_button.objectName())
-                        
-                        types = "black" if self.type_of_figure == "white" else "white"
-                        if types == "black":
-                            self.count_of_black_figure -= 1
-                        else:
-                            self.count_of_white_figure -= 1
-                        
-                        self.change_position(self.more_important_ways, figure_type, index_of_row, index_of_col, self.type_of_figure, is_capture=True)
-                        restart = self.check_win()
-                        if (restart != ""):
-                            self.clear_red_dot()
-                            self.open_restart_window(restart)
-                    
-
-
-    def check_win(self):
-        result = ""
-        if self.count_of_black_figure == 0:
-            result = "white"
-            return result
-        elif self.count_of_white_figure ==0:
-            result = "black"
-            return result
-        else:
-            types = self.type_of_figure
-            list_of_figures= []
-            for i in range(8):
-                for j in range(8):
-                    if self.board[i][j].type_of_figure == types:
-                        list_of_figures.append([i,j])
-            if len(list_of_figures)==0:
-                result = ("black" if types == "white" else "white")
-                return result
-            for i in list_of_figures:
-                ways = []
-                more_important_ways = []
-                self.get_all_ways(i[0],i[1] , ways, more_important_ways, self.board[i[0]][i[1]].isqeen, types,-1,-1)
-                if len(ways)>0 or len(more_important_ways)>0:
-                    return result
-                
-            
-        result = ("black" if types == "white" else "white")
-        return result
-
-        
-
-    def remove_cut_figures(self):
-        for n in self.cut_figures:
-            button = self.get_button_by_name(n)
-            button.setIcon(QIcon())
-            row, col = int(button.objectName()[-2]), int(button.objectName()[-1])
-            self.board[row][col].type_of_figure = None
-            self.board[row][col].isbusy = False
-        self.cut_figures.clear()
-
-    def find_cut_figure(self, index_of_row, index_of_col):
-        d_row = 1 if index_of_row > self.parent_r else -1
-        d_col = 1 if index_of_col > self.parent_c else -1
-        cut_row, cut_col = self.parent_r, self.parent_c
-        time_r, time_c = self.parent_r + d_row, self.parent_c + d_col               
-        while (time_r, time_c) != (index_of_row, index_of_col) and 0 <= time_r < 8 and 0 <= time_c < 8:
-            if self.board[time_r][time_c].type_of_figure is not None:
-                if self.board[time_r][time_c].type_of_figure != self.type_of_figure:
-                    cut_row, cut_col = time_r, time_c
-                else:
-                    return  
-            time_r += d_row
-            time_c += d_col
-        return [cut_row, cut_col]
-
-    def make_notes_about_figure_which_make_the_motion(self, row_parent, col_parent, new_row, new_col, type_of_figure, time):
-        # name = ""
-        # if isqeen and type_of_figure == "black":
-        #     name = "icons/small_black_figure.png"
-        # elif isqeen and type_of_figure == "white":
-        #     name = "icons/small_white_figure.png"
-        # elif not isqeen  and type_of_figure =="black":
-        #     name =  "icons/small_default_black_figure.png"
-        # elif not isqeen and type_of_figure == "white":
-        #     name = "icons/small_default_white_figure.png"
-        # image_format.setWidth(200)  # ширина изображения
-        # image_format.setHeight(200)  # высота изображения
-        name = ""
-        if type_of_figure =="black":
-            name = "icons/timer_black.png"
-        else:
-            name = "icons/timer_white.png"
-        image_format = QTextImageFormat()
-        image_format.setWidth(17)  
-        image_format.setHeight(17)
-        image_format.setName(resource_path(name))
-        if type_of_figure == "black":
-            text = self.ui.textEdit_of_black_motiions.toPlainText()
-            new_text = text + f"\n\n    {self.count_of_black_motions}. {dict_of_letters_to_numbers[col_parent]}{row_parent} - {dict_of_letters_to_numbers[new_col]}{new_row}\t {time}c  "
-            self.ui.textEdit_of_black_motiions.setText(new_text)
-            cursor = self.ui.textEdit_of_black_motiions.textCursor()
-            cursor.movePosition(cursor.MoveOperation.End)
-            self.ui.textEdit_of_black_motiions.setTextCursor(cursor)
-        else:
-            text = self.ui.textEdit_of_white_motions.toPlainText()
-            new_text = text + f"\n\n    {self.count_of_black_motions}. {dict_of_letters_to_numbers[col_parent]}{row_parent} - {dict_of_letters_to_numbers[new_col]}{new_row}\t {time}c  "
-            self.ui.textEdit_of_white_motions.setText(new_text)
-            cursor = self.ui.textEdit_of_white_motions.textCursor()
-            cursor.movePosition(cursor.MoveOperation.End)
-            self.ui.textEdit_of_white_motions.setTextCursor(cursor)
-        cursor.insertImage(image_format)  
-
-    
-    def change_position(self, ways, figure_type, index_of_row, index_of_col, types,is_capture):
-        if figure_type == None and [index_of_row, index_of_col] in ways:
-            name = f"button_{index_of_row}{index_of_col}"
-            new_button = self.get_button_by_name(name)
-            parent_button = self.get_button_by_name(self.name_parent_button)
-            icon = parent_button.icon()
-            new_button.setIcon(icon)
-            new_button.setIconSize(QSize(60,60))
-            parent_button.setIcon(QIcon())
-            parent_button.setStyleSheet(self.style_buttons)
-            is_queen = self.board[self.parent_r][self.parent_c].isqeen
-            self.board[index_of_row][index_of_col].type_of_figure = self.board[self.parent_r][self.parent_c].type_of_figure
-            self.board[index_of_row][index_of_col].isqeen = is_queen
-            self.board[self.parent_r][self.parent_c].type_of_figure = None
-            self.board[self.parent_r][self.parent_c].isbusy = False
-            self.board[self.parent_r][self.parent_c].isqeen = False  
-            self.board[index_of_row][index_of_col].isbusy = True
-            if self.const_parent_row == -1:
-                self.const_parent_row = self.parent_r
-                self.const_parent_col = self.parent_c
-            self.check_is_figure_qeen(index_of_row, index_of_col)
-            if is_capture:
-                for buttons in self.all_buttons:
-                    i = int(buttons.objectName()[-2])
-                    j = int(buttons.objectName()[-1])
-                    if self.board[i][j].type_of_figure == self.board[index_of_row][index_of_col].type_of_figure:
-                        # buttons.setEnabled(False)
-                        buttons.setAttribute(Qt.WA_TransparentForMouseEvents, True)  
-                self.ways.clear()
-                self.more_important_ways.clear()
-                self.result.clear()
-                current_type = self.board[index_of_row][index_of_col].type_of_figure
-                self.get_all_ways(index_of_row, index_of_col, self.ways, self.more_important_ways, self.board[index_of_row][index_of_col].isqeen,current_type,-1,-1)
-            
-                # print("more_important_ways")
-                # print(more_important_ways)
-                # temp = self.block_ways_which_is_not_cutting(more_important_ways);
-                # more_important_ways.clear()
-                # more_important_ways = temp
-                # print("new_more_important_ways")
-                # print(temp)
-                # print("несбиваемые")
-                # print(self.not_cutting_figure)
-                if len(self.more_important_ways) > 0:
-                    self.name_parent_button = name
-                    self.parent_r = index_of_row
-                    self.parent_c = index_of_col
-                    new_button.setStyleSheet(self.style_around_buttons)
-                    self.check_ways_to_cut_or_to_make_motion()
-                    # check_is_qeen = self.board[self.parent_r][self.parent_c].isqeen
-                    # if check_is_qeen:
-                    #     if self.pos_which_can_cut_figure(self.more_important_ways, self.result, self.board[self.parent_r][self.parent_c].type_of_figure): 
-                    #         self.more_important_ways.clear()
-                    #         for i in self.result:
-                    #             self.more_important_ways.append(i)
-                    self.clear_red_dot()
-                    self.make_red_dot(self.more_important_ways)
-                    return
-            
-                self.remove_cut_figures()
-            time = 60 - int(self.ui.label_time.text()[:len(self.ui.label_time.text())-1])
-            self.make_notes_about_figure_which_make_the_motion(self.const_parent_row, self.const_parent_col, index_of_row, index_of_col,self.type_of_figure, time)
-            self.number_of_position+=1
-            position_copy = copy.deepcopy(self.board)
-            self.list_of_positions.append(position_copy)
-            self.const_parent_row = -1
-            self.const_parent_col = -1
-            if self.type_of_figure =="black":
-                self.count_of_black_motions+=1
-            else:
-                self.count_of_white_motions+=1
-            self.name_parent_button = ""
-            self.type_of_figure = "black" if self.type_of_figure == "white" else "white"
-            if self.type_of_figure =="black":
-                self.ui.black_in_statistics_label.setStyleSheet(color_of_statistics_label_active)
-                self.ui.white_in_statistics_label.setStyleSheet(color_of_statistics_label_disactive)
-            else:
-                self.ui.white_in_statistics_label.setStyleSheet(color_of_statistics_label_active)
-                self.ui.black_in_statistics_label.setStyleSheet(color_of_statistics_label_disactive)
-            self.not_cutting_figure.clear()
-            self.clear_red_dot()
-            self.time = 60
-            for buttons in self.all_buttons:
-                buttons.setAttribute(Qt.WA_TransparentForMouseEvents, False) 
-            list_of_buttons_that_we_should_paint = []
-            self.list_of_butts.clear()
-            self.get_buttons_that_should_cut_others(list_of_buttons_that_we_should_paint, self.type_of_figure)
-            for but in list_of_buttons_that_we_should_paint:
-                name_of_but = self.get_name_by_row_and_col(but[0], but[-1])
-                butts = self.get_button_by_name(name_of_but)
-                butts.setStyleSheet(style_cutt_buttons)
-                self.list_of_butts.append(butts)
-
- 
-
-    # def block_ways_which_is_not_cutting(self, arr):
-    #     new_arr = []
-    #     for element in arr:
-    #         if element in self.not_cutting_figure:
-    #             continue
-    #         else:
-    #             new_arr.append(element)
-    #     return new_arr
     def make_board(self, board):
         for i in range(8):
             for j in range(8):
@@ -602,18 +273,24 @@ class MainWindow(QMainWindow):
                         button.setStyleSheet(self.style_buttons)
                     else:
                         button.setStyleSheet(self.style_buttons_non_use)
-                if board[i][j].type_of_figure == "black":
-                    button.setIcon(self.icon_black)
+                if board[i][j].type_of_figure == "black" :
+                    if not board[i][j].isqeen:
+                        button.setIcon(self.icon_black)
+                    else:
+                        button.setIcon(QIcon(qeen_icon_black))
                 elif board[i][j].type_of_figure == "white":
-                    button.setIcon(self.icon_white)
+                    if not board[i][j].isqeen:
+                        button.setIcon(self.icon_white)
+                    else:
+                        button.setIcon(QIcon(qeen_icon_white))
                 else:
                     button.setIcon(QIcon())
-        for t in self.list_of_positions:
-             for  i in range(8):
-                 for j in range(8):
-                     print(t[i][j].type_of_figure, end =" ")
-                 print()
-             print("\n next position\n")
+        # for t in self.list_of_positions:
+        #      for  i in range(8):
+        #          for j in range(8):
+        #              print(t[i][j].type_of_figure, end =" ")
+        #          print()
+        #      print("\n next position\n")
                     
     def get_next(self):
         if self.number_of_position +1 <= len(self.list_of_positions)-1:
@@ -622,7 +299,7 @@ class MainWindow(QMainWindow):
             for button in self.all_buttons:
                 button.setAttribute(Qt.WA_TransparentForMouseEvents, True)
         # self.board = self.list_of_positions[self.number_of_position]
-        if self.number_of_position ==  len(self.list_of_positions):
+        if self.number_of_position ==  len(self.list_of_positions)-1:
             for button in self.all_buttons:
                 button.setAttribute(Qt.WA_TransparentForMouseEvents, False)
     def get_prev(self):
@@ -849,12 +526,666 @@ class MainWindow(QMainWindow):
         button = self.get_button_by_name(name)
         if row ==7 and figure.type_of_figure =="white":
             button.setIcon(QIcon(qeen_icon_white))
+            self.count_of_white_qeen+=1
         elif row == 0 and figure.type_of_figure =="black":
             button.setIcon(QIcon(qeen_icon_black))
+            self.count_of_black_qeen+=1
         else:
             return
         self.board[row][col].isqeen = True
         
+    def play_game(self, is_capture=False):
+        # print("type_of_figure:", self.type_of_figure)  # Проверим значение
+        if self.type_of_figure == "black":
+            if not is_capture:
+            # print("Entering black condition")  # Проверим, заходит ли в условие
+                lists = []
+                # for button in self.all_buttons:
+                #     button.setEnabled(False)
+                self.get_buttons_that_should_cut_others(lists, "black")
+                if len(lists)==0:
+                    for button in self.all_buttons:
+                        row  = int(button.objectName()[-2])
+                        col = int(button.objectName()[-1])
+                        if self.board[row][col].type_of_figure == "black":
+                            ways = []
+                            more_important_ways = []
+                            self.get_all_ways(row, col, ways, more_important_ways, self.board[row][col].isqeen, self.board[row][col].type_of_figure)
+                            if len(ways)>0:
+                                lists.append([row, col])
+                                
+                # print("lists\n")
+                # print(lists)
+                copy_of_board_before_minimax = copy.deepcopy(self.board)
+                max_eval = float('-inf')
+                best_move = []
+                for position in lists:
+                    eval, move = self.minimax(position, True, self.depth)
+                    if eval > max_eval:
+                        max_eval = eval
+                        best_move = move
+                self.board = copy_of_board_before_minimax
+                # self.name_parent_button = f"button{best_move[0]}{best_move[1]}"
+                self.parent_r = best_move[0]
+                self.parent_c = best_move[1]
+                # print("parent: ")
+                # print(best_move)
+            copy_of_board_before_minimax2 = copy.deepcopy(self.board)
+            ways = []
+            more_important_ways = []
+            self.get_all_ways(self.parent_r, self.parent_c, ways, more_important_ways, self.board[self.parent_r][self.parent_c].isqeen, self.board[self.parent_r][self.parent_c].type_of_figure)
+            res = []
+            if len(more_important_ways)==0:
+                res = ways
+            else:
+                res = more_important_ways
+            max_eval_res =float('-inf')
+            best_move_res = []
+            for pos in res:
+                eval, move = self.minimax(pos, True, self.depth)
+                if eval > max_eval_res:
+                    max_eval_res = eval
+                    best_move_res = move
+            # print(best_move_res)
+            self.board = copy_of_board_before_minimax2
+            
+            self.choose_start_position(None,best_move_res[0], best_move_res[1])
+
+            # self.choose_start_position(None, best_move[0], best_move[1])
+
+        
+            
+            
+            
+    def check_ways_to_cut_or_to_make_motion(self):
+        self.more_important_ways.clear()
+        self.result.clear()
+        self.ways.clear()
+        check_is_qeen = self.board[self.parent_r][self.parent_c].isqeen
+        self.get_all_ways(self.parent_r, self.parent_c, self.ways, self.more_important_ways, check_is_qeen, self.type_of_figure,-1,-1)
+        if check_is_qeen:
+            if self.pos_which_can_cut_figure(self.more_important_ways, self.result, self.type_of_figure): 
+                self.more_important_ways.clear()
+                for i in self.result:
+                    self.more_important_ways.append(i)
+    def get_name_by_row_and_col(self, row, col):
+        return f"button_{row}{col}"
+    
+    def choose_start_position(self, button = None, index_r = None, index_c = None):
+        if button!=None:
+            index_of_row = int(button.objectName()[-2])
+            index_of_col = int(button.objectName()[-1])
+        else:
+            index_of_row = index_r
+            index_of_col = index_c
+        figure_type = self.board[index_of_row][index_of_col].type_of_figure
+        
+        if figure_type == self.type_of_figure: 
+            
+            button.setStyleSheet(self.style_around_buttons)
+            for but in self.list_of_butts:
+                if but.objectName()!= button.objectName():
+                    but.setStyleSheet(self.style_buttons)
+            self.list_of_butts.clear()
+            self.name_parent_button = button.objectName()
+            if (self.parent_r != -1 and self.parent_c != -1):
+                name = f"button_{self.parent_r}{self.parent_c}"
+                parent_button = self.get_button_by_name(name)
+                parent_button.setStyleSheet(self.style_buttons)
+            self.parent_r = index_of_row
+            self.parent_c = index_of_col
+            self.not_cutting_figure.clear()
+            
+            # при многократном выборе родительской позиции
+            if (self.parent_r == index_of_row and self.parent_c == index_of_col):
+                button.setStyleSheet(self.style_around_buttons)
+            self.clear_red_dot()
+            self.check_ways_to_cut_or_to_make_motion()
+            self.make_red_dot(self.more_important_ways)
+        
+        else:
+            
+            if self.parent_r == -1 or self.parent_c == -1 or self.board[self.parent_r][self.parent_c].type_of_figure != self.type_of_figure:
+                return
+            list_buttons_that_must_to_cut_ohter = []
+            self.get_buttons_that_should_cut_others(list_buttons_that_must_to_cut_ohter, self.type_of_figure)  
+            self.check_ways_to_cut_or_to_make_motion() 
+            
+
+            # for temp in more_important_ways:
+            #     name_of_btn = f"button_{temp[0]}{temp[-1]}"
+            #     button  = self.get_button_by_name(name_of_btn)
+            #     self.arr_of_buttons.append(button)
+            #     button.setIcon(QIcon("icons/red-dot.png"))
+            #     button.setIconSize(QSize(15,15))
+                
+                # number_of_diogonal = -1
+                # for i in range(len(self.all_lines)):
+                #     if [self.parent_r, self.parent_c] in self.all_lines[i] and [index_of_row, index_of_col]in self.all_lines:
+                #         number_of_diogonal = i
+                #         break;
+                # is_in_big_arr = False
+                # small_arr = []
+                # big_arr = []
+                # print(f"номер родителя {self.parent_r}{self.parent_c}")
+                # print(f" метка  {index_of_row}{index_of_col}")
+                # print(f"гомер диогонпли --- {number_of_diogonal}")
+                # for element in more_important_ways:
+                #     if element in self.all_lines[number_of_diogonal] and element[0] < self.parent_r:
+                #         small_arr.append(element)
+                #     elif element in self.all_lines[number_of_diogonal] and element[0] > self.parent_r:
+                #         if [index_of_row, index_of_col] == element:
+                #             is_in_big_arr = True
+                #         big_arr.append(element)
+                # print("small")
+                # print(small_arr)
+                # print("big")
+                # print(big_arr)
+            
+                # result_arr = (small_arr if is_in_big_arr else big_arr)
+                # print("result_arr")
+                # print(result_arr)
+                # for element in result_arr:
+                #     self.not_cutting_figure.append(element)
+
+               
+            if figure_type is not None:
+                return
+            
+                
+            if len(list_buttons_that_must_to_cut_ohter) == 0:
+                if len(self.more_important_ways) == 0 and len(self.ways) > 0:
+                    self.change_position(self.ways, figure_type, index_of_row, index_of_col, self.type_of_figure, is_capture=False)
+            else:
+                
+                if [self.parent_r, self.parent_c] in list_buttons_that_must_to_cut_ohter:
+                    if [index_of_row, index_of_col] in self.more_important_ways:
+                        self.clear_red_dot()
+                        name = f"button_{index_of_row}{index_of_col}"
+                        new_button = self.get_button_by_name(name)
+                        parent_button = self.get_button_by_name(f"button_{self.parent_r}{self.parent_c}")
+                        icon = parent_button.icon()
+                        
+                        d_row = 1 if index_of_row > self.parent_r else -1
+                        d_col = 1 if index_of_col > self.parent_c else -1
+                        cut_row, cut_col = self.parent_r, self.parent_c
+                        time_r, time_c = self.parent_r + d_row, self.parent_c + d_col
+                        
+                        
+                        while (time_r, time_c) != (index_of_row, index_of_col) and 0 <= time_r < 8 and 0 <= time_c < 8:
+                            if self.board[time_r][time_c].type_of_figure is not None:
+                                if self.board[time_r][time_c].type_of_figure != self.type_of_figure:
+                                    cut_row, cut_col = time_r, time_c
+                                else:
+                                    return  
+                            time_r += d_row
+                            time_c += d_col
+                            
+                        name_of_cut = f"button_{cut_row}{cut_col}"
+                        cut_button = self.get_button_by_name(name_of_cut)
+                        if self.board[cut_row][cut_col].type_of_figure == self.type_of_figure:
+                            return
+                            
+                        self.board[cut_row][cut_col].type_of_figure = self.type_of_figure
+                        self.board[cut_row][cut_col].isbusy = True
+                        self.cut_figures.append(cut_button.objectName())
+                        
+                        types = "black" if self.type_of_figure == "white" else "white"
+                        if types == "black":
+                            self.count_of_black_figure -= 1
+                        else:
+                            self.count_of_white_figure -= 1
+                        
+                        self.change_position(self.more_important_ways, figure_type, index_of_row, index_of_col, self.type_of_figure, is_capture=True)
+                        
+                    
+
+
+    def check_win(self):
+        result = ""
+        if self.count_of_black_figure == 0:
+            result = "white"
+            return result
+        elif self.count_of_white_figure ==0:
+            result = "black"
+            return result
+        else:
+            types = self.type_of_figure
+            list_of_figures= []
+            for i in range(8):
+                for j in range(8):
+                    if self.board[i][j].type_of_figure == types:
+                        list_of_figures.append([i,j])
+            if len(list_of_figures)==0:
+                result = ("black" if types == "white" else "white")
+                return result
+            for i in list_of_figures:
+                ways = []
+                more_important_ways = []
+                self.get_all_ways(i[0],i[1] , ways, more_important_ways, self.board[i[0]][i[1]].isqeen, types,-1,-1)
+                if len(ways)>0 or len(more_important_ways)>0:
+                    return result
+                
+            
+        result = ("black" if types == "white" else "white")
+        return result
+
+        
+
+    def remove_cut_figures(self):
+        for n in self.cut_figures:
+            button = self.get_button_by_name(n)
+            button.setIcon(QIcon())
+            row, col = int(button.objectName()[-2]), int(button.objectName()[-1])
+            self.board[row][col].type_of_figure = None
+            self.board[row][col].isbusy = False
+        self.cut_figures.clear()
+
+    def find_cut_figure(self, index_of_row, index_of_col):
+        d_row = 1 if index_of_row > self.parent_r else -1
+        d_col = 1 if index_of_col > self.parent_c else -1
+        cut_row, cut_col = self.parent_r, self.parent_c
+        time_r, time_c = self.parent_r + d_row, self.parent_c + d_col               
+        while (time_r, time_c) != (index_of_row, index_of_col) and 0 <= time_r < 8 and 0 <= time_c < 8:
+            if self.board[time_r][time_c].type_of_figure is not None:
+                if self.board[time_r][time_c].type_of_figure != self.type_of_figure:
+                    cut_row, cut_col = time_r, time_c
+                else:
+                    return  
+            time_r += d_row
+            time_c += d_col
+        return [cut_row, cut_col]
+
+    def make_notes_about_figure_which_make_the_motion(self, row_parent, col_parent, new_row, new_col, type_of_figure, time):
+        # name = ""
+        # if isqeen and type_of_figure == "black":
+        #     name = "icons/small_black_figure.png"
+        # elif isqeen and type_of_figure == "white":
+        #     name = "icons/small_white_figure.png"
+        # elif not isqeen  and type_of_figure =="black":
+        #     name =  "icons/small_default_black_figure.png"
+        # elif not isqeen and type_of_figure == "white":
+        #     name = "icons/small_default_white_figure.png"
+        # image_format.setWidth(200)  # ширина изображения
+        # image_format.setHeight(200)  # высота изображения
+        name = ""
+        if type_of_figure =="black":
+            name = "icons/timer_black.png"
+        else:
+            name = "icons/timer_white.png"
+        image_format = QTextImageFormat()
+        image_format.setWidth(17)  
+        image_format.setHeight(17)
+        image_format.setName(resource_path(name))
+        if type_of_figure == "black":
+            text = self.ui.textEdit_of_black_motiions.toPlainText()
+            new_text = text + f"\n\n    {self.count_of_black_motions}. {dict_of_letters_to_numbers[col_parent]}{row_parent} - {dict_of_letters_to_numbers[new_col]}{new_row}\t {time}c  "
+            self.ui.textEdit_of_black_motiions.setText(new_text)
+            cursor = self.ui.textEdit_of_black_motiions.textCursor()
+            cursor.movePosition(cursor.MoveOperation.End)
+            self.ui.textEdit_of_black_motiions.setTextCursor(cursor)
+        else:
+            text = self.ui.textEdit_of_white_motions.toPlainText()
+            new_text = text + f"\n\n    {self.count_of_black_motions}. {dict_of_letters_to_numbers[col_parent]}{row_parent} - {dict_of_letters_to_numbers[new_col]}{new_row}\t {time}c  "
+            self.ui.textEdit_of_white_motions.setText(new_text)
+            cursor = self.ui.textEdit_of_white_motions.textCursor()
+            cursor.movePosition(cursor.MoveOperation.End)
+            self.ui.textEdit_of_white_motions.setTextCursor(cursor)
+        cursor.insertImage(image_format)  
+
+    
+    def change_position(self, ways, figure_type, index_of_row, index_of_col, types,is_capture):
+        if figure_type == None and [index_of_row, index_of_col] in ways:
+            name = f"button_{index_of_row}{index_of_col}"
+            new_button = self.get_button_by_name(name)
+            parent_button = self.get_button_by_name(f"button_{self.parent_r}{self.parent_c}")
+            icon = parent_button.icon()
+            new_button.setIcon(icon)
+            new_button.setIconSize(QSize(60,60))
+            parent_button.setIcon(QIcon())
+            parent_button.setStyleSheet(self.style_buttons)
+            is_queen = self.board[self.parent_r][self.parent_c].isqeen
+            self.board[index_of_row][index_of_col].type_of_figure = self.board[self.parent_r][self.parent_c].type_of_figure
+            self.board[index_of_row][index_of_col].isqeen = is_queen
+            self.board[self.parent_r][self.parent_c].type_of_figure = None
+            self.board[self.parent_r][self.parent_c].isbusy = False
+            self.board[self.parent_r][self.parent_c].isqeen = False  
+            self.board[index_of_row][index_of_col].isbusy = True
+            if self.const_parent_row == -1:
+                self.const_parent_row = self.parent_r
+                self.const_parent_col = self.parent_c
+            self.check_is_figure_qeen(index_of_row, index_of_col)
+            if is_capture:
+                for buttons in self.all_buttons:
+                    i = int(buttons.objectName()[-2])
+                    j = int(buttons.objectName()[-1])
+                    if self.board[i][j].type_of_figure == self.board[index_of_row][index_of_col].type_of_figure:
+                        # buttons.setEnabled(False)
+                        buttons.setAttribute(Qt.WA_TransparentForMouseEvents, True)  
+                self.ways.clear()
+                self.more_important_ways.clear()
+                self.result.clear()
+                current_type = self.board[index_of_row][index_of_col].type_of_figure
+                self.get_all_ways(index_of_row, index_of_col, self.ways, self.more_important_ways, self.board[index_of_row][index_of_col].isqeen,current_type,-1,-1)
+            
+                # print("more_important_ways")
+                # print(more_important_ways)
+                # temp = self.block_ways_which_is_not_cutting(more_important_ways);
+                # more_important_ways.clear()
+                # more_important_ways = temp
+                # print("new_more_important_ways")
+                # print(temp)
+                # print("несбиваемые")
+                # print(self.not_cutting_figure)
+                if len(self.more_important_ways) > 0:
+                    self.name_parent_button = name
+                    self.parent_r = index_of_row
+                    self.parent_c = index_of_col
+                    new_button.setStyleSheet(self.style_around_buttons)
+                    self.check_ways_to_cut_or_to_make_motion()
+                    # check_is_qeen = self.board[self.parent_r][self.parent_c].isqeen
+                    # if check_is_qeen:
+                    #     if self.pos_which_can_cut_figure(self.more_important_ways, self.result, self.board[self.parent_r][self.parent_c].type_of_figure): 
+                    #         self.more_important_ways.clear()
+                    #         for i in self.result:
+                    #             self.more_important_ways.append(i)
+                    self.clear_red_dot()
+                    if not self.is_game_with_bot or (self.is_game_with_bot and self.type_of_figure=="white"):
+                        self.make_red_dot(self.more_important_ways)
+                    if self.is_game_with_bot:
+                        self.play_game(True)
+                    return
+            
+                self.remove_cut_figures()
+            time = 60 - int(self.ui.label_time.text()[:len(self.ui.label_time.text())-1])
+            self.make_notes_about_figure_which_make_the_motion(self.const_parent_row, self.const_parent_col, index_of_row, index_of_col,self.type_of_figure, time)
+            self.number_of_position+=1
+            position_copy = copy.deepcopy(self.board)
+            self.list_of_positions.append(position_copy)
+            self.const_parent_row = -1
+            self.const_parent_col = -1
+            if self.type_of_figure =="black":
+                self.count_of_black_motions+=1
+            else:
+                self.count_of_white_motions+=1
+            self.name_parent_button = ""
+            self.type_of_figure = "black" if self.type_of_figure == "white" else "white"
+            if self.type_of_figure =="black":
+                self.ui.black_in_statistics_label.setStyleSheet(color_of_statistics_label_active)
+                self.ui.white_in_statistics_label.setStyleSheet(color_of_statistics_label_disactive)
+            else:
+                self.ui.white_in_statistics_label.setStyleSheet(color_of_statistics_label_active)
+                self.ui.black_in_statistics_label.setStyleSheet(color_of_statistics_label_disactive)
+            self.not_cutting_figure.clear()
+            self.clear_red_dot()
+            self.time = 60
+            self.ui.label_white_statistic.setText(str(self.count_of_white_figure))
+            self.ui.label_black_statistic.setText(str(self.count_of_black_figure))
+            for buttons in self.all_buttons:
+                buttons.setAttribute(Qt.WA_TransparentForMouseEvents, False) 
+            list_of_buttons_that_we_should_paint = []
+            self.list_of_butts.clear()
+            if (self.type_of_figure=="white" and self.is_game_with_bot) or not self.is_game_with_bot:
+                self.get_buttons_that_should_cut_others(list_of_buttons_that_we_should_paint, self.type_of_figure)
+            for but in list_of_buttons_that_we_should_paint:
+                name_of_but = self.get_name_by_row_and_col(but[0], but[-1])
+                butts = self.get_button_by_name(name_of_but)
+                butts.setStyleSheet(style_cutt_buttons)
+                self.list_of_butts.append(butts)
+            restart = self.check_win()
+            if (restart != ""):
+                self.clear_red_dot()
+                self.open_restart_window(restart)
+                return
+            if self.is_game_with_bot:
+                self.play_game()
+
+ 
+
+    # def block_ways_which_is_not_cutting(self, arr):
+    #     new_arr = []
+    #     for element in arr:
+    #         if element in self.not_cutting_figure:
+    #             continue
+    #         else:
+    #             new_arr.append(element)
+    #     return new_arr
+
+    def evaluate(self,  position):
+        bonus_for_center_checker = 0
+        bonus_for_checker_which_can_be_qeen = 0
+        bonus_for_position_which_stay_in_different_positions = 0
+        protected_pieces_bonus = 0
+        protected_pieces_for_negative_bonus = 0
+        bonus_for_checker_which_try_to_go_to_qeen = 0
+        bonus_to_save_figure = 0
+        bonus_of_saving_next_figure = 0
+        current_piece = self.board[position[0]][position[1]]
+        if current_piece.type_of_figure == "black":
+            if position[0] > 0 and (position[1] > 0 and position[1] < 7):
+                if self.board[position[0]-1][position[1]-1].type_of_figure == "black" or self.board[position[0]-1][position[1]+1].type_of_figure == "black":
+                    protected_pieces_bonus -= 0.1
+            
+                # if position[1]> 1:
+                #     if self.board[position[0]-1][position[1]-1].type_of_figure == None and self.board[position[0]-1][position[1]-2].type_of_figure == "black":
+                #         protected_pieces_for_negative_bonus-=0.5
+                # if position[1]<6:
+                #     if self.board[position[0]-1][position[1]+1].type_of_figure == None and self.board[position[0]-1][position[1]+2].type_of_figure == "black":
+                #         protected_pieces_for_negative_bonus-=0.5
+                if position[0]>1 and (position[1]>1 and position[1]<6):
+                    if self.board[position[0]-2][position[1]-2].type_of_figure =="black" or self.board[position[0]-2][position[1]+2].type_of_figure == "black":
+                        protected_pieces_bonus+=0.3
+                    if self.board[position[0]-1][position[1]-1].type_of_figure == None and self.board[position[0]-2][position[1]-2].type_of_figure == "white":
+                        protected_pieces_for_negative_bonus-=0.5
+                    if self.board[position[0]-1][position[1]+1].type_of_figure ==None and self.board[position[0]-2][position[1]+2].type_of_figure == "white":
+                        protected_pieces_bonus-=0.7
+                if position[0]>1 and position[1]>1 and position[1]<7:
+                    if self.board[position[0]-1][position[1]-1].type_of_figure == None and self.board[position[0]-2][position[1]].type_of_figure =="white":
+                        bonus_to_save_figure+=0.7
+                    if self.board[position[0]-1][position[1]+1].type_of_figure == None and self.board[position[0]-2][position[1]].type_of_figure=="white":
+                        bonus_to_save_figure+=0.7
+
+                if position[1]<6 and position[0]>1:
+                    if self.board[position[0]][position[1]].type_of_figure =="black" and self.board[position[0]-1][position[1]+1].type_of_figure =="black" and self.board[position[0]-2][position[1]+2].type_of_figure == "white":
+                        bonus_of_saving_next_figure-=0.7
+                if position[1]>1 and position[0]>1:
+                    if self.board[position[0]][position[1]].type_of_figure == "black" and self.board[position[0]-1][position[1]-1].type_of_figure == "black" and self.board[position[0]-2][position[1]-2].type_of_figure =="white":
+                        bonus_of_saving_next_figure-=0.7               
+            else:  
+                if position[0] < 7 and (position[1] > 0 and position[1] < 7):
+                    if self.board[position[0]+1][position[1]-1].type_of_figure == "white" or self.board[position[0]+1][position[1]+1].type_of_figure == "white":
+                        protected_pieces_bonus += 0.1
+                # if position[1]> 1:
+                #     if self.board[position[0]-1][position[1]-1].type_of_figure == None and self.board[position[0]-1][position[1]-2].type_of_figure == "black":
+                #         protected_pieces_for_negative_bonus-=0.5
+                # if position[1]<6:
+                #     if self.board[position[0]-1][position[1]+1].type_of_figure == None and self.board[position[0]-1][position[1]+2].type_of_figure == "black":
+                #         protected_pieces_for_negative_bonus-=0.5
+                if position[0]<6 and (position[1]>1 and position[1]<6):
+                    if self.board[position[0]+2][position[1]-2].type_of_figure =="white" or self.board[position[0]+2][position[1]+2].type_of_figure == "white":
+                        protected_pieces_bonus-=0.3
+                    if self.board[position[0]+1][position[1]-1].type_of_figure == None and self.board[position[0]+2][position[1]-2].type_of_figure == "black":
+                        protected_pieces_for_negative_bonus-=0.5
+                    if self.board[position[0]+1][position[1]+1].type_of_figure ==None and self.board[position[0]-2][position[1]+2].type_of_figure == "black":
+                        protected_pieces_bonus+=0.7
+                if position[0]<6 and position[1]>1 and position[1]<7:
+                    if self.board[position[0]-1][position[1]-1].type_of_figure == None and self.board[position[0]-2][position[1]].type_of_figure =="black":
+                        bonus_to_save_figure-=0.7
+                    if self.board[position[0]-1][position[1]+1].type_of_figure == None and self.board[position[0]-2][position[1]].type_of_figure=="black":
+                        bonus_to_save_figure-=0.7
+                if position[1]<6 and position[0]<7:
+                    if self.board[position[0]][position[1]].type_of_figure =="white" and self.board[position[0]+1][position[1]+1].type_of_figure =="white" and self.board[position[0]+2][position[1]+2].type_of_figure == "black":
+                        bonus_of_saving_next_figure+=0.7
+                if position[1]>1 and position[0]>1:
+                    if self.board[position[0]][position[1]].type_of_figure == "white" and self.board[position[0]+1][position[1]-1].type_of_figure == "white" and self.board[position[0]+2][position[1]-2].type_of_figure =="black":
+                        bonus_of_saving_next_figure+=0.7
+        
+        
+        if not self.board[position[0]][position[1]].isqeen and position[1] in list_of_center and self.board[position[0]][position[1]].type_of_figure == None:
+            if self.type_of_figure =="white":
+                bonus_for_center_checker-=0.5
+            if self.type_of_figure == "black":
+                bonus_for_center_checker+=0.5
+        elif not self.board[position[0]][position[1]].isqeen and position[1] in list_of_not_center and self.board[position[0]][position[1]].type_of_figure !=None:
+            if self.type_of_figure =="white":
+                bonus_for_center_checker-=0.4
+            if self.type_of_figure == "black":
+                bonus_for_center_checker+=0.4
+        elif not self.board[position[0]][position[1]].isqeen and position[1] in list_of_smaller_center and self.board[position[0]][position[1]].type_of_figure !=None:
+            if self.type_of_figure =="white":
+                bonus_for_center_checker-=0.3
+            if self.type_of_figure == "black":
+                bonus_for_center_checker+=0.3
+        elif not self.board[position[0]][position[1]].isqeen and position[1] in list_of_smaller_center:
+            if self.type_of_figure =="white":
+                bonus_for_center_checker-=0.2
+            if self.type_of_figure == "black":
+                bonus_for_center_checker+=0.2
+        if (not self.board[position[0]][position[1]].isqeen and position[0] == 7):
+            bonus_for_checker_which_can_be_qeen+=1
+        if self.number_of_position<5 and self.board[position[0]][position[1]].type_of_figure == "black":
+            if (position[0]==7):
+                bonus_for_position_which_stay_in_different_positions+=0.05
+            elif position[0]==6:
+                bonus_for_position_which_stay_in_different_positions+=0.1
+            elif position[0] == 5:
+                bonus_for_position_which_stay_in_different_positions+=0.15
+        elif self.number_of_position<5 and self.board[position[0]][position[1]].type_of_figure == "white":
+            if position[0]==0:
+                bonus_for_position_which_stay_in_different_positions-=0.05
+            elif position[0]==1:
+                bonus_for_position_which_stay_in_different_positions-=0.1
+            elif position[0] == 2:
+                bonus_for_position_which_stay_in_different_positions-=0.15
+
+        if self.board[position[0]][position[1]].type_of_figure == "black" and self.count_of_white_figure<7 and position[0]<4:
+            bonus_for_checker_which_try_to_go_to_qeen+=0.6
+        elif self.board[position[0]][position[1]].type_of_figure == "white" and self.count_of_black_figure<7 and position[0]>4:
+            bonus_for_checker_which_try_to_go_to_qeen-=0.6
+        
+        return self.count_of_white_figure - self.count_of_black_figure + (self.count_of_white_qeen*0.5 - self.count_of_black_qeen*0.5)+ bonus_for_checker_which_can_be_qeen \
+            +bonus_for_center_checker+bonus_for_position_which_stay_in_different_positions+ protected_pieces_bonus+protected_pieces_for_negative_bonus\
+            +bonus_for_checker_which_try_to_go_to_qeen+bonus_to_save_figure+bonus_of_saving_next_figure
+    
+    # def minimax(self, position, is_max_player, depth):
+    #     if depth == 0 or self.check_win()!= None:
+    #         return self.evaluate(position), position
+    #     # self.check_ways_to_cut_or_to_make_motion()
+    #     self.ways.clear()
+    #     self.more_important_ways.clear()
+    #     check_is_qeen = self.board[position[0]][position[1]].isqeen
+    #     self.get_all_ways(position[0], position[1], self.ways, self.more_important_ways, check_is_qeen, self.board[position[0]][position[1]].type_of_figure)
+    #     if check_is_qeen:
+    #         if self.pos_which_can_cut_figure(self.more_important_ways, self.result, self.type_of_figure): 
+    #             self.more_important_ways.clear()
+    #             for i in self.result:
+    #                 self.more_important_ways.append(i)
+    #     possible_ways = []
+    #     if len(self.more_important_ways)>0:
+    #         possible_ways = copy.deepcopy(self.more_important_ways)
+    #     else:
+    #         possible_ways = copy.deepcopy(self.ways)
+    #     if is_max_player:
+    #         best_move = None
+    #         max_number = float('-inf')
+    #         for way in possible_ways:
+    #             evaluation= self.minimax(way, False, depth-1)[0]
+    #             max_eval = max(max_number, evaluation)
+    #             self.board[way[0]][way[1]].type_of_figure = self.board[position[0]][position[1]].type_of_figure
+    #             self.board[way[0]][way[1]].isqeen = check_is_qeen
+    #             if (max_eval == evaluation):
+    #                 best_move = way
+    #         return max_eval, best_move
+        
+    #     else:
+    #         best_move = None
+    #         min_number = float('inf')
+    #         for way in possible_ways:
+    #             evaluation= self.minimax(way, True, depth-1)[0]
+    #             min_eval = min(min_number, evaluation)
+    #             self.board[way[0]][way[1]].type_of_figure = self.board[position[0]][position[1]].type_of_figure
+    #             self.board[way[0]][way[1]].isqeen = check_is_qeen
+    #             if (min_eval == evaluation):
+    #                 best_move = way
+                    
+    #         return min_eval, best_move
+    
+
+    def minimax(self, position, is_max_player, depth):
+        if depth == 0 or self.check_win() != None:
+            return self.evaluate(position), position
+
+        # Сохраняем текущее состояние
+        old_type = self.board[position[0]][position[1]].type_of_figure
+        old_isqeen = self.board[position[0]][position[1]].isqeen
+        
+        self.ways.clear()
+        self.more_important_ways.clear()
+        
+        self.get_all_ways(position[0], position[1], self.ways, self.more_important_ways, old_isqeen, old_type)
+        
+        if old_isqeen:
+            if self.pos_which_can_cut_figure(self.more_important_ways, self.result, self.type_of_figure): 
+                self.more_important_ways.clear()
+                for i in self.result:
+                    self.more_important_ways.append(i)
+        
+        possible_ways = []
+        if len(self.more_important_ways) > 0:
+            possible_ways = copy.deepcopy(self.more_important_ways)
+        else:
+            possible_ways = copy.deepcopy(self.ways)
+
+        if is_max_player:
+            best_move = None
+            max_eval = float('-inf')
+            
+            for way in possible_ways:
+                # Делаем ход
+                self.board[way[0]][way[1]].type_of_figure = old_type
+                self.board[way[0]][way[1]].isqeen = old_isqeen
+                self.board[position[0]][position[1]].type_of_figure = None
+                self.board[position[0]][position[1]].isqeen = False
+                
+                evaluation = self.minimax(way, False, depth-1)[0]
+                
+                # Отменяем ход
+                self.board[position[0]][position[1]].type_of_figure = old_type
+                self.board[position[0]][position[1]].isqeen = old_isqeen
+                self.board[way[0]][way[1]].type_of_figure = None
+                self.board[way[0]][way[1]].isqeen = False
+                
+                if evaluation > max_eval:
+                    max_eval = evaluation
+                    best_move = way
+                    
+            return max_eval, best_move
+        
+        else:
+            best_move = None
+            min_eval = float('inf')
+            
+            for way in possible_ways:
+                # Делаем ход
+                self.board[way[0]][way[1]].type_of_figure = old_type
+                self.board[way[0]][way[1]].isqeen = old_isqeen
+                self.board[position[0]][position[1]].type_of_figure = None
+                self.board[position[0]][position[1]].isqeen = False
+                
+                evaluation = self.minimax(way, True, depth-1)[0]
+                
+                # Отменяем ход
+                self.board[position[0]][position[1]].type_of_figure = old_type
+                self.board[position[0]][position[1]].isqeen = old_isqeen
+                self.board[way[0]][way[1]].type_of_figure = None
+                self.board[way[0]][way[1]].isqeen = False
+                
+                if evaluation < min_eval:
+                    min_eval = evaluation
+                    best_move = way
+                    
+            return min_eval, best_move
+    
     def make_buttons_visible_to_get_previous_panel(self):
         for button in self.list_of_button_to_get_prev_or_next_position:
             button.setEnabled(True)
@@ -873,15 +1204,30 @@ class MainWindow(QMainWindow):
         self.ui.right_widget.setCurrentWidget(self.ui.second_widget_right)
         self.temp = self.ui.second_central_widget
         self.make_buttons_visible_to_get_previous_panel()
-
+        self.ui.push_button_play_game_with_bot.setEnabled(True)
 
     def start_game_for_2_players(self, is_enabled):
         self.make_board_buttons_clicked_or_unklicked(is_enabled)
         self.ui.start_game_2_players.setEnabled(False)
+        self.is_game_with_bot = False
+        self.start_game()
+        # self.settings_to_play_game_2_players()
+        self.ui.white_in_statistics_label.setStyleSheet(color_of_statistics_label_active)
+        self.ui.black_in_statistics_label.setStyleSheet(color_of_statistics_label_disactive)
+        self.timer.start()
+
+    def start_game_with_bot(self):
+        self.make_board_buttons_clicked_or_unklicked(True)
         self.start_game()
         self.ui.white_in_statistics_label.setStyleSheet(color_of_statistics_label_active)
         self.ui.black_in_statistics_label.setStyleSheet(color_of_statistics_label_disactive)
         self.timer.start()
+        type_of_hard_mode = self.ui.box_to_choose_level_of_bot.currentText()
+        depth = int(dict_type_of_bot[type_of_hard_mode])
+        self.ui.push_button_play_game_with_bot.setEnabled(False)
+        self.depth = depth
+        self.is_game_with_bot = True
+        self.play_game()
         
     def read_rules(self):
         self.ui.central_widget.setCurrentWidget(self.ui.third_central_widget)
@@ -895,13 +1241,13 @@ class MainWindow(QMainWindow):
             self.ui.central_widget.setCurrentWidget(self.ui.first_cenral_widget)
         self.make_buttons_visible_to_get_previous_panel()
         
-    def read_statistic(self):
-        self.ui.right_widget.setCurrentWidget(self.ui.third_widget_right)
-        self.make_buttons_not_visible_get_previous()
+    # def read_statistic(self):
+    #     self.ui.right_widget.setCurrentWidget(self.ui.third_widget_right)
+    #     self.make_buttons_not_visible_get_previous()
         
-    def back_rep(self):
-        self.ui.right_widget.setCurrentWidget(self.ui.second_widget_right)
-        self.make_buttons_visible_to_get_previous_panel()
+    # def back_rep(self):
+    #     self.ui.right_widget.setCurrentWidget(self.ui.second_widget_right)
+    #     self.make_buttons_visible_to_get_previous_panel()
 
     def get_away(self):
         self.close()
@@ -1021,9 +1367,9 @@ class MainWindow(QMainWindow):
             self.timer.stop()
             self.restart_window = RestartWindow()
             if restart == "white":
-                self.restart_window.ui.pushButton_3.setIcon(QIcon(icon_white))
+                self.restart_window.ui.pushButton_3.setIcon(QIcon(resource_path(icon_of_white_statistic)))
             else:
-                self.restart_window.ui.pushButton_3.setIcon(QIcon(icon_black))
+                self.restart_window.ui.pushButton_3.setIcon(QIcon(resource_path(icon_of_black_statistic)))
             self.restart_window.ui.pushButton_3.setText("Выиграли")
             self.restart_window.ui.pushButton.clicked.connect(lambda:self.on_restart_closed())
             self.restart_window.ui.pushButton_2.clicked.connect(lambda:self.on_preview())
@@ -1036,6 +1382,7 @@ class MainWindow(QMainWindow):
     def on_restart_closed(self):
         self.restart_window = None
         self.make_buttons_not_visible_get_previous()
+        self.ui.push_button_play_game_with_bot.setEnabled(True)
         self.start_settings()
     
         
