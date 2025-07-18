@@ -26,4 +26,7 @@ class RestartWindow(QDialog):
         # отключение кнопки закрытия
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowCloseButtonHint)
 
-        
+class Move:
+    def __init__(self):
+        self.start = None
+        self.end = None

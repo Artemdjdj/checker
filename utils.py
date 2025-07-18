@@ -92,11 +92,16 @@ dict_of_letters_to_numbers = {
 
 
 dict_type_of_bot = {
-    "Легкий": 8,
-    "Средний": 24,
-    "Профессионал":64,
+    "Легкий": 4,
+    "Средний": 16,
+    "Профессионал":20,
 }
 
 list_of_center = [3,4]
 list_of_smaller_center =[1,2,5,6]
 list_of_not_center = [0,7]
+
+list_of_move = [[-1,1], [-1,-1], [1,-1], [1,1]]
+
+music_file_move_after_fight = "audio/move_checker_fight.mp3"
+music_file_move_2 = "audio/move_figure.mp3"
