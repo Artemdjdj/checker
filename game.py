@@ -28,5 +28,16 @@ class RestartWindow(QDialog):
 
 class Move:
     def __init__(self):
-        self.start = None
-        self.end = None
+        self.parent_row = None
+        self.parent_col = None
+        self.row = None
+        self.col = None
+
+    def get_el(self, parent_r, parent_c, r, c):
+        self.parent_row = parent_r
+        self.parent_col = parent_c
+        self.row = r
+        self.col = c
+
+    def __str__(self):
+        return f"{self.parent_row} {self.parent_col} {self.row} {self.col}"

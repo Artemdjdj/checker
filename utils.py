@@ -92,12 +92,14 @@ dict_of_letters_to_numbers = {
 
 
 dict_type_of_bot = {
-    "Легкий": 4,
-    "Средний": 16,
-    "Профессионал":20,
+    "Легкий": 3,
+    "Средний": 5,
+    "Профессионал":7,
 }
 
-list_of_center = [3,4]
+list_of_center_white_row = [3,4]
+list_of_center_black_row = [4,5]
+list_of_center_col = [3,4,5]
 list_of_smaller_center =[1,2,5,6]
 list_of_not_center = [0,7]
 
