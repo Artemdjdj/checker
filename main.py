@@ -3,15 +3,19 @@ from PySide6.QtCore import QUrl, QTimer
 from PySide6.QtGui import QTextCursor, QImage, QTextImageFormat, QTextOption
 from PySide6.QtCore import QSize
 from PySide6 import *
+
 import math
 import sys
 import os
+
+import time as t
+
+import copy
+
 from form import *
 from settings import *
 from game import *
 from utils import *
-import copy
-
 class MainWindow(QMainWindow):
 
     def __init__(self):
@@ -783,7 +787,6 @@ class MainWindow(QMainWindow):
                             self.count_of_black_figure -= 1
                         else:
                             self.count_of_white_figure -= 1
-                        
                         self.change_position(self.more_important_ways, figure_type, index_of_row, index_of_col, self.type_of_figure,True,)
                         
                     
@@ -886,7 +889,12 @@ class MainWindow(QMainWindow):
             self.ui.textEdit_of_white_motions.setTextCursor(cursor)
         cursor.insertImage(image_format)  
 
-    
+    def print_board(self):
+        print("\n board:")
+        for i in range(7,-1,-1):
+            for j in range(0,8):
+                print(self.board[i][j].type_of_figure, end = "    ")
+            print()
     def change_position(self, ways, figure_type, index_of_row, index_of_col, types,is_capture):
         if figure_type == None and [index_of_row, index_of_col] in ways:
             name = f"button_{index_of_row}{index_of_col}"
@@ -895,6 +903,7 @@ class MainWindow(QMainWindow):
             icon = parent_button.icon()
             new_button.setIcon(icon)
             new_button.setIconSize(QSize(60,60))
+            
             parent_button.setIcon(QIcon())
             parent_button.setStyleSheet(self.style_buttons)
             is_queen = self.board[self.parent_r][self.parent_c].isqeen
@@ -947,9 +956,10 @@ class MainWindow(QMainWindow):
                     if not self.is_game_with_bot  or (self.is_game_with_bot and self.type_of_figure == "white"):
                         self.make_red_dot(self.get_real_more_important_ways())
                     if self.is_game_with_bot:
-                        self.play_checker_with_bot()
+                        self.print_board()
+                        self.play_checker_with_bot(index_of_row, index_of_col)
                     return
-            
+                
                 self.remove_cut_figures()
             
             time = 60 - int(self.ui.label_time.text()[:len(self.ui.label_time.text())-1])
@@ -981,8 +991,9 @@ class MainWindow(QMainWindow):
                 buttons.setAttribute(Qt.WA_TransparentForMouseEvents, False) 
             list_of_buttons_that_we_should_paint = []
             self.list_of_butts.clear()
-            self.player_move.setSource(QUrl.fromLocalFile(self.music_file_to_move))
-            self.player_move.play()
+            if (self.is_game_with_bot and self.type_of_figure=="black") or not self.is_game_with_bot:
+                self.player_move.setSource(QUrl.fromLocalFile(self.music_file_to_move))
+                self.player_move.play()
             self.get_buttons_that_should_cut_others(list_of_buttons_that_we_should_paint, self.type_of_figure)
             if (self.is_game_with_bot and self.type_of_figure == "white") or not self.is_game_with_bot:
                 for but in list_of_buttons_that_we_should_paint:
@@ -994,6 +1005,7 @@ class MainWindow(QMainWindow):
             if (restart != ""):
                 self.clear_red_dot()
                 self.open_restart_window(restart)
+           
             if self.is_game_with_bot:
                 self.play_checker_with_bot()
                 
@@ -1054,13 +1066,32 @@ class MainWindow(QMainWindow):
                         count_of_white_figure+=1
         return [count_of_white_figure, count_of_black_figure, count_of_white_qeen, count_of_black_qeen]
     def check_position(self):
-        bonus_for_most_central = 0.2
+        bonus_for_most_central = 0.15
         bonus_for_more_central = 0.1
         bonus_for_qeen = 0.3
+        bonus_for_mobility = 0.04
+        bonus_for_mobility_cut = 0.07
+        negative_bonus_for_not_defence_figures = -0.15
+        bonus_to_play_qeen = 0.1
         white_positional_bonus = 0
         black_positional_bonus = 0
         for i in range(8):
             for j in range(8):
+                if self.board[i][j].type_of_figure=="black":
+                    if self.board[i][j].isqeen:
+                        black_positional_bonus+=bonus_to_play_qeen
+                    
+                    if 0 < i < 7 and 0< j < 7:
+                        if (self.board[i-1][j-1].type_of_figure =="white" and self.board[i+1][j+1].type_of_figure ==None) or (self.board[i-1][j+1].type_of_figure =="white" and self.board[i+1][j-1].type_of_figure ==None) \
+                        or (self.board[i-1][j-1].type_of_figure ==None and self.board[i+1][j-1].type_of_figure =="white") or (self.board[i-1][j+1].type_of_figure ==None and self.board[i+1][j-1].type_of_figure =="white"):
+                            black_positional_bonus+= negative_bonus_for_not_defence_figures
+                elif self.board[i][j].type_of_figure=="white":
+                    if self.board[i][j].isqeen:
+                        black_positional_bonus+=bonus_to_play_qeen
+                    if 0 < i < 7 and 0< j < 7:
+                        if (self.board[i-1][j-1].type_of_figure =="black" and self.board[i+1][j+1].type_of_figure ==None) or (self.board[i-1][j+1].type_of_figure =="black" and self.board[i+1][j-1].type_of_figure ==None) \
+                        or (self.board[i-1][j-1].type_of_figure ==None and self.board[i+1][j-1].type_of_figure =="black") or (self.board[i-1][j+1].type_of_figure ==None and self.board[i+1][j-1].type_of_figure =="black"):
+                            white_positional_bonus+= negative_bonus_for_not_defence_figures
                 if self.board[i][j].type_of_figure == "white":
                     if i in list_of_center_white_row:
                         white_positional_bonus+=bonus_for_most_central
@@ -1079,7 +1110,16 @@ class MainWindow(QMainWindow):
                             black_positional_bonus+=bonus_for_more_central
                     elif i in [0,1,2]:
                         black_positional_bonus+=bonus_for_qeen
+                ways = []
+                more_important_ways = []
+                self.get_all_ways(i,j, ways, more_important_ways, self.board[i][j].isqeen, self.board[i][j].type_of_figure)
+                if self.board[i][j].type_of_figure == "black":
+                    black_positional_bonus+=len(ways)* bonus_for_mobility + len(more_important_ways)* bonus_for_mobility_cut
+                elif self.board[i][j].type_of_figure == "white":
+                    white_positional_bonus += len(ways)* bonus_for_mobility + len(more_important_ways)* bonus_for_mobility_cut
         return black_positional_bonus - white_positional_bonus
+    
+
                             
     def evaluate(self):
         total_score = 0
@@ -1090,12 +1130,28 @@ class MainWindow(QMainWindow):
         positional_bonus= self.check_position()
         total_score+= material_bonus+positional_bonus
         return total_score
+    
+    def get_possible_ways_using_coordinats(self,index_of_row, index_of_col):
+        ways = []
+        more_important_ways = []
+        res = []
+        self.get_all_ways(index_of_row, index_of_col, ways, more_important_ways, self.board[index_of_row][index_of_col].isqeen, self.board[index_of_row][index_of_col].type_of_figure)
+        for pos in more_important_ways:
+            move = Move()
+            move.get_el(index_of_row,index_of_col,pos[0], pos[1])
+            res.append(move)
+        return res
+
         
-    def minimax(self, is_maxplayer, depth, alpha, beta):
+    def minimax(self, is_maxplayer, depth, alpha, beta, row=-1, col=-1):
         if depth == 0 or self.check_win()!="":
             return self.evaluate(), None
-        
-        possible_ways = self.get_ways_to_cut_other()
+        if row!=-1:
+            possible_ways = self.get_possible_ways_using_coordinats(row, col)
+            if not possible_ways:
+                possible_ways = self.get_ways_to_cut_other()
+        else:
+            possible_ways = self.get_ways_to_cut_other()
 
         if not possible_ways:
             return self.evaluate(), None
@@ -1121,6 +1177,7 @@ class MainWindow(QMainWindow):
                     
                     self.board[cut_row][cut_col].type_of_figure = old_type
                     self.board[cut_row][cut_col].isqeen = False
+                    self.board[cut_row][cut_col].isbusy = False
                     ways = []
                     more_important_ways = []
                     self.get_all_ways(way.row, way.col,ways, more_important_ways, old_isqeen, old_type)
@@ -1131,6 +1188,7 @@ class MainWindow(QMainWindow):
 
                     self.board[cut_row][cut_col].type_of_figure = old_cut_type
                     self.board[cut_row][cut_col].isqeen = old_cut_isqeen
+                    self.board[cut_row][cut_col].isbusy = True
                     
                 else:
                     eval, _ = self.minimax(False, depth-1, alpha,beta)
@@ -1166,6 +1224,7 @@ class MainWindow(QMainWindow):
                     old_cut_type = self.board[cut_row][cut_col].type_of_figure
                     old_cut_isqeen = self.board[cut_row][cut_col].isqeen
                     self.board[cut_row][cut_col].type_of_figure = old_type
+                    self.board[cut_row][cut_col].isbusy = False
                     self.board[cut_row][cut_col].isqeen = False
                     ways = []
                     more_important_ways = []
@@ -1177,6 +1236,7 @@ class MainWindow(QMainWindow):
                         
                     self.board[cut_row][cut_col].type_of_figure = old_cut_type
                     self.board[cut_row][cut_col].isqeen = old_cut_isqeen
+                    self.board[cut_row][cut_col].isbusy = True
                 else:
                     eval, _ = self.minimax(True, depth-1, alpha, beta)
 
@@ -1196,9 +1256,9 @@ class MainWindow(QMainWindow):
                 
 
 
-    def play_checker_with_bot(self):
+    def play_checker_with_bot(self, row = -1, col =-1):
         if self.type_of_figure=="black":
-            eval, pos = self.minimax(True, self.depth, float('-inf'), float('inf'))
+            eval, pos = self.minimax(True, self.depth, float('-inf'), float('inf'), row, col)
             if pos!=None:
                 print(pos)
                 self.parent_r = pos.parent_row

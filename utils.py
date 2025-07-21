@@ -92,9 +92,9 @@ dict_of_letters_to_numbers = {
 
 
 dict_type_of_bot = {
-    "Легкий": 3,
-    "Средний": 5,
-    "Профессионал":7,
+    "Легкий": 2,
+    "Средний": 3,
+    "Профессионал":5,
 }
 
 list_of_center_white_row = [3,4]
